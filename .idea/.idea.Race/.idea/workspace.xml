@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="第二次提交">
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Start.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Start.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StartUIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StartUIManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +19,9 @@
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/NewBehaviourScript.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/StartUIManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/MainScene.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/StartScene.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/LoadScene.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="2MtwgT4VxzpKxCEnieV90nTAnOq" />
@@ -73,7 +75,8 @@
       <workItem from="1678600326038" duration="1000" />
       <workItem from="1678600345539" duration="1658000" />
       <workItem from="1678607953566" duration="1357000" />
-      <workItem from="1678686071972" duration="3600000" />
+      <workItem from="1678686071972" duration="3903000" />
+      <workItem from="1678690540189" duration="362000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交">
       <created>1678600451169</created>
@@ -103,7 +106,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678689674485</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Start场景">
+      <created>1678689851651</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1678689851651</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
