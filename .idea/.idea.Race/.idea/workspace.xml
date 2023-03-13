@@ -19,8 +19,8 @@
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/NewBehaviourScript.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/StartUIManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/MainScene.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/StartScene.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/MainScene.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/LoadScene.cs" />
     </changedPaths>
   </component>
@@ -76,7 +76,7 @@
       <workItem from="1678600345539" duration="1658000" />
       <workItem from="1678607953566" duration="1357000" />
       <workItem from="1678686071972" duration="3903000" />
-      <workItem from="1678690540189" duration="362000" />
+      <workItem from="1678690540189" duration="1408000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交">
       <created>1678600451169</created>
@@ -113,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678689851651</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="场景切换">
+      <created>1678691837157</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1678691837157</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,7 +146,8 @@
     <MESSAGE value="第二次提交" />
     <MESSAGE value="3" />
     <MESSAGE value="Start场景" />
-    <option name="LAST_COMMIT_MESSAGE" value="Start场景" />
+    <MESSAGE value="场景切换" />
+    <option name="LAST_COMMIT_MESSAGE" value="场景切换" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
