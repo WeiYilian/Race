@@ -1,13 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\888\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\888\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Race.1531795562.00" t="ExcludeRecursive" />
-    <e p="D:\learn\Unity\Race\Race" t="IncludeRecursive">
+    <e p="C:\Users\29569\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\29569\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_Race.-1705523573.00" t="ExcludeRecursive" />
+    <e p="D:\Race\Race" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="StartUIManager.cs" t="Include" />
+        </e>
+        <e p="素材" t="Include">
+          <e p="_Heathen Engineering" t="Include">
+            <e p="Documentation" t="Include">
+              <e p="UX" t="Include">
+                <e p="Flat Icons [Free]" t="Include">
+                  <e p="Read Me.txt" t="Include" />
+                </e>
+              </e>
+            </e>
+            <e p="Samples" t="Include">
+              <e p="UX Examples" t="Include">
+                <e p="Flat Icons [Free]" t="Include">
+                  <e p="ToggleSetAnimatorBoolean.cs" t="Include" />
+                </e>
+              </e>
+            </e>
+          </e>
+          <e p="Sci-Fi UI" t="Include">
+            <e p="Demo_Assets" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="GUI_Demo.cs" t="Include" />
+              </e>
+            </e>
+          </e>
         </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />
