@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="第二次提交">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GameLoop.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GameLoop.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/GameLoop.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/GameLoop.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" afterDir="false" />
+    <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="1次">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Loading.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Loading.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/LoadScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/LoadScene.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/MainScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/MainScene.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/StartScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/StartScene.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/SceneStateController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/SceneStateController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StartUIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StartUIManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Start.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Start.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +14,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock://F:/GIt/Race/Assets/Scripts/StartUIManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/StartUIManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://F:/GIt/Race/Assets/Scripts/SceneStateManager/Concrete/StartScene.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.rider@1.2.1/Rider/Editor/RiderScriptEditor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/GIt/Race/Assets/Scripts/SceneStateManager/Concrete/MainScene.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/GIt/Race/Assets/Scripts/SceneStateManager/Concrete/GameLoop.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/GIt/Race/Assets/Scripts/SceneStateManager/Concrete/MainScene.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/GIt/Race/Assets/Scripts/SceneStateManager/Concrete/StartScene.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://F:/GIt/Race/Assets/Scripts/StartUIManager.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -82,6 +78,7 @@
       <method v="2" />
     </configuration>
   </component>
+  <component name="ShelveChangesManager" show_recycled="true" />
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
@@ -98,7 +95,8 @@
       <workItem from="1678714212595" duration="580000" />
       <workItem from="1678759511912" duration="2809000" />
       <workItem from="1678778349019" duration="241000" />
-      <workItem from="1678778656568" duration="338000" />
+      <workItem from="1678778656568" duration="827000" />
+      <workItem from="1678780079288" duration="623000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交">
       <created>1678600451169</created>
@@ -135,7 +133,21 @@
       <option name="project" value="LOCAL" />
       <updated>1678689851651</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="1次">
+      <created>1678779160134</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1678779160134</updated>
+    </task>
+    <task id="LOCAL-00007" summary="1次">
+      <created>1678779313159</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1678779313159</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,7 +174,8 @@
     <MESSAGE value="第二次提交" />
     <MESSAGE value="3" />
     <MESSAGE value="Start场景" />
-    <option name="LAST_COMMIT_MESSAGE" value="Start场景" />
+    <MESSAGE value="1次" />
+    <option name="LAST_COMMIT_MESSAGE" value="1次" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
