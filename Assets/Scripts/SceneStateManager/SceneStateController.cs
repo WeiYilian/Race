@@ -51,10 +51,13 @@ public class SceneStateController
     {
         //场景初始状态为空，如果不是第一次进入则把上一个场景状态的资源释放
         if (SceneState != null)
+        {
+            Debug.Log("null");
             SceneState.StateEnd();
+        }
         
         if (SceneState != null && SceneState.MSceneName != "Loading" && isLoadScene)
-        {
+        {Debug.Log("load");
             //更新当前场景的状态
             MNextSceneState = state;
             SceneState = new LoadScene();
@@ -67,6 +70,7 @@ public class SceneStateController
         {
             //需要加载
             mAo = SceneManager.LoadSceneAsync(SceneState.MSceneName);//将需要加载的场景名字传入mAo中
+            Debug.Log("22");
             mIsRunStart = false;
         }
         else
@@ -83,22 +87,33 @@ public class SceneStateController
     public void StateUpdate()
     {
         if (mNextSceneState != null && SceneState.MSceneName == mNextSceneState.MSceneName && LoadOver)
-        {
+        {Debug.Log("000");
             LoadOver = false;
             SceneState.StateStart();
         }
             
         //场景正在切换，还没有加载完成就直接返回，阻止下一步操作
-        if (mAo != null && mAo.isDone == false) return;
+        if (mAo != null && mAo.isDone == false)
+        {
+            Debug.Log("1111");
+            return;
+        }
         
         
         //异步操作如果完成了，就跳转场景
         if (mAo != null && mAo.isDone && mIsRunStart == false)
         {
+           Debug.Log("3333"); 
+                
+            
             SceneState.StateStart();
             mIsRunStart = true;
         }
+
         if (SceneState != null)
+        {Debug.Log("555"); 
             SceneState.StateUpdate();
+        }
+            
     }
 }

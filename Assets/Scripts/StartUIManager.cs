@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class StartUIManager : MonoBehaviour
 {
+    
+    private SceneStateController contorl = null;
+    
     public static StartUIManager Instance;
 
     public Transform m_LoginPanel, m_RegisterPanel, m_MainPanel;
@@ -11,6 +14,11 @@ public class StartUIManager : MonoBehaviour
 
     private InputField username_Login, password_Login, username_Register, password_Register;
 
+    private void Start()
+    {
+        contorl = new SceneStateController();
+        
+    }
     private void Awake()
     {
         Instance = this;
@@ -71,7 +79,11 @@ public class StartUIManager : MonoBehaviour
         m_MainPanel.Find("EntergameBtn").GetComponent<Button>().onClick.AddListener(() =>
         {
             //进入游戏
-            SceneManager.LoadScene("Game1");
+        
+           SceneStateController.Instance.SetState(new MainScene());
+          
+
+
         });
         m_MainPanel.Find("LogoutBtn").GetComponent<Button>().onClick.AddListener(() =>
         {
