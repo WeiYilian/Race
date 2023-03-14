@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="3">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/素材/material/black.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/素材/material/black.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/素材/material/red.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/素材/material/red.mat" afterDir="false" />
     </list>
+    <list id="1f10c6f0-5c40-4f98-9d82-81194a17b6bb" name="在进行更新之前于 2023-03-14 15:16 取消提交了变更 [默认的]" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -101,7 +104,7 @@
       <workItem from="1678759511912" duration="2809000" />
       <workItem from="1678778349019" duration="241000" />
       <workItem from="1678778656568" duration="827000" />
-      <workItem from="1678780079288" duration="4632000" />
+      <workItem from="1678780079288" duration="4938000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交">
       <created>1678600451169</created>
@@ -180,7 +183,28 @@
       <option name="project" value="LOCAL" />
       <updated>1678784723119</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="3">
+      <created>1678787024744</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1678787024744</updated>
+    </task>
+    <task id="LOCAL-00013" summary="3">
+      <created>1678787131884</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1678787131884</updated>
+    </task>
+    <task id="LOCAL-00014" summary="3">
+      <created>1678787157252</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1678787157252</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
