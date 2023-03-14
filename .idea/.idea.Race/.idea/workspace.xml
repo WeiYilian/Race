@@ -24,8 +24,8 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/SceneStateController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GameLoop.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/LoadScene.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/StartUIManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Tools/GameLoop.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/StartUIManager.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="2MtwgT4VxzpKxCEnieV90nTAnOq" />
@@ -133,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678787019833</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="场景切换">
+      <created>1678787367864</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1678787367864</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
