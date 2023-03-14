@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="第二次提交">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-14_15_16____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-14_15_16____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-14_15_16____1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-14_15_16____1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Start.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Start.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameLoop.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameLoop.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/LoadScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/LoadScene.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/StartScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/StartScene.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/SceneStateController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/SceneStateController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StartUIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StartUIManager.cs" afterDir="false" />
-    </list>
+    <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="场景切换" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,8 +11,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tools/GameLoop.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.rider@1.2.1/Rider/Editor/RiderScriptEditor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/StartUIManager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -35,6 +24,8 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/SceneStateController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GameLoop.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/LoadScene.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/StartUIManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tools/GameLoop.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="2MtwgT4VxzpKxCEnieV90nTAnOq" />
@@ -128,7 +119,21 @@
       <option name="project" value="LOCAL" />
       <updated>1678689851651</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="场景切换">
+      <created>1678787002788</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1678787002788</updated>
+    </task>
+    <task id="LOCAL-00007" summary="场景切换">
+      <created>1678787019833</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1678787019833</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -154,7 +159,8 @@
     <MESSAGE value="第二次提交" />
     <MESSAGE value="3" />
     <MESSAGE value="Start场景" />
-    <option name="LAST_COMMIT_MESSAGE" value="Start场景" />
+    <MESSAGE value="场景切换" />
+    <option name="LAST_COMMIT_MESSAGE" value="场景切换" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
