@@ -17,7 +17,6 @@ public class StartUIManager : MonoBehaviour
     private void Start()
     {
         contorl = new SceneStateController();
-        
     }
     private void Awake()
     {
@@ -79,8 +78,7 @@ public class StartUIManager : MonoBehaviour
         m_MainPanel.Find("EntergameBtn").GetComponent<Button>().onClick.AddListener(() =>
         {
             //进入游戏
-        
-           SceneStateController.Instance.SetState(new MainScene());
+            SceneStateController.Instance.SetState(new MainScene());
           
 
 

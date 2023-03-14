@@ -24,16 +24,18 @@ public class SceneStateController
         }
     }
 
-    public SceneState MNextSceneState
-    {
-        get => mNextSceneState;
-        private set => mNextSceneState = value;
-    }
-
     //场景当前的状态
     public SceneState SceneState;
     
+    //下一个要切换的场景
     private SceneState mNextSceneState;
+    
+    public SceneState MNextSceneState
+        {
+            get => mNextSceneState;
+            private set => mNextSceneState = value;
+        }
+    
     //异步操作符，场景使用异步加载的方式
     public AsyncOperation mAo;
     //如果加载成功，并且在运行，就设置为true，防止多次初始化数据
@@ -41,7 +43,7 @@ public class SceneStateController
 
     public bool LoadOver;
 
-    // ReSharper disable Unity.PerformanceAnalysis
+ 
     /// <summary>
     /// 设置场景状态,更新场景
     /// </summary>
@@ -49,17 +51,18 @@ public class SceneStateController
     /// <param name="isLoadScene"></param>
     public void SetState(SceneState state, bool isLoadScene = true)
     {
-        //场景初始状态为空，如果不是第一次进入则把上一个场景状态的资源释放
+        //如果场景状态不为空，如果不是第一次进入则把上一个场景状态的资源释放
         if (SceneState != null)
         {
-            Debug.Log("null");
             SceneState.StateEnd();
         }
         
+        //如果场景状态不为空，并且下一个要加载的场景名不是Loading，并且不在LoadScene
         if (SceneState != null && SceneState.MSceneName != "Loading" && isLoadScene)
-        {Debug.Log("load");
+        {
             //更新当前场景的状态
             MNextSceneState = state;
+            Debug.Log("当前的场景名"+state+"下一个要切换的场景:"+MNextSceneState.MSceneName);
             SceneState = new LoadScene();
         }
         else
@@ -70,7 +73,6 @@ public class SceneStateController
         {
             //需要加载
             mAo = SceneManager.LoadSceneAsync(SceneState.MSceneName);//将需要加载的场景名字传入mAo中
-            Debug.Log("22");
             mIsRunStart = false;
         }
         else
@@ -87,7 +89,7 @@ public class SceneStateController
     public void StateUpdate()
     {
         if (mNextSceneState != null && SceneState.MSceneName == mNextSceneState.MSceneName && LoadOver)
-        {Debug.Log("000");
+        {
             LoadOver = false;
             SceneState.StateStart();
         }
@@ -95,7 +97,6 @@ public class SceneStateController
         //场景正在切换，还没有加载完成就直接返回，阻止下一步操作
         if (mAo != null && mAo.isDone == false)
         {
-            Debug.Log("1111");
             return;
         }
         
@@ -103,15 +104,12 @@ public class SceneStateController
         //异步操作如果完成了，就跳转场景
         if (mAo != null && mAo.isDone && mIsRunStart == false)
         {
-           Debug.Log("3333"); 
-                
-            
             SceneState.StateStart();
             mIsRunStart = true;
         }
 
         if (SceneState != null)
-        {Debug.Log("555"); 
+        {
             SceneState.StateUpdate();
         }
             

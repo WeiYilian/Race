@@ -3,9 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="第二次提交">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-14_15_16____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-14_15_16____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-14_15_16____1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-14_15_16____1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Start.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Start.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameLoop.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameLoop.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/LoadScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/LoadScene.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/StartScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/StartScene.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/SceneStateController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/SceneStateController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StartUIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StartUIManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,16 +22,19 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.rider@1.2.1/Rider/Editor/RiderScriptEditor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/StartUIManager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/NewBehaviourScript.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/StartUIManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/MainScene.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/StartScene.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/LoadScene.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Controller/BoxController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/StartUIManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/StartScene.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/SceneStateController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/GameLoop.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/LoadScene.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="2MtwgT4VxzpKxCEnieV90nTAnOq" />
