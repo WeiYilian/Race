@@ -11,6 +11,7 @@
             <e p="BoxController.cs" t="Include" />
             <e p="BoxZoom.cs" t="Include" />
             <e p="CameraZoom.cs" t="Include" />
+            <e p="TurnstopBOXobj.cs" t="Include" />
           </e>
           <e p="GameLoop.cs" t="Include" />
           <e p="SceneStateManager" t="Include">
