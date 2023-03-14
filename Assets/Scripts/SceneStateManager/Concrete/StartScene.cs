@@ -12,10 +12,13 @@ public class StartScene : SceneState
 
     public override void StateStart()
     {
+        Debug.Log("Sss2");
         if (SceneManager.GetActiveScene().name != "Start"/*如果当前的场景名不为sceneName*/)
         {
             SceneManager.LoadScene("Start");//加载名为sceneName的场景
         }
+
+
 
     }
 

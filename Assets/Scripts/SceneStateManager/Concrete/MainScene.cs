@@ -13,9 +13,9 @@ public class MainScene : SceneState
     // ReSharper disable Unity.PerformanceAnalysis
     public override void StateStart()
     {
-        if (SceneManager.GetActiveScene().name != "Main"/*如果当前的场景名不为sceneName*/)
+        if (SceneManager.GetActiveScene().name != "Game1"/*如果当前的场景名不为sceneName*/)
         {
-            SceneManager.LoadScene("Main");//加载名为sceneName的场景
+            SceneManager.LoadScene("Game1");//加载名为sceneName的场景
         }
         Init();
     }

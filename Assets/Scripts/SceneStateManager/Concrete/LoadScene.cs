@@ -14,20 +14,21 @@ public class LoadScene : SceneState
     //加载的进度条
     public Image LoadBar;
     public Text LoadNumber;//加载的进度百分比
-    private float WaitTime;
+    private float WaitTime=0;
     private float AllTime = 100;
     
     public override void StateStart()
     {
+        Debug.Log("Ssss");
         GameObject loadingPanel = GameObject.Find("LoadingPanel");
         LoadBar = loadingPanel.transform.Find("LoadBar").GetComponent<Image>();
-        LoadNumber = loadingPanel.transform.Find("LoadNumber").GetComponent<Text>();
+        LoadNumber = loadingPanel.transform.Find("Num").GetComponent<Text>();
         mAo = SceneManager.LoadSceneAsync(mController.MNextSceneState.MSceneName);
         mAo.allowSceneActivation = false;
     }
 
     public override void StateUpdate()
-    {
+    {Debug.Log("Sss1");
         WaitTime += Time.deltaTime * 50f;
         LoadBar.fillAmount = WaitTime / AllTime;
         LoadNumber.text = ((int) WaitTime).ToString() + "%";
@@ -36,6 +37,7 @@ public class LoadScene : SceneState
             mAo.allowSceneActivation = true;
             mController.SceneState = mController.MNextSceneState;
             mController.LoadOver = true;
+           
         }
     }
 }
