@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="第二次提交">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +25,7 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/MainScene.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/StartScene.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/LoadScene.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Controller/BoxController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="2MtwgT4VxzpKxCEnieV90nTAnOq" />
@@ -77,6 +81,8 @@
       <workItem from="1678607953566" duration="1357000" />
       <workItem from="1678686071972" duration="3903000" />
       <workItem from="1678690540189" duration="362000" />
+      <workItem from="1678714212595" duration="580000" />
+      <workItem from="1678759511912" duration="2809000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交">
       <created>1678600451169</created>
