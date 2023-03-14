@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="1" />
+    <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="1">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/BoxZoom.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/CameraZoom.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/CameraZoom.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/素材/material.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/素材/material/black.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/素材/material/black.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/素材/material/red.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/素材/material/red.mat.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,8 +26,10 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/StartUIManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://F:/GIt/Race/Assets/Scripts/SceneStateManager/Concrete/StartScene.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.rider@1.2.1/Rider/Editor/RiderScriptEditor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controller/BoxZoom.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://F:/GIt/Race/Assets/Scripts/SceneStateManager/Concrete/MainScene.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://F:/GIt/Race/Assets/Scripts/SceneStateManager/Concrete/GameLoop.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controller/CameraZoom.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://F:/GIt/Race/Assets/Scripts/SceneStateManager/Concrete/MainScene.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://F:/GIt/Race/Assets/Scripts/SceneStateManager/Concrete/StartScene.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://F:/GIt/Race/Assets/Scripts/StartUIManager.cs" root0="SKIP_HIGHLIGHTING" />
@@ -30,6 +43,8 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/LoadScene.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Controller/BoxController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GameLoop.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Controller/CameraZoom.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Controller/BoxZoom.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="2MtwgT4VxzpKxCEnieV90nTAnOq" />
@@ -93,7 +108,7 @@
       <workItem from="1678759511912" duration="2809000" />
       <workItem from="1678778349019" duration="241000" />
       <workItem from="1678778656568" duration="827000" />
-      <workItem from="1678780079288" duration="946000" />
+      <workItem from="1678780079288" duration="3122000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交">
       <created>1678600451169</created>
@@ -151,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678780736087</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="1">
+      <created>1678781214228</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1678781214228</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
