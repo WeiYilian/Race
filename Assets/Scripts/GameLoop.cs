@@ -28,6 +28,7 @@ public class GameLoop : MonoBehaviour
         if (SceneStateController.Instance != null)
         {
            
+            
             //状态更新
             SceneStateController.Instance.StateUpdate();
         }
