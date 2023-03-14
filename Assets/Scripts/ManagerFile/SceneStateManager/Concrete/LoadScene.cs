@@ -19,16 +19,15 @@ public class LoadScene : SceneState
     
     public override void StateStart()
     {
-        Debug.Log("Ssss");
         GameObject loadingPanel = GameObject.Find("LoadingPanel");
-        LoadBar = loadingPanel.transform.Find("LoadBar").GetComponent<Image>();
+        LoadBar = loadingPanel.transform.Find("LoadBar/Bar").GetComponent<Image>();
         LoadNumber = loadingPanel.transform.Find("Num").GetComponent<Text>();
         mAo = SceneManager.LoadSceneAsync(mController.MNextSceneState.MSceneName);
         mAo.allowSceneActivation = false;
     }
 
     public override void StateUpdate()
-    {Debug.Log("Sss1");
+    {
         WaitTime += Time.deltaTime * 50f;
         LoadBar.fillAmount = WaitTime / AllTime;
         LoadNumber.text = ((int) WaitTime).ToString() + "%";
