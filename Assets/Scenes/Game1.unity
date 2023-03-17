@@ -133,7 +133,6 @@ GameObject:
   - component: {fileID: 838804863}
   - component: {fileID: 838804862}
   - component: {fileID: 838804861}
-  - component: {fileID: 838804865}
   m_Layer: 0
   m_Name: Box
   m_TagString: Untagged
@@ -214,21 +213,8 @@ Transform:
   m_Children:
   - {fileID: 1170343583}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &838804865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 838804860}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dd21f8d590514e4190a774b3f715cd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSensitivity: 5
 --- !u!1 &1170343582
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,6 +319,7 @@ GameObject:
   - component: {fileID: 1340389500}
   - component: {fileID: 1340389499}
   - component: {fileID: 1340389498}
+  - component: {fileID: 1340389502}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -398,13 +385,31 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1340389497}
-  m_LocalRotation: {x: 0.40821788, y: 0.23456976, z: -0.10938167, w: -0.8754261}
-  m_LocalPosition: {x: -0.7100002, y: -0.9284643, z: 3.0196614}
+  m_LocalRotation: {x: -0, y: 1, z: 0.000000007450581, w: -0.000000014901161}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1850281828}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1340389502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340389497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07dfd2d743c008c4680286edfabdd135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Box: {fileID: 838804860}
+  mouseSensitivity: 8
+  downEulerLimit: 89.9
+  upEulerLimit: -89.9
+  mRightEulerLimit: 179.9
+  mLeftEulerLimit: -179.9
 --- !u!1 &1850281826
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,8 +498,7 @@ Transform:
   m_LocalRotation: {x: 0.10938167, y: -0.8754261, z: 0.40821788, w: 0.23456976}
   m_LocalPosition: {x: 0, y: 2.91, z: 4.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1340389500}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -150, z: 0}

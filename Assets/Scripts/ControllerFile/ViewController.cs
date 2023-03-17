@@ -32,6 +32,17 @@ public class ViewController : MonoBehaviour
     [Header("左限制")]
     [Range(-0.01f, -179.9f)]
     public float mLeftEulerLimit = -85f;
+    
+    [Header("最远查看距离限制")]
+    [Range(0, 1)]
+    public float farDistance = 0f;
+    [Header("最近查看距离限制")]
+    [Range(0, 1)]
+    public float nearDistance = 0.8f;
+    [Header("当前缩放距离")]
+    public float distance = 0.5f;
+    [Header("缩放速度")]
+    public float zoomSpeed = 0.8f;
 
     private void Start()
     {
@@ -57,12 +68,17 @@ public class ViewController : MonoBehaviour
 
     private void Update()
     {
+        UpdateObjDistanceState();
+        
         if(Input.GetMouseButton(0))
             MouseButtonL();
         if (Input.GetMouseButtonDown(0))
-            MouseButtonDownL();
+            //TODO:MouseButtonDownL();鼠标滚轮缩放未完成
     }
 
+    /// <summary>
+    /// 鼠标左键按下控制旋转
+    /// </summary>
     private void MouseButtonL()
     {
         //获得鼠标增量
@@ -82,10 +98,25 @@ public class ViewController : MonoBehaviour
             LimitX -= mHRot;
     }
 
+    /// <summary>
+    /// 松开鼠标左键，进行鼠标增量初始化
+    /// </summary>
     private void MouseButtonDownL()
     {
         mHRot = 0;
         mVRot = 0;
+    }
+
+    /// <summary>
+    /// 鼠标滚轮缩放
+    /// </summary>
+    private void UpdateObjDistanceState()
+    {
+        if (Input.GetAxis(INPUT_MOUSE_SCROLLWHEEL) != 0f)
+        {
+            distance -= Input.GetAxis(INPUT_MOUSE_SCROLLWHEEL) * 100 * Time.deltaTime * -zoomSpeed;
+            distance = Mathf.Clamp(distance, farDistance, nearDistance);
+        }
     }
     
 }
