@@ -124,7 +124,7 @@ public class ViewController : MonoBehaviour
     /// </summary>
     private void UpdateObjDistanceState()
     {
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        float scroll = Input.GetAxis(INPUT_MOUSE_SCROLLWHEEL);
         targetZoom -= scroll * zoomSpeed;
 
         // 限制缩放范围
