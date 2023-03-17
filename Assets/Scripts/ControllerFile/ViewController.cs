@@ -91,9 +91,9 @@ public class ViewController : MonoBehaviour
         mHRot -= MouseX * mouseSensitivity * Time.deltaTime;
         mVRot -= mouseY * mouseSensitivity * Time.deltaTime;
         if(Mathf.Abs(MouseX) < 0.1f)
-            mHRot = Mathf.Lerp(mHRot, 0, 0.1f);
+            mHRot = Mathf.Lerp(mHRot, 0, 0.01f);
         if(Mathf.Abs(mouseY) < 0.1f)
-            mVRot = Mathf.Lerp(mVRot, 0, 0.1f);
+            mVRot = Mathf.Lerp(mVRot, 0, 0.01f);
     }
 
     /// <summary>
