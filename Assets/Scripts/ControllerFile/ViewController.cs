@@ -72,7 +72,7 @@ public class ViewController : MonoBehaviour
         
         if(Input.GetMouseButton(0))
             MouseButtonL();
-        if (Input.GetMouseButtonDown(0))
+        //if (Input.GetMouseButtonDown(0))
             //TODO:MouseButtonDownL();鼠标滚轮缩放未完成
     }
 
