@@ -12,27 +12,15 @@ public class ViewController : MonoBehaviour
     private GameObject verRotObj;
     private GameObject horRotObj;
     //鼠标增量
+    private float MouseX;
+    private float mouseY;
     private float mHRot;
     private float mVRot;
     //鼠标灵敏度
     public float mouseSensitivity;
-    //限制
-    float LimitY = 0, LimitX = 0;
-    
-    [Header("仰视角限制")]
-    [Range(0.01f, 89.9f)]
-    public float downEulerLimit = 85f;
-    [Header("俯视角限制")]
-    [Range(-0.01f, -89.9f)]
-    public float upEulerLimit = -85f;
+    //是否需要旋转
+    private bool isRevolve;
 
-    [Header("右限制")]
-    [Range(0.01f, 179.9f)]
-    public float mRightEulerLimit = 85f;
-    [Header("左限制")]
-    [Range(-0.01f, -179.9f)]
-    public float mLeftEulerLimit = -85f;
-    
     [Header("最远查看距离限制")]
     [Range(0, 1)]
     public float farDistance = 0f;
@@ -68,12 +56,14 @@ public class ViewController : MonoBehaviour
 
     private void Update()
     {
-        UpdateObjDistanceState();
+        //TODO:UpdateObjDistanceState();鼠标滚轮缩放未完成
         
         if(Input.GetMouseButton(0))
             MouseButtonL();
-        //if (Input.GetMouseButtonDown(0))
-            //TODO:MouseButtonDownL();鼠标滚轮缩放未完成
+        if(Input.GetMouseButtonUp(0))
+            MouseButtonUpL();
+        
+        BoxRotation();
     }
 
     /// <summary>
@@ -81,30 +71,39 @@ public class ViewController : MonoBehaviour
     /// </summary>
     private void MouseButtonL()
     {
+        isRevolve = true;
         //获得鼠标增量
-        mHRot -= Input.GetAxis(INPUT_MOUSE_X) * mouseSensitivity * Time.deltaTime;
-        mVRot += Input.GetAxis(INPUT_MOUSE_Y)* mouseSensitivity * Time.deltaTime;
-        
-        LimitY += mVRot;
-        LimitX += mHRot;
-        if (LimitY < downEulerLimit && LimitY > upEulerLimit)
-            verRotObj.transform.Rotate(new Vector3(-mVRot, 0, 0), Space.Self);
-        else
-            LimitY -= mVRot;
-
-        if (LimitX < mRightEulerLimit && LimitX > mLeftEulerLimit)
-            horRotObj.transform.Rotate(new Vector3(0, mHRot, 0), Space.Self);
-        else
-            LimitX -= mHRot;
+        MouseX = Input.GetAxis(INPUT_MOUSE_X);
+        mouseY = Input.GetAxis(INPUT_MOUSE_Y);
+        mHRot -= MouseX * mouseSensitivity * Time.deltaTime;
+        mVRot -= mouseY * mouseSensitivity * Time.deltaTime;
+        if(Mathf.Abs(MouseX) < 0.1f)
+            mHRot = Mathf.Lerp(mHRot, 0, 0.1f);
+        if(Mathf.Abs(mouseY) < 0.1f)
+            mVRot = Mathf.Lerp(mVRot, 0, 0.1f);
     }
 
     /// <summary>
-    /// 松开鼠标左键，进行鼠标增量初始化
+    /// 抬起鼠标左键时的操作
     /// </summary>
-    private void MouseButtonDownL()
+    private void MouseButtonUpL()
     {
-        mHRot = 0;
-        mVRot = 0;
+        isRevolve = false;
+    }
+
+    /// <summary>
+    /// 盒子旋转
+    /// </summary>
+    public void BoxRotation()
+    {
+        verRotObj.transform.Rotate(new Vector3(mVRot, 0, 0), Space.Self); 
+        horRotObj.transform.Rotate(new Vector3(0, mHRot, 0), Space.Self);
+
+        if (!isRevolve)
+        {
+            mHRot = Mathf.Lerp(mHRot, 0, 0.1f);
+            mVRot = Mathf.Lerp(mVRot, 0, 0.1f);
+        }
     }
 
     /// <summary>
