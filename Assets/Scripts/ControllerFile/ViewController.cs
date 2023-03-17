@@ -32,8 +32,21 @@ public class ViewController : MonoBehaviour
     [Header("缩放速度")]
     public float zoomSpeed = 0.8f;
 
+    //插值方法实现相机平滑放大缩小
+    //相机缩放速度
+    public float zoomSpeed1 = 5f;
+    //变量缩放范围1-10
+    public float minZoom = 1f;
+    public float maxZoom = 10f;
+    //平滑程度,理解为过度时间
+    public float smoothTime = 0.2f;
+//储存当前缩放值
+    private float targetZoom;
+    //平滑速度值
+    private Vector3 smoothVelocity = Vector3.zero;
     private void Start()
-    {
+    {  //先获取当前平滑值存到TArgetzoom 
+        targetZoom = transform.position.magnitude;
         //创建Box旋转需要的两个空物体
         if (verRotObj == null)
             verRotObj = new GameObject("VerRotObj");
@@ -56,8 +69,8 @@ public class ViewController : MonoBehaviour
 
     private void Update()
     {
-        //TODO:UpdateObjDistanceState();鼠标滚轮缩放未完成
-        
+        //鼠标滚轮缩放未完成
+        UpdateObjDistanceState();
         if(Input.GetMouseButton(0))
             MouseButtonL();
         if(Input.GetMouseButtonUp(0))
@@ -111,11 +124,14 @@ public class ViewController : MonoBehaviour
     /// </summary>
     private void UpdateObjDistanceState()
     {
-        if (Input.GetAxis(INPUT_MOUSE_SCROLLWHEEL) != 0f)
-        {
-            distance -= Input.GetAxis(INPUT_MOUSE_SCROLLWHEEL) * 100 * Time.deltaTime * -zoomSpeed;
-            distance = Mathf.Clamp(distance, farDistance, nearDistance);
-        }
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        targetZoom -= scroll * zoomSpeed;
+
+        // 限制缩放范围
+        targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
+
+        // 使用差值函数平滑缩放
+        transform.position = Vector3.SmoothDamp(transform.position, transform.position.normalized * targetZoom, ref smoothVelocity, smoothTime);
     }
     
 }
