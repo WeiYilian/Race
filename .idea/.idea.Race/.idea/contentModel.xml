@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\沅\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\沅\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Race.-1376956924.00" t="ExcludeRecursive" />
-    <e p="F:\GIt\Race" t="IncludeRecursive">
+    <e p="C:\Users\888\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\888\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Race.1531795562.00" t="ExcludeRecursive" />
+    <e p="D:\learn\Unity\Race\Race" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Package" t="Include">
@@ -36,9 +36,6 @@
         <e p="Scripts" t="Include">
           <e p="ControllerFile" t="Include">
             <e p="CameraController.cs" t="Include" />
-            <e p="Tools" t="Include">
-              <e p="GameLoop.cs" t="Include" />
-            </e>
             <e p="ViewController.cs" t="Include" />
           </e>
           <e p="ManagerFile" t="Include">
@@ -57,10 +54,6 @@
           </e>
           <e p="TestScript" t="Include">
             <e p="Cameracontor.cs" t="Include" />
-            <e p="CubeController.cs" t="Include" />
-            <e p="cupe.cs" t="Include" />
-            <e p="ItemController.cs" t="Include" />
-            <e p="PlaneController.cs" t="Include" />
           </e>
         </e>
       </e>
