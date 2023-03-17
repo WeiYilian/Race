@@ -1,0 +1,131 @@
+Index: Assets/Scripts/ControllerFile/BoxController.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using System;\r\nusing System.Collections;\r\nusing System.Collections.Generic;\r\nusing UnityEngine;\r\nusing UnityEngine.Animations;\r\n\r\npublic class BoxController : MonoBehaviour\r\n{\r\n    private GameObject m_Box;\r\n\r\n    //水平旋转值\r\n    private float m_HRot;\r\n    //竖直旋转值\r\n    private float m_VRot;\r\n\r\n    public float MouseSensitivity;\r\n    \r\n    void Start()\r\n    {\r\n        \r\n    }\r\n\r\n    private void Update()\r\n    {\r\n        RotationBox();\r\n    }\r\n\r\n    private void RotationBox()\r\n    {\r\n        m_HRot -= Input.GetAxis(\"Mouse X\") * MouseSensitivity;\r\n        m_VRot += Input.GetAxis(\"Mouse Y\") * MouseSensitivity;\r\n        if (Input.GetMouseButton(0))\r\n        {\r\n            transform.rotation = Quaternion.Euler(m_VRot, m_HRot, 0);\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Assets/Scripts/ControllerFile/BoxController.cs b/Assets/Scripts/ControllerFile/BoxController.cs
+--- a/Assets/Scripts/ControllerFile/BoxController.cs	(revision 6306c9a94605d62a8be988fea8b090779924c68a)
++++ b/Assets/Scripts/ControllerFile/BoxController.cs	(date 1678787727386)
+@@ -17,7 +17,7 @@
+     
+     void Start()
+     {
+-        
++        Debug.Log("sada");
+     }
+ 
+     private void Update()
+Index: .idea/.idea.Race/.idea/contentModel.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ContentModelStore\">\r\n    <e p=\"C:\\Users\\888\\AppData\\Local\\JetBrains\\Rider2020.3\\extResources\" t=\"IncludeRecursive\" />\r\n    <e p=\"C:\\Users\\888\\AppData\\Local\\JetBrains\\Rider2020.3\\resharper-host\\Local\\Transient\\Rider\\v203\\SolutionCaches\\_Race.1531795562.00\" t=\"ExcludeRecursive\" />\r\n    <e p=\"D:\\learn\\Unity\\Race\\Race\" t=\"IncludeRecursive\">\r\n      <e p=\"Assembly-CSharp.csproj\" t=\"IncludeRecursive\" />\r\n      <e p=\"Assets\" t=\"Include\">\r\n        <e p=\"Scripts\" t=\"Include\">\r\n          <e p=\"ControllerFile\" t=\"Include\">\r\n            <e p=\"BoxController.cs\" t=\"Include\" />\r\n            <e p=\"BoxZoom.cs\" t=\"Include\" />\r\n            <e p=\"CameraZoom.cs\" t=\"Include\" />\r\n            <e p=\"TurnstopBOXobj.cs\" t=\"Include\" />\r\n          </e>\r\n          <e p=\"ManagerFile\" t=\"Include\">\r\n            <e p=\"SceneStateManager\" t=\"Include\">\r\n              <e p=\"Base\" t=\"Include\">\r\n                <e p=\"SceneState.cs\" t=\"Include\" />\r\n              </e>\r\n              <e p=\"Concrete\" t=\"Include\">\r\n                <e p=\"LoadScene.cs\" t=\"Include\" />\r\n                <e p=\"MainScene.cs\" t=\"Include\" />\r\n                <e p=\"StartScene.cs\" t=\"Include\" />\r\n              </e>\r\n              <e p=\"SceneStateController.cs\" t=\"Include\" />\r\n            </e>\r\n            <e p=\"StartUIManager.cs\" t=\"Include\" />\r\n          </e>\r\n          <e p=\"Tools\" t=\"Include\">\r\n            <e p=\"GameLoop.cs\" t=\"Include\" />\r\n          </e>\r\n        </e>\r\n        <e p=\"素材\" t=\"Include\">\r\n          <e p=\"_Heathen Engineering\" t=\"Include\">\r\n            <e p=\"Documentation\" t=\"Include\">\r\n              <e p=\"UX\" t=\"Include\">\r\n                <e p=\"Flat Icons [Free]\" t=\"Include\">\r\n                  <e p=\"Read Me.txt\" t=\"Include\" />\r\n                </e>\r\n              </e>\r\n            </e>\r\n            <e p=\"Samples\" t=\"Include\">\r\n              <e p=\"UX Examples\" t=\"Include\">\r\n                <e p=\"Flat Icons [Free]\" t=\"Include\">\r\n                  <e p=\"ToggleSetAnimatorBoolean.cs\" t=\"Include\" />\r\n                </e>\r\n              </e>\r\n            </e>\r\n          </e>\r\n          <e p=\"Sci-Fi UI\" t=\"Include\">\r\n            <e p=\"Demo_Assets\" t=\"Include\">\r\n              <e p=\"Scripts\" t=\"Include\">\r\n                <e p=\"GUI_Demo.cs\" t=\"Include\" />\r\n              </e>\r\n            </e>\r\n          </e>\r\n        </e>\r\n      </e>\r\n      <e p=\"obj\" t=\"ExcludeRecursive\" />\r\n      <e p=\"Packages\" t=\"ExcludeRecursive\" />\r\n      <e p=\"Race.sln\" t=\"IncludeFlat\" />\r\n      <e p=\"Temp\\bin\" t=\"ExcludeRecursive\" />\r\n    </e>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.idea.Race/.idea/contentModel.xml b/.idea/.idea.Race/.idea/contentModel.xml
+--- a/.idea/.idea.Race/.idea/contentModel.xml	(revision 6306c9a94605d62a8be988fea8b090779924c68a)
++++ b/.idea/.idea.Race/.idea/contentModel.xml	(date 1678787673128)
+@@ -1,17 +1,15 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ContentModelStore">
+-    <e p="C:\Users\888\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+-    <e p="C:\Users\888\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Race.1531795562.00" t="ExcludeRecursive" />
+-    <e p="D:\learn\Unity\Race\Race" t="IncludeRecursive">
++    <e p="C:\Users\沅\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
++    <e p="C:\Users\沅\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Race.-1376956924.00" t="ExcludeRecursive" />
++    <e p="F:\GIt\Race" t="IncludeRecursive">
+       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+       <e p="Assets" t="Include">
+         <e p="Scripts" t="Include">
+           <e p="ControllerFile" t="Include">
+             <e p="BoxController.cs" t="Include" />
+             <e p="BoxZoom.cs" t="Include" />
+-            <e p="CameraZoom.cs" t="Include" />
+-            <e p="TurnstopBOXobj.cs" t="Include" />
+           </e>
+           <e p="ManagerFile" t="Include">
+             <e p="SceneStateManager" t="Include">
+Index: .idea/.idea.Race/.idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"3f681314-839d-4fc6-9491-50771a848bcb\" name=\"默认的\" comment=\"场景切换\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"file://$PROJECT_DIR$/Assets/Scripts/Tools/GameLoop.cs\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.rider@1.2.1/Rider/Editor/RiderScriptEditor.cs\" root0=\"SKIP_HIGHLIGHTING\" />\r\n  </component>\r\n  <component name=\"IdeDocumentHistory\">\r\n    <changedPaths>\r\n      <option value=\"$PROJECT_DIR$/Assets/NewBehaviourScript.cs\" />\r\n      <option value=\"$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/MainScene.cs\" />\r\n      <option value=\"$PROJECT_DIR$/Assets/Scripts/Controller/BoxController.cs\" />\r\n      <option value=\"$PROJECT_DIR$/Assets/Scripts/StartUIManager.cs\" />\r\n      <option value=\"$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/StartScene.cs\" />\r\n      <option value=\"$PROJECT_DIR$/Assets/Scripts/SceneStateManager/SceneStateController.cs\" />\r\n      <option value=\"$PROJECT_DIR$/Assets/Scripts/GameLoop.cs\" />\r\n      <option value=\"$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/LoadScene.cs\" />\r\n      <option value=\"$PROJECT_DIR$/Assets/Scripts/Tools/GameLoop.cs\" />\r\n      <option value=\"$PROJECT_DIR$/Assets/Scripts/ManagerFile/StartUIManager.cs\" />\r\n    </changedPaths>\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2MtwgT4VxzpKxCEnieV90nTAnOq\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"Discover.Launch.Via.Unity\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"node.js.detected.package.eslint\" value=\"true\" />\r\n    <property name=\"node.js.detected.package.tslint\" value=\"true\" />\r\n    <property name=\"node.js.path.for.package.eslint\" value=\"project\" />\r\n    <property name=\"node.js.path.for.package.tslint\" value=\"project\" />\r\n    <property name=\"node.js.selected.package.eslint\" value=\"(autodetect)\" />\r\n    <property name=\"node.js.selected.package.tslint\" value=\"(autodetect)\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"configurable.group.appearance\" />\r\n    <property name=\"vue.rearranger.settings.migration\" value=\"true\" />\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Attach to Unity Editor &amp; Play\" type=\"UNITY_DEBUG_RUN_CONFIGURATION\" factoryName=\"UNITY_ATTACH_AND_PLAY\" show_console_on_std_err=\"false\" show_console_on_std_out=\"false\" port=\"50000\" address=\"localhost\">\r\n      <option name=\"allowRunningInParallel\" value=\"false\" />\r\n      <option name=\"listenPortForConnections\" value=\"false\" />\r\n      <option name=\"pid\" />\r\n      <option name=\"selectedOptions\">\r\n        <list />\r\n      </option>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"Attach to Unity Editor\" type=\"UNITY_DEBUG_RUN_CONFIGURATION\" factoryName=\"Unity Debug\" show_console_on_std_err=\"false\" show_console_on_std_out=\"false\" port=\"50000\" address=\"localhost\">\r\n      <option name=\"allowRunningInParallel\" value=\"false\" />\r\n      <option name=\"listenPortForConnections\" value=\"false\" />\r\n      <option name=\"pid\" />\r\n      <option name=\"selectedOptions\">\r\n        <list />\r\n      </option>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"默认任务\">\r\n      <changelist id=\"3f681314-839d-4fc6-9491-50771a848bcb\" name=\"默认的\" comment=\"\" />\r\n      <created>1678600318931</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1678600318931</updated>\r\n      <workItem from=\"1678600326038\" duration=\"1000\" />\r\n      <workItem from=\"1678600345539\" duration=\"1658000\" />\r\n      <workItem from=\"1678607953566\" duration=\"1357000\" />\r\n      <workItem from=\"1678686071972\" duration=\"3903000\" />\r\n      <workItem from=\"1678690540189\" duration=\"362000\" />\r\n      <workItem from=\"1678714212595\" duration=\"580000\" />\r\n      <workItem from=\"1678759511912\" duration=\"2809000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"第一次提交\">\r\n      <created>1678600451169</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1678600451169</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"第二次提交\">\r\n      <created>1678601114175</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1678601114175</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"3\">\r\n      <created>1678608792655</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1678608792655</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Start场景\">\r\n      <created>1678689674485</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1678689674485</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Start场景\">\r\n      <created>1678689851651</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1678689851651</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"场景切换\">\r\n      <created>1678787002788</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1678787002788</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"场景切换\">\r\n      <created>1678787019833</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1678787019833</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"场景切换\">\r\n      <created>1678787367864</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1678787367864</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"9\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"UnityProjectConfiguration\" hasMinimizedUI=\"true\" />\r\n  <component name=\"UnityUnitTestConfiguration\" currentTestLauncher=\"EditMode\" />\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"CLEAR_INITIAL_COMMIT_MESSAGE\" value=\"true\" />\r\n    <MESSAGE value=\"第一次提交\" />\r\n    <MESSAGE value=\"第二次提交\" />\r\n    <MESSAGE value=\"3\" />\r\n    <MESSAGE value=\"Start场景\" />\r\n    <MESSAGE value=\"场景切换\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"场景切换\" />\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.idea.Race/.idea/workspace.xml b/.idea/.idea.Race/.idea/workspace.xml
+--- a/.idea/.idea.Race/.idea/workspace.xml	(revision 6306c9a94605d62a8be988fea8b090779924c68a)
++++ b/.idea/.idea.Race/.idea/workspace.xml	(date 1678788147626)
+@@ -1,7 +1,12 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="场景切换" />
++    <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="1">
++      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ControllerFile/BoxController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ControllerFile/BoxController.cs" afterDir="false" />
++    </list>
++    <list id="1f10c6f0-5c40-4f98-9d82-81194a17b6bb" name="在进行更新之前于 2023-03-14 15:16 取消提交了变更 [默认的]" comment="" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -11,8 +16,15 @@
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+   <component name="HighlightingSettingsPerFile">
++    <setting file="mock://F:/GIt/Race/Assets/Scripts/StartUIManager.cs" root0="SKIP_HIGHLIGHTING" />
+     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tools/GameLoop.cs" root0="FORCE_HIGHLIGHTING" />
+     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.rider@1.2.1/Rider/Editor/RiderScriptEditor.cs" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock://F:/GIt/Race/Assets/Scripts/SceneStateManager/Concrete/GameLoop.cs" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock://F:/GIt/Race/Assets/Scripts/SceneStateManager/Concrete/StartScene.cs" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock://F:/GIt/Race/Assets/Scripts/SceneStateManager/Concrete/MainScene.cs" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock://F:/GIt/Race/Assets/Scripts/SceneStateManager/Concrete/MainScene.cs" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock://F:/GIt/Race/Assets/Scripts/SceneStateManager/Concrete/StartScene.cs" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock://F:/GIt/Race/Assets/Scripts/StartUIManager.cs" root0="SKIP_HIGHLIGHTING" />
+   </component>
+   <component name="IdeDocumentHistory">
+     <changedPaths>
+@@ -26,10 +38,13 @@
+       <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/LoadScene.cs" />
+       <option value="$PROJECT_DIR$/Assets/Scripts/Tools/GameLoop.cs" />
+       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/StartUIManager.cs" />
++      <option value="$PROJECT_DIR$/Assets/Scripts/ControllerFile/BoxController.cs" />
+     </changedPaths>
+   </component>
+   <component name="ProjectId" id="2MtwgT4VxzpKxCEnieV90nTAnOq" />
+-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
++  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
++    <ConfirmationsSetting value="2" id="Add" />
++  </component>
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+@@ -140,7 +155,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1678787367864</updated>
+     </task>
+-    <option name="localTasksCounter" value="9" />
++    <task id="LOCAL-00009" summary="1">
++      <created>1678787663790</created>
++      <option name="number" value="00009" />
++      <option name="presentableId" value="LOCAL-00009" />
++      <option name="project" value="LOCAL" />
++      <updated>1678787663790</updated>
++    </task>
++    <option name="localTasksCounter" value="10" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -167,7 +189,8 @@
+     <MESSAGE value="3" />
+     <MESSAGE value="Start场景" />
+     <MESSAGE value="场景切换" />
+-    <option name="LAST_COMMIT_MESSAGE" value="场景切换" />
++    <MESSAGE value="1" />
++    <option name="LAST_COMMIT_MESSAGE" value="1" />
+   </component>
+   <component name="XSLT-Support.FileAssociations.UIState">
+     <expand />
