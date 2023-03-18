@@ -35,8 +35,11 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="ControllerFile" t="Include">
-            <e p="BoxController.cs" t="Include" />
-            <e p="BoxZoom.cs" t="Include" />
+            <e p="CameraController.cs" t="Include" />
+            <e p="Tools" t="Include">
+              <e p="GameLoop.cs" t="Include" />
+            </e>
+            <e p="ViewController.cs" t="Include" />
           </e>
           <e p="ManagerFile" t="Include">
             <e p="SceneStateManager" t="Include">
@@ -52,8 +55,12 @@
             </e>
             <e p="StartUIManager.cs" t="Include" />
           </e>
-          <e p="Tools" t="Include">
-            <e p="GameLoop.cs" t="Include" />
+          <e p="TestScript" t="Include">
+            <e p="Cameracontor.cs" t="Include" />
+            <e p="CubeController.cs" t="Include" />
+            <e p="cupe.cs" t="Include" />
+            <e p="ItemController.cs" t="Include" />
+            <e p="PlaneController.cs" t="Include" />
           </e>
         </e>
       </e>
