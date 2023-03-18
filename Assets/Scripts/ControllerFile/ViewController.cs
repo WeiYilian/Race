@@ -36,16 +36,19 @@ public class ViewController : MonoBehaviour
     //相机缩放速度
     public float zoomSpeed1 = 5f;
     //变量缩放范围1-10
-    public float minZoom = 1f;
-    public float maxZoom = 10f;
-    //平滑程度,理解为过度时间
+    private float minZoom;
+    private float maxZoom;
+    //摄像机与物体之间的标准距离
+    private float objCamDistance;
+    //平滑程度,理解为过渡时间
     public float smoothTime = 0.2f;
-//储存当前缩放值
+    //储存当前缩放值
     private float targetZoom;
     //平滑速度值
     private Vector3 smoothVelocity = Vector3.zero;
     private void Start()
-    {  //先获取当前平滑值存到TArgetzoom 
+    {  
+        //先获取当前平滑值存到TArgetzoom 
         targetZoom = transform.position.magnitude;
         //创建Box旋转需要的两个空物体
         if (verRotObj == null)
@@ -54,6 +57,7 @@ public class ViewController : MonoBehaviour
             horRotObj = new GameObject("HorRotObj");
         
         InitBox();
+        initObjDistance();
     }
 
     /// <summary>
@@ -65,6 +69,16 @@ public class ViewController : MonoBehaviour
         horRotObj.transform.position = Box.transform.position;
         Box.transform.SetParent(horRotObj.transform);
         horRotObj.transform.SetParent(verRotObj.transform);
+    }
+
+    /// <summary>
+    /// 初始化缩放需要的各种变量
+    /// </summary>
+    private void initObjDistance()
+    {
+        minZoom = Box.transform.localScale.magnitude;
+        objCamDistance = minZoom;
+        maxZoom = minZoom + objCamDistance;
     }
 
     private void Update()
