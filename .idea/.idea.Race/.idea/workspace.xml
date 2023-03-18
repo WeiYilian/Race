@@ -1,14 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:main" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="3月17song">
+    <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="场景切换">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-16_20_28____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-16_20_28____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-16_21_20____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-16_21_20____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-17_20_46____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-17_20_46____.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_17_20_38____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_17_20_38____.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_17_20_41____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_17_20_41____.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_17_20_43____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_17_20_43____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_17_21_21____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_17_21_21____.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ControllerFile/ViewController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ControllerFile/ViewController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/素材.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/素材.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/1.jpg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/2.jpg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/3.jpg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/90.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/90.jpg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/Sci-Fi UI.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/素材/Sci-Fi UI.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/Sci-Fi UI/Demo_Assets.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/素材/Sci-Fi UI/Demo_Assets.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/Sci-Fi UI/Demo_Assets/scripts.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/素材/Sci-Fi UI/Demo_Assets/scripts.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Start.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Start.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/StartUIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/StartUIManager.cs" afterDir="false" />
     </list>
-    <list id="1f10c6f0-5c40-4f98-9d82-81194a17b6bb" name="在进行更新之前于 2023-03-14 15:16 取消提交了变更 [默认的]" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,35 +60,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ControllerFile/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestScript/CubeController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.rider@1.2.1/Rider/Editor/RiderScriptEditor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestScript/Cameracontor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestScript/ItemController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://F:/GIt/Race/Assets/Scripts/TestScript/Cameracontor.cs" root0="SKIP_HIGHLIGHTING" />
-  </component>
-  <component name="IdeDocumentHistory">
-    <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/NewBehaviourScript.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/MainScene.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Controller/BoxController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/StartUIManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/StartScene.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/SceneStateController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/GameLoop.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/LoadScene.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/StartUIManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Tools/GameLoop.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ControllerFile/RotDirection.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/CameraController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ControllerFile/BoxController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ControllerFile/CameraController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ControllerFile/ViewController.cs" />
-    </changedPaths>
   </component>
   <component name="ProjectId" id="2MtwgT4VxzpKxCEnieV90nTAnOq" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
+    <ConfirmationsSetting value="2" id="新增" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -101,9 +119,6 @@
       <workItem from="1678690540189" duration="362000" />
       <workItem from="1678714212595" duration="580000" />
       <workItem from="1678759511912" duration="2809000" />
-      <workItem from="1678859235380" duration="7444000" />
-      <workItem from="1678879626756" duration="8890000" />
-      <workItem from="1678968494226" duration="3938000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交">
       <created>1678600451169</created>
@@ -175,14 +190,7 @@
       <option name="project" value="LOCAL" />
       <updated>1678787841071</updated>
     </task>
-    <task id="LOCAL-00011" summary="保存信息">
-      <created>1678859385606</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1678859385606</updated>
-    </task>
-    <option name="localTasksCounter" value="12" />
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,7 +203,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -209,8 +229,7 @@
     <MESSAGE value="3" />
     <MESSAGE value="Start场景" />
     <MESSAGE value="场景切换" />
-    <MESSAGE value="保存信息" />
-    <option name="LAST_COMMIT_MESSAGE" value="保存信息" />
+    <option name="LAST_COMMIT_MESSAGE" value="场景切换" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

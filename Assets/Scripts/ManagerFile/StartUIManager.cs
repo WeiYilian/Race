@@ -9,7 +9,7 @@ public class StartUIManager : MonoBehaviour
     
     public static StartUIManager Instance;
 
-    public Transform m_LoginPanel, m_RegisterPanel, m_MainPanel;
+    public Transform m_FrontPanel, m_LoginPanel, m_RegisterPanel, m_MainPanel;
     public Transform m_HintMessage;
 
     private InputField username_Login, password_Login, username_Register, password_Register;
@@ -52,6 +52,12 @@ public class StartUIManager : MonoBehaviour
     //使用委托初始化按钮点击事件
     private void InitBtn()
     {
+        //首页面进入游戏按钮
+        m_FrontPanel.Find("EnterBtn").GetComponent<Button>().onClick.AddListener(() =>
+        {
+            m_FrontPanel.gameObject.SetActive(false);
+            m_LoginPanel.gameObject.SetActive(true);
+        });
         //登录
         m_LoginPanel.Find("LoginBtn").GetComponent<Button>().onClick.AddListener(() =>
         {
@@ -75,7 +81,7 @@ public class StartUIManager : MonoBehaviour
             m_RegisterPanel.gameObject.SetActive(true);
         });
         //注销
-        m_MainPanel.Find("EntergameBtn").GetComponent<Button>().onClick.AddListener(() =>
+        m_MainPanel.Find("StartgameBtn").GetComponent<Button>().onClick.AddListener(() =>
         {
             //进入游戏
             SceneStateController.Instance.SetState(new MainScene());
