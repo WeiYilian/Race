@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="3月17song" />
+    <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="3月17song">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_17_20_38____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_17_20_38____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_17_20_41____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_17_20_41____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_17_20_43____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_17_20_43____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ControllerFile/ViewController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ControllerFile/ViewController.cs" afterDir="false" />
+    </list>
     <list id="1f10c6f0-5c40-4f98-9d82-81194a17b6bb" name="在进行更新之前于 2023-03-14 15:16 取消提交了变更 [默认的]" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,15 +19,11 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ControllerFile/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://D:/learn/Unity/Race/Race/Assets/Scripts/ControllerFile/ViewController.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/learn/Unity/Race/Race/Assets/Scripts/ControllerFile/ViewController.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/learn/Unity/Race/Race/Assets/Scripts/TestScript/Cameracontor.cs.meta" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestScript/CubeController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestScript/Cameracontor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://D:/learn/Unity/Race/Race/Assets/Scripts/TestScript/Cameracontor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/learn/Unity/Race/Race/Assets/Scripts/ControllerFile/ViewController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.rider@1.2.1/Rider/Editor/RiderScriptEditor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestScript/Cameracontor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestScript/ItemController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://F:/GIt/Race/Assets/Scripts/TestScript/Cameracontor.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -180,21 +182,7 @@
       <option name="project" value="LOCAL" />
       <updated>1678859385606</updated>
     </task>
-    <task id="LOCAL-00012" summary="3月17song缩放">
-      <created>1679059345795</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1679059345795</updated>
-    </task>
-    <task id="LOCAL-00013" summary="基础架构">
-      <created>1679059463214</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1679059463214</updated>
-    </task>
-    <option name="localTasksCounter" value="14" />
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -222,10 +210,7 @@
     <MESSAGE value="Start场景" />
     <MESSAGE value="场景切换" />
     <MESSAGE value="保存信息" />
-    <MESSAGE value="基础旋转2" />
-    <MESSAGE value="3月17song缩放" />
-    <MESSAGE value="基础架构" />
-    <option name="LAST_COMMIT_MESSAGE" value="基础架构" />
+    <option name="LAST_COMMIT_MESSAGE" value="保存信息" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
