@@ -30,7 +30,9 @@ public class Cameracontor : MonoBehaviour
 
         // 限制缩放范围
         targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
-
+        Debug.Log("max:," +maxZoom);
+        Debug.Log("min:," +minZoom);
+        Debug.Log("tra:," +targetZoom);
         // 使用差值函数平滑缩放
         transform.position = Vector3.SmoothDamp(transform.position, transform.position.normalized * targetZoom, ref smoothVelocity, smoothTime);
     }

@@ -30,11 +30,11 @@ public class ViewController : MonoBehaviour
     [Header("当前缩放距离")]
     public float distance = 0.5f;
     [Header("缩放速度")]
-    public float zoomSpeed = 0.8f;
+  private float zoomSpeed1;
 
     //插值方法实现相机平滑放大缩小
     //相机缩放速度
-    public float zoomSpeed1 = 5f;
+  
     //变量缩放范围1-10
     private float minZoom;
     private float maxZoom;
@@ -73,12 +73,16 @@ public class ViewController : MonoBehaviour
 
     /// <summary>
     /// 初始化缩放需要的各种变量
+    /// 缩放速度改变
     /// </summary>
     private void initObjDistance()
     {
-        minZoom = Box.transform.localScale.magnitude;
-        objCamDistance = minZoom;
-        maxZoom = minZoom + objCamDistance;
+        //最大与最小范围随物体改变
+         minZoom = Box.transform.localScale.magnitude/2;
+         maxZoom =Box.transform.localScale.magnitude*2 ;
+         
+        zoomSpeed1 =maxZoom/2;
+       
     }
 
     private void Update()
@@ -139,11 +143,9 @@ public class ViewController : MonoBehaviour
     private void UpdateObjDistanceState()
     {
         float scroll = Input.GetAxis(INPUT_MOUSE_SCROLLWHEEL);
-        targetZoom -= scroll * zoomSpeed;
-
+        targetZoom -= scroll * zoomSpeed1;
         // 限制缩放范围
         targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
-
         // 使用差值函数平滑缩放
         transform.position = Vector3.SmoothDamp(transform.position, transform.position.normalized * targetZoom, ref smoothVelocity, smoothTime);
     }
