@@ -90,15 +90,15 @@ public class ViewController : MonoBehaviour
             transform.Translate(Vector3.up * (mouseY * posSpeed * Time.deltaTime));
         }
         
-        //鼠标左键控制摄像机围绕物体旋转
-        //if (Input.GetMouseButton(0))
+        //WSASD控制摄像机围绕物体旋转
         if(mHROt != 0 || mVROt != 0)
         {
+            //限制旋转角度
             if ((transform.position.y >= limitUp && mVROt > 0) || (transform.position.y <= limitDown && mVROt < 0)) 
                 mVROt = 0;
 
-            transform.RotateAround(box.transform.transform.position, Vector3.up, mHROt * rotSpeed);
-            transform.RotateAround(box.transform.transform.position, transform.right, mVROt * rotSpeed);
+            transform.RotateAround(box.transform.transform.position, Vector3.up, mHROt * rotSpeed * Time.deltaTime);
+            transform.RotateAround(box.transform.transform.position, transform.right, mVROt * rotSpeed * Time.deltaTime);
             
         }
     }

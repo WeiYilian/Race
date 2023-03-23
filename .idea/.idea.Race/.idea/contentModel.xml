@@ -39,7 +39,6 @@
             <e p="ViewController.cs" t="Include" />
           </e>
           <e p="ManagerFile" t="Include">
-            <e p="BoxObjManager.cs" t="Include" />
             <e p="SceneStateManager" t="Include">
               <e p="Base" t="Include">
                 <e p="SceneState.cs" t="Include" />
@@ -52,6 +51,10 @@
               <e p="SceneStateController.cs" t="Include" />
             </e>
             <e p="StartUIManager.cs" t="Include" />
+            <e p="UIDragManager" t="Include">
+              <e p="UIDragByMocha.cs" t="Include" />
+              <e p="UIFace.cs" t="Include" />
+            </e>
           </e>
           <e p="TestScript" t="Include">
             <e p="Cameracontor.cs" t="Include" />
