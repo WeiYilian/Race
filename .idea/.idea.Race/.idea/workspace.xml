@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="3月17song">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_3_16_17_19____.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-14_15_16____1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_20_16_19____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_20_16_19____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/在进行Update之前于_2023_3_16_17_19_取消提交了变更_[默认的]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/在进行更新之前于_2023-03-14_15_16_取消提交了变更_[默认的]1/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ControllerFile/Tools.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ControllerFile/ViewController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ControllerFile/ViewController.cs" afterDir="false" />
     </list>
     <list id="1f10c6f0-5c40-4f98-9d82-81194a17b6bb" name="在进行更新之前于 2023-03-14 15:16 取消提交了变更 [默认的]" comment="" />
@@ -13,13 +21,16 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/BoxObjManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ControllerFile/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestScript/CubeController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestScript/Cameracontor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.rider@1.2.1/Rider/Editor/RiderScriptEditor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestScript/ItemController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Scrollbar.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -37,6 +48,7 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/CameraController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ControllerFile/BoxController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ControllerFile/CameraController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/BoxObjManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ControllerFile/ViewController.cs" />
     </changedPaths>
   </component>
@@ -100,6 +112,8 @@
       <workItem from="1678859235380" duration="7444000" />
       <workItem from="1678879626756" duration="8890000" />
       <workItem from="1678968494226" duration="3938000" />
+      <workItem from="1679404028511" duration="4770000" />
+      <workItem from="1679564250327" duration="4087000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交">
       <created>1678600451169</created>
