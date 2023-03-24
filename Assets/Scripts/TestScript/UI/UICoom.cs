@@ -27,7 +27,6 @@ public class UICoom : MonoBehaviour, IPointerClickHandler
         rectTrans = image.GetComponent<RectTransform>(); // 获取RectTransform组件
         originalPosition = rectTrans.localPosition; // 记录原始位置
         originalSize = rectTrans.sizeDelta; // 记录原始大小
-        Debug.Log(""+originalPosition);
     }
 
     public void OnPointerClick(PointerEventData eventData)
