@@ -65,7 +65,6 @@
             <e p="PlaneController.cs" t="Include" />
             <e p="UI" t="Include">
               <e p="ClickHandler.cs" t="Include" />
-              <e p="ImageComm.cs" t="Include" />
               <e p="UICoom.cs" t="Include" />
             </e>
           </e>
