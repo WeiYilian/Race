@@ -17,4 +17,14 @@ public class UIFaceManager : MonoBehaviour
       if (Instance == null)
          Instance = this;
    }
+
+   /// <summary>
+   /// 获得当前面的对象以及相邻面的对象
+   /// </summary>
+   /// <param name="currentFace">当前面的编号</param>
+   /// <returns></returns>
+   public UIFace GetCurrentUIFace(int currentFace)
+   {
+      return new UIFace(currentFace);
+   }
 }
