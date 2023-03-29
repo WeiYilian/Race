@@ -62,6 +62,8 @@ public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEnd
         Camera camera = eventData.pressEventCamera;
         //将屏幕空间鼠标位置eventData.position转换为鼠标在画布空间的鼠标位置
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRec, eventData.position,camera , out mousePos);
+        //关闭BlocksRaycasts功能，这样发射的射线可以返回拖动的物体下面一层的东西
+        GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
 
     //拖拽过程中触发
@@ -73,17 +75,17 @@ public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEnd
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRec, eventData.position, camera, out newVec);
         //鼠标移动在画布空间的位置增量
         Vector3 offset = new Vector3(newVec.x - mousePos.x, newVec.y - mousePos.y, 0);
-        //原始位置增加位置增量即为现在位置
         
         if(mIsPrecision)
-            mRt.anchoredPosition = pos + offset;
+            mRt.anchoredPosition = pos + offset;//原始位置增加位置增量即为现在位置
         RangeJudge(mRt.localPosition);
     }
 
     //结束拖拽触发
     public void OnEndDrag(PointerEventData eventData)
     {
-        
+        Debug.Log("结束时在"+eventData.pointerCurrentRaycast.gameObject.name);
+        transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
     }
 
     #endregion
@@ -127,6 +129,10 @@ public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEnd
         #endregion
     }
 
+    /// <summary>
+    /// 图片旋转到其他面上时进行的操作
+    /// </summary>
+    /// <param name="dragDirection">旋转方向</param>
     private void ImageRotOtherFace(DragDirection dragDirection)
     {
         //获得图片将要旋转到的面
