@@ -71,6 +71,9 @@
             <e p="StratUITIpPlanel" t="Include">
               <e p="TextContorl.cs" t="Include" />
             </e>
+            <e p="UI" t="Include">
+              <e p="TIPConterl.cs" t="Include" />
+            </e>
           </e>
           <e p="Tools" t="Include">
             <e p="GameLoop.cs" t="Include" />
