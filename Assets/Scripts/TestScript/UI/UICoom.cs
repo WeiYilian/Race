@@ -53,7 +53,7 @@ public class UICoom : MonoBehaviour, IPointerClickHandler
             // 单击事件
             if (!isEnlarged) // 当前未放大
             {   
-                TextContorl.instance.str("ssssss");
+                
                 rectTrans.localPosition = Vector3.zero; // 放大后中心点与UI面板重合
                 rectTrans.sizeDelta = parimage.GetComponent<RectTransform>().rect.size; // 放大后与UI面板一样大小
 
