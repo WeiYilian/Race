@@ -11,11 +11,16 @@ public enum DragDirection { UP, DOWN, RIGHT, LEFT }
 public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandler
 {
 
-    [Header("是否拖拽")]
-    public bool mIsPrecision; 
+    [Header("是否需要拖拽功能")]
+    public bool IsPrecision;
+    [Header("是否需要吸附功能")] 
+    public bool AdsorptionFunction;
+    [Header("拼图吸附功能")]
+    public bool PuzzleAdsorption;
     [Header("当前图片所在的面编号")]
     public int CurrentFaceIndex;
-    
+    [Header("吸附目标位置")]
+    public GameObject AdsorptionTarget;
     
     //存储当前拖拽图片的RectTransform组件
     private RectTransform mRt;
@@ -25,16 +30,19 @@ public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEnd
     //判断图片是否在其他面
     private bool isOtherFace;
     //在下一个面创建的图片
-    private GameObject mNewImage;
+    private GameObject newImage;
     //控件所在画布
     private RectTransform canvasRec;
     //控件初始位置
-    [HideInInspector]public Vector3 pos;
+    private Vector3 pos;
     //鼠标初始位置（画布空间）
     private Vector2 mousePos;    
     //鼠标初始位置（世界空间）
     private Vector3 mouseWorldPos;
-
+    //吸附范围
+    private float adsorptionRange;
+    
+    
     private void Awake()
     {
         mRt = gameObject.GetComponent<RectTransform>();
@@ -43,6 +51,7 @@ public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEnd
 
     void Start()
     {
+        adsorptionRange = 5f;
         mFaceLimit = 50f;
     }
 
@@ -50,6 +59,7 @@ public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEnd
     {
         isOtherFace = true;
     }
+
 
     #region 拖拽过程
 
@@ -62,6 +72,9 @@ public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEnd
         Camera camera = eventData.pressEventCamera;
         //将屏幕空间鼠标位置eventData.position转换为鼠标在画布空间的鼠标位置
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRec, eventData.position,camera , out mousePos);
+        //关闭BlocksRaycasts功能，这样发射的射线可以返回拖动的物体下面一层的东西
+        GetComponent<CanvasGroup>().blocksRaycasts = false;
+        Debug.Log("sdawdasad");
     }
 
     //拖拽过程中触发
@@ -73,26 +86,27 @@ public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEnd
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRec, eventData.position, camera, out newVec);
         //鼠标移动在画布空间的位置增量
         Vector3 offset = new Vector3(newVec.x - mousePos.x, newVec.y - mousePos.y, 0);
-        //原始位置增加位置增量即为现在位置
         
-        if(mIsPrecision)
-            mRt.anchoredPosition = pos + offset;
+        if(IsPrecision)
+            mRt.anchoredPosition = pos + offset;//原始位置增加位置增量即为现在位置
         RangeJudge(mRt.localPosition);
     }
 
     //结束拖拽触发
     public void OnEndDrag(PointerEventData eventData)
     {
-        
+        Debug.Log("结束时在"+eventData.pointerCurrentRaycast.gameObject.name);
+        transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
+        Adsorption();
+        GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 
     #endregion
-    
-    
+
+
     /// <summary>
     /// 判断图片是否移动到其他面上
     /// </summary>
-    /// <param name="distance">图片中心点到面边缘的距离</param>
     /// <param name="imagePos">图片所在位置（相对位置）</param>
     /// <returns></returns>
     private void RangeJudge(Vector3 imagePos)
@@ -127,6 +141,10 @@ public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEnd
         #endregion
     }
 
+    /// <summary>
+    /// 图片旋转到其他面上时进行的操作
+    /// </summary>
+    /// <param name="dragDirection">旋转方向</param>
     private void ImageRotOtherFace(DragDirection dragDirection)
     {
         //获得图片将要旋转到的面
@@ -136,4 +154,20 @@ public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEnd
         CurrentFaceIndex = newFaceIndex;
         canvasRec = transform.parent.parent.GetComponent<RectTransform>();
     }
+
+    #region 吸附功能
+
+    /// <summary>
+    /// 常规情况下的指定吸附
+    /// </summary>
+    private void Adsorption()
+    {
+        if (!AdsorptionFunction) return;
+        if (Mathf.Sqrt((transform.position - AdsorptionTarget.transform.position).magnitude) < adsorptionRange)
+        {
+            transform.position = AdsorptionTarget.transform.position;
+        }
+    }
+
+    #endregion
 }
