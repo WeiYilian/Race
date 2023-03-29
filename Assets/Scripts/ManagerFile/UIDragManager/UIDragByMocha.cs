@@ -98,6 +98,7 @@ public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEnd
         Debug.Log("结束时在"+eventData.pointerCurrentRaycast.gameObject.name);
         transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
         Adsorption();
+        //开启BlocksRaycasts功能
         GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 
