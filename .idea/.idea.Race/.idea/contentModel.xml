@@ -58,16 +58,18 @@
             </e>
           </e>
           <e p="TestScript" t="Include">
-            <e p="Cameracontor.cs" t="Include" />
-            <e p="CubeController.cs" t="Include" />
-            <e p="cupe.cs" t="Include" />
-            <e p="ItemController.cs" t="Include" />
-            <e p="ObjectbeBigOrSmall.cs" t="Include" />
-            <e p="PlaneController.cs" t="Include" />
-            <e p="UI" t="Include">
+            <e p="musetool" t="Include">
               <e p="ClickHandler.cs" t="Include" />
-              <e p="TextContorl.cs" t="Include" />
+            </e>
+            <e p="objectContorl" t="Include">
+              <e p="Cameracontor.cs" t="Include" />
+              <e p="ObjectbeBigOrSmall.cs" t="Include" />
+            </e>
+            <e p="StartPhotoBIGandsamll" t="Include">
               <e p="UICoom.cs" t="Include" />
+            </e>
+            <e p="StratUITIpPlanel" t="Include">
+              <e p="TextContorl.cs" t="Include" />
             </e>
           </e>
           <e p="Tools" t="Include">
