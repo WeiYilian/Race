@@ -23,8 +23,29 @@ public class UIFaceManager : MonoBehaviour
    /// </summary>
    /// <param name="currentFace">当前面的编号</param>
    /// <returns></returns>
-   public UIFace GetCurrentUIFace(int currentFace)
+   public void GetCurrentUIFace(int currentFace,DragDirection dragDirection,out GameObject newFace,out int newFaceIndex)
    {
-      return new UIFace(currentFace);
+       UIFace uiFace = new UIFace(currentFace);
+       switch (dragDirection)
+       {
+           case DragDirection.UP:
+               newFace = UIFaceList[uiFace.UpFaceIndex];
+               newFaceIndex = uiFace.UpFaceIndex;
+               break;
+           case DragDirection.DOWN:
+               newFace = UIFaceList[uiFace.DownFaceIndex];
+               newFaceIndex = uiFace.DownFaceIndex;
+               break;
+           case DragDirection.RIGHT:
+               newFace = UIFaceList[uiFace.RightFaceIndex];
+               newFaceIndex = uiFace.RightFaceIndex;
+               break;
+           case DragDirection.LEFT:
+               newFace = UIFaceList[uiFace.LeftFaceIndex];
+               newFaceIndex = uiFace.LeftFaceIndex;
+               break;
+           default:
+               throw new ArgumentOutOfRangeException(nameof(dragDirection), dragDirection, null);
+       }
    }
 }

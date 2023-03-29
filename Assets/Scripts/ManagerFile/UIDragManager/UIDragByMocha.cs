@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 
@@ -10,41 +11,38 @@ public enum DragDirection { UP, DOWN, RIGHT, LEFT }
 public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandler
 {
 
-    [Header("是否精准拖拽")]
-    public bool mIsPrecision;
-
-    //存储图片中心点与鼠标点击点的偏移量
-    [HideInInspector]public Vector3 mOffset;
+    [Header("是否拖拽")]
+    public bool mIsPrecision; 
+    [Header("当前图片所在的面编号")]
+    public int CurrentFaceIndex;
+    
+    
     //存储当前拖拽图片的RectTransform组件
     private RectTransform mRt;
-    //存储图片的尺寸
-    private Vector2 mImageSize;
-    //存储当前图片的Image组件
-    private Image mImage;
-    //当前图片所在的面
-    private UIFace mCurrentFace;
-    //图片下一个要旋转的面
-    private GameObject mNextFace;
-    //用来获得下一个新实例化的图片
-    private GameObject mNewImage;
+
     //盒子每个面移动限制
     private float mFaceLimit;
-    //判断物体向哪个面移动
-    private DragDirection dragDirection;
     //判断图片是否在其他面
     private bool isOtherFace;
+    //在下一个面创建的图片
+    private GameObject mNewImage;
+    //控件所在画布
+    private RectTransform canvasRec;
+    //控件初始位置
+    [HideInInspector]public Vector3 pos;
+    //鼠标初始位置（画布空间）
+    private Vector2 mousePos;    
+    //鼠标初始位置（世界空间）
+    private Vector3 mouseWorldPos;
 
     private void Awake()
     {
-        FindFaceIndex();
+        mRt = gameObject.GetComponent<RectTransform>();
+        canvasRec = transform.parent.parent.GetComponent<RectTransform>();
     }
 
     void Start()
     {
-        //初始化
-        mRt = gameObject.GetComponent<RectTransform>();
-        mImage = gameObject.GetComponent<Image>();
-        mImageSize = mRt.sizeDelta;
         mFaceLimit = 50f;
     }
 
@@ -53,150 +51,89 @@ public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEnd
         isOtherFace = true;
     }
 
-    /// <summary>
-    /// 初始化查找所属面的编号
-    /// </summary>
-    /// <returns></returns>
-    private void FindFaceIndex()
-    {
-        Transform FaceParent;
-        FaceParent = transform;
-        while (true)
-        {
-            if(FaceParent.parent != null)
-                FaceParent = FaceParent.parent;
-            else
-            {
-                Debug.Log("查找不到所属面的编号");
-                break;
-            }
-
-            if (FaceParent.CompareTag("MainFace"))
-            {
-                mCurrentFace = new UIFace(Int32.Parse(FaceParent.name));
-                break;
-            }
-        }
-    }
-
     #region 拖拽过程
 
     //开始拖拽触发
-        public void OnBeginDrag(PointerEventData eventData)
-        {
-            //如果精准拖拽则进行计算偏移量操作
-            if(mIsPrecision)
-            {
-                //存储点击时的鼠标坐标
-                Vector3 tWorldPos;
-                //UI屏幕坐标转换为世界坐标
-                RectTransformUtility.ScreenPointToWorldPointInRectangle(mRt, eventData.position, eventData.pressEventCamera, out tWorldPos);
-                //计算偏移量
-                mOffset = transform.position - tWorldPos;
-            }
-            //否则 默认偏移量为0
-            else
-            {
-                mOffset = Vector3.zero;
-            }
-            SetDraggedPosition(eventData);
-        }
-    
-        //拖拽过程中触发
-        public void OnDrag(PointerEventData eventData)
-        {
-            SetDraggedPosition(eventData);
-        }
-    
-        //结束拖拽触发
-        public void OnEndDrag(PointerEventData eventData)
-        {
-            SetDraggedPosition(eventData);
-        }
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        //控件所在画布空间的初始位置
+        pos = mRt.anchoredPosition;
+        //获得当前点击的摄像机
+        Camera camera = eventData.pressEventCamera;
+        //将屏幕空间鼠标位置eventData.position转换为鼠标在画布空间的鼠标位置
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRec, eventData.position,camera , out mousePos);
+    }
+
+    //拖拽过程中触发
+    public void OnDrag(PointerEventData eventData)
+    {
+        Vector2 newVec = new Vector2();
+        Camera camera = eventData.pressEventCamera;
+        //将屏幕空间鼠标位置eventData.position转换为鼠标在画布空间的鼠标位置
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRec, eventData.position, camera, out newVec);
+        //鼠标移动在画布空间的位置增量
+        Vector3 offset = new Vector3(newVec.x - mousePos.x, newVec.y - mousePos.y, 0);
+        //原始位置增加位置增量即为现在位置
+        
+        if(mIsPrecision)
+            mRt.anchoredPosition = pos + offset;
+        RangeJudge(mRt.localPosition);
+    }
+
+    //结束拖拽触发
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        
+    }
 
     #endregion
-
-    /// <summary>
-    /// 设置图片位置方法
-    /// </summary>
-    /// <param name="eventData"></param>
-    private void SetDraggedPosition(PointerEventData eventData)
-    {
-        //存储当前鼠标所在位置
-        Vector3 globalMousePos;
-        //UI屏幕坐标转换为世界坐标
-        if (RectTransformUtility.ScreenPointToWorldPointInRectangle(mRt, eventData.position, eventData.pressEventCamera, out globalMousePos)) 
-        {
-            //设置位置及偏移量
-            mRt.position = globalMousePos + mOffset;
-            RangeJudge(mImageSize.x/2,mRt.localPosition);
-            //Debug.Log("相对父物体：" + mCurrentFace + "子物体相对位置：" + mRt.localPosition);
-            if(isOtherFace && mNewImage)
-                mNewImage.GetComponent<UIDragByMocha>().OnDrag(eventData);
-        }
-    }
+    
     
     /// <summary>
     /// 判断图片是否移动到其他面上
     /// </summary>
-    /// <param name="currentFace">当前面的编号</param>
     /// <param name="distance">图片中心点到面边缘的距离</param>
     /// <param name="imagePos">图片所在位置（相对位置）</param>
     /// <returns></returns>
-    public void RangeJudge(float distance,Vector3 imagePos)
+    private void RangeJudge(Vector3 imagePos)
     {
         #region 判断图片是否旋转到其他面
         
-        if (imagePos.y + distance > mFaceLimit)
-        {
-            //将dragDirection设为向上的
-            dragDirection = DragDirection.UP;
-            Debug.Log("向上转");
-            //获得图片将要旋转到的面
-            mNextFace = UIFaceManager.Instance.UIFaceList[mCurrentFace.UpFaceIndex];
-            if (!isOtherFace)
-            {
-                mNewImage = Instantiate(transform.gameObject, 
-                    mNextFace.transform.Find("Panel/bg"), true);
-                mNewImage.transform.localRotation = Quaternion.identity;
-                mNewImage.transform.localPosition = Vector3.zero;
-                //mNewImage.GetComponent<UIDragByMocha>().mOffset = mOffset;
-            }
-            Debug.Log("Image的父物体："+mNewImage.transform.parent.parent.parent.name+"位置:"+mNewImage.transform.position);
-        }
+        if (imagePos.y> mFaceLimit && !isOtherFace)
+            //Debug.Log("向上转");
+            ImageRotOtherFace(DragDirection.UP);
 
-        if (imagePos.y - distance < -mFaceLimit)
-        {
-            //将dragDirection设为向下的
-            dragDirection = DragDirection.DOWN;
-            Debug.Log("向下转");
-            //获得图片将要旋转到的面
-            mNextFace = UIFaceManager.Instance.UIFaceList[mCurrentFace.DownFaceIndex];
-        }
 
-        if (imagePos.x + distance > mFaceLimit)
-        {
-            //将dragDirection设为向右的
-            dragDirection = DragDirection.RIGHT;
-            Debug.Log("向右转");
-            //获得图片将要旋转到的面
-            mNextFace = UIFaceManager.Instance.UIFaceList[mCurrentFace.RightFaceIndex];
-        }
-
-        if (imagePos.x - distance < -mFaceLimit)
-        {
-            //将dragDirection设为向左的
-            dragDirection = DragDirection.LEFT;
-            Debug.Log("向左转");
-            //获得图片将要旋转到的面
-            mNextFace = UIFaceManager.Instance.UIFaceList[mCurrentFace.LeftFaceIndex];
-        }
+        if (imagePos.y < -mFaceLimit && !isOtherFace)
+            //Debug.Log("向下转");
+            ImageRotOtherFace(DragDirection.DOWN);
         
-        if (Mathf.Abs(imagePos.x) + Mathf.Abs(distance) > mFaceLimit || Mathf.Abs(imagePos.y) + Mathf.Abs(distance) > mFaceLimit)
+
+        if (imagePos.x > mFaceLimit && !isOtherFace)
+            //Debug.Log("向右转");
+            ImageRotOtherFace(DragDirection.RIGHT);
+        
+
+        if (imagePos.x < -mFaceLimit && !isOtherFace)
+            //Debug.Log("向左转");
+            ImageRotOtherFace(DragDirection.LEFT);
+        
+        
+        if (Mathf.Abs(imagePos.x)> mFaceLimit || Mathf.Abs(imagePos.y) > mFaceLimit)
             isOtherFace = true;
         else
             isOtherFace = false;
 
         #endregion
+    }
+
+    private void ImageRotOtherFace(DragDirection dragDirection)
+    {
+        //获得图片将要旋转到的面
+        UIFaceManager.Instance.GetCurrentUIFace(CurrentFaceIndex,dragDirection,out GameObject mNextFace,out int newFaceIndex);
+        transform.SetParent(mNextFace.transform.Find("Panel/bg"));
+        transform.localRotation = Quaternion.identity;
+        CurrentFaceIndex = newFaceIndex;
+        canvasRec = transform.parent.parent.GetComponent<RectTransform>();
     }
 }

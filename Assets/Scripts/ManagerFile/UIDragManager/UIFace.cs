@@ -62,8 +62,8 @@ public class UIFace
             case 5 :
                 upFaceIndex = 1;
                 downFaceIndex = 3;
-                leftFaceIndex = 4;
-                rightFaceIndex = 2;
+                leftFaceIndex = 2;
+                rightFaceIndex = 4;
                 break;
             case 6 :
                 upFaceIndex = 1;
