@@ -41,7 +41,8 @@
           <e p="ManagerFile" t="Include">
             <e p="FaceConcrete" t="Include">
               <e p="Face4" t="Include">
-                <e p="ButenConter.cs" t="Include" />
+                <e p="ButtenMana.cs" t="Include" />
+                <e p="ChangeButton.cs" t="Include" />
                 <e p="SliderConter.cs" t="Include" />
               </e>
               <e p="TwoFace" t="Include">
