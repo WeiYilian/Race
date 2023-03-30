@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\888\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\888\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Race.1531795562.00" t="ExcludeRecursive" />
-    <e p="D:\learn\Unity\Race\Race" t="IncludeRecursive">
+    <e p="C:\Users\沅\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\沅\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Race.-1376956924.00" t="ExcludeRecursive" />
+    <e p="F:\GIt\Race" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Package" t="Include">
@@ -40,6 +40,10 @@
           </e>
           <e p="ManagerFile" t="Include">
             <e p="FaceConcrete" t="Include">
+              <e p="Face4" t="Include">
+                <e p="ButenConter.cs" t="Include" />
+                <e p="SliderConter.cs" t="Include" />
+              </e>
               <e p="TwoFace" t="Include">
                 <e p="Tools" t="Include">
                   <e p="TowFaceViscera.cs" t="Include" />
@@ -80,6 +84,7 @@
             </e>
             <e p="StartPhotoBIGandsamll" t="Include">
               <e p="UICoom.cs" t="Include" />
+              <e p="UISamll.cs" t="Include" />
             </e>
             <e p="StratUITIpPlanel" t="Include">
               <e p="TextContorl.cs" t="Include" />

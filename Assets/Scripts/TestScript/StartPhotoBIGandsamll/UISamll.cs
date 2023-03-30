@@ -7,9 +7,9 @@ using System;
 //如果没有EventTrigger请添加双击单击代码可以直接调用
 
 //[RequireComponent(typeof(EventTrigger))]
-public class UICoom : MonoBehaviour, IPointerClickHandler
+public class UISamll : MonoBehaviour, IPointerClickHandler
 {
-    public static UICoom instance;
+   
     //上一次点击时间
     private float lastClickTime = 0;
     
@@ -27,19 +27,21 @@ public class UICoom : MonoBehaviour, IPointerClickHandler
     void Start()
     {
         parimage = gameObject.transform.parent.gameObject;
+        
         rectTrans = gameObject.GetComponent<RectTransform>(); // 获取RectTransform组件
-       
+        
+      
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {if (Time.time - lastClickTime < doubleClickInterval)
         {
             // 双击事件
-            //下面的子物体放大
+            //下面的子物体缩小
             if (isEnlarged==false)
             {
-                originalPosition = rectTrans.localPosition; // 记录原始位置
                 originalSize = rectTrans.sizeDelta; // 记录原始大小
+                originalPosition = rectTrans.localPosition; // 记录原始位置
                 rectTrans.localPosition = Vector3.zero; // 放大后中心点与UI面板重合
                 rectTrans.sizeDelta = parimage.GetComponent<RectTransform>().rect.size; // 放大后与UI面板一样大小
 
@@ -73,6 +75,8 @@ public class UICoom : MonoBehaviour, IPointerClickHandler
         else
         {
             
+            
+           
 
             // 更新上一次点击的时间,记录点击时间
             lastClickTime = Time.time;
