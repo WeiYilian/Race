@@ -12,10 +12,18 @@ public class UIFaceManager : MonoBehaviour
    
    public List<GameObject> UIFaceList;
 
+   public TwoFaceManager TwoFaceManager;
+
    private void Awake()
    {
       if (Instance == null)
          Instance = this;
+   }
+
+   private void Start()
+   {
+       //TODO:初始化;这里暂时挂载，等门面写好后转到门面
+       TwoFaceManager = new TwoFaceManager();
    }
 
    /// <summary>
@@ -48,4 +56,10 @@ public class UIFaceManager : MonoBehaviour
                throw new ArgumentOutOfRangeException(nameof(dragDirection), dragDirection, null);
        }
    }
+
+   public TwoFaceManager GetTwoFaceManager()
+   {
+       return TwoFaceManager;
+   }
+   
 }

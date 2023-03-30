@@ -8,6 +8,7 @@ using UnityEngine.UI;
 //物体向哪个相邻旋转的方向
 public enum DragDirection { UP, DOWN, RIGHT, LEFT }
 
+[RequireComponent(typeof(CanvasGroup))]
 public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandler
 {
 
@@ -15,8 +16,6 @@ public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEnd
     public bool IsPrecision;
     [Header("是否需要吸附功能")] 
     public bool AdsorptionFunction;
-    [Header("拼图吸附功能")]
-    public bool PuzzleAdsorption;
     [Header("当前图片所在的面编号")]
     public int CurrentFaceIndex;
     [Header("吸附目标位置")]
@@ -53,6 +52,7 @@ public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEnd
     {
         adsorptionRange = 5f;
         mFaceLimit = 50f;
+        TwoFaceButInit();
     }
 
     private void OnEnable()
@@ -74,7 +74,6 @@ public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEnd
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRec, eventData.position,camera , out mousePos);
         //关闭BlocksRaycasts功能，这样发射的射线可以返回拖动的物体下面一层的东西
         GetComponent<CanvasGroup>().blocksRaycasts = false;
-        Debug.Log("sdawdasad");
     }
 
     //拖拽过程中触发
@@ -95,7 +94,7 @@ public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEnd
     //结束拖拽触发
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("结束时在"+eventData.pointerCurrentRaycast.gameObject.name);
+        //Debug.Log("结束时在"+eventData.pointerCurrentRaycast.gameObject.name);
         transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
         Adsorption();
         //开启BlocksRaycasts功能
@@ -161,14 +160,17 @@ public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEnd
     /// <summary>
     /// 常规情况下的指定吸附
     /// </summary>
-    private void Adsorption()
+    public virtual void Adsorption()
     {
         if (!AdsorptionFunction) return;
         if (Mathf.Sqrt((transform.position - AdsorptionTarget.transform.position).magnitude) < adsorptionRange)
         {
+            transform.SetParent(AdsorptionTarget.transform);
             transform.position = AdsorptionTarget.transform.position;
         }
     }
 
     #endregion
+
+    public virtual void TwoFaceButInit(){ }
 }

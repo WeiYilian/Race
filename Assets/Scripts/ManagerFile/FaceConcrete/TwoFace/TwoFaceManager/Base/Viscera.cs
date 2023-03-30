@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Viscera
 {
-    //脏腑编号
-    public int Index;
+    //脏腑名字
+    public string Name;
     //是否在指定位置
     public bool IsGivenPos = false;
     //脏腑物体

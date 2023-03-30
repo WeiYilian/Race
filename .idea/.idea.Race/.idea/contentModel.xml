@@ -41,8 +41,15 @@
           <e p="ManagerFile" t="Include">
             <e p="FaceConcrete" t="Include">
               <e p="TwoFace" t="Include">
-                <e p="TwoFaceManager.cs" t="Include" />
-                <e p="Viscera.cs" t="Include" />
+                <e p="Tools" t="Include">
+                  <e p="TowFaceViscera.cs" t="Include" />
+                </e>
+                <e p="TwoFaceManager" t="Include">
+                  <e p="Base" t="Include">
+                    <e p="Viscera.cs" t="Include" />
+                  </e>
+                  <e p="TwoFaceManager.cs" t="Include" />
+                </e>
               </e>
             </e>
             <e p="SceneStateManager" t="Include">
