@@ -8,7 +8,7 @@ public class TowFaceViscera : UIDragByMocha
 {
     private Viscera currentViscera;
 
-    private GameObject AnsweiPanel;
+    private GameObject Answeibg;
     
     // 针对第二面的所需图片特性进行吸附功能重写
     public override void Adsorption()
@@ -41,23 +41,29 @@ public class TowFaceViscera : UIDragByMocha
         //  获得Viscera
         currentViscera = twoFaceManager.GetViscera(transform.name);
         // 获取答题面板
-        AnsweiPanel = GameObject.Find("Canvas").transform.Find("Answeibg/AnswerPanel").gameObject;
+        Answeibg = GameObject.Find("Canvas").transform.Find("Answeibg").gameObject;
         
         //  判断问题类型
-        ProblemType _problemType = currentViscera.ProblemType;
+        ProblemType problemType = currentViscera.ProblemType;
         // 点击后触发答题环节
         GetComponent<Button>().onClick.AddListener(() =>
         {
-            //Debug.Log(transform.name+"进入答题环节");
-            switch (_problemType)
+            Answeibg.gameObject.SetActive(true);
+            Debug.Log(transform.name+"类型是："+problemType+"进入答题环节");
+            switch (problemType)
             {
                 // 触发简答题模式
                 case ProblemType.ShortAnswer:
-                    AnsweiPanel.transform.Find("简答题").gameObject.SetActive(true);
+                    GameObject shortAnswerObj = Answeibg.transform.Find("AnswerPanel/ShortAnswer").gameObject;
+                    shortAnswerObj.SetActive(true);
+                    shortAnswerObj.transform.Find("Question").GetComponent<Text>().text = currentViscera.Matter;
                     break;
                 // 触发填空题模式
                 case ProblemType.FillVacancy:
-                    AnsweiPanel.transform.Find("填空题").gameObject.SetActive(true);
+                    GameObject fillVacancyObj = Answeibg.transform.Find("AnswerPanel/FillVacancy").gameObject;
+                    fillVacancyObj.SetActive(true);
+                    fillVacancyObj.transform.Find("Question").GetComponent<Text>().text = currentViscera.Matter;
+                    //TODO:未确定填空题答案是由数据库随机字还是固定字的随机顺序，留待考虑
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
