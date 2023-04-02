@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="3月17song">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_3_30_20_52____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_3_30_20_52____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_3_30_21_33____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_3_30_21_33____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_1_18_37____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_1_18_37____.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-14_15_16____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-14_15_16____.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-16_21_20____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-16_21_20____.xml" afterDir="false" />
@@ -15,6 +32,16 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_29_15_50____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_29_15_50____.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_29_21_21____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_29_21_21____.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/Picture/17.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/素材/Picture/17.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/Picture/17.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/素材/Picture/17.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/Picture/18.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/素材/Picture/18.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/Picture/18.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/素材/Picture/18.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/Picture/19.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/素材/Picture/19.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/Picture/19.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/素材/Picture/19.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/Picture/20.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/素材/Picture/25.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/Picture/20.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/素材/Picture/20.gif.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/Picture/21.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/素材/Picture/21.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/Picture/21.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/素材/Picture/21.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" afterDir="false" />
     </list>
     <list id="1f10c6f0-5c40-4f98-9d82-81194a17b6bb" name="在进行更新之前于 2023-03-14 15:16 取消提交了变更 [默认的]" comment="" />
@@ -28,61 +55,21 @@
     <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/TowFaceViscera.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ControllerFile/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestScript/StartPhotoBIGandsamll/UISamll.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Scrollbar.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventData/PointerEventData.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIFace.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.rider@1.2.1/Rider/Editor/RiderScriptEditor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/ExecuteEvents.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestScript/StartPhotoBIGandsamll/UICoom.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/Face4/ButtenMana.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/Face4/ChangeButton.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestScript/UI/TIPConterl.cs" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="IdeDocumentHistory">
-    <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/NewBehaviourScript.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/MainScene.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Controller/BoxController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/StartUIManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/StartScene.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/SceneStateController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/GameLoop.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/SceneStateManager/Concrete/LoadScene.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/StartUIManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Tools/GameLoop.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ControllerFile/RotDirection.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/CameraController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ControllerFile/BoxController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ControllerFile/CameraController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ControllerFile/ViewController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/BoxObjManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/TestScript/UIDragByMocha.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/TestScript/UICoom.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/TestScript/UI/ImageComm.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/TestScript/UI/BUttoncik.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/TestScript/UI/Cilkcom.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/TestScript/UI/ClickHandler.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/DragRangeJudge.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/DragDirection.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIFace.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/TestScript/UI/UICoom.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Viscera.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager/Base/Viscera.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager/TwoFaceManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIFaceManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/TowFaceUIDrag.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIDragByMocha.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/TowFaceViscera.cs" />
-    </changedPaths>
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestScript/StartPhotoBIGandsamll/UISamll.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/ExecuteEvents.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/TowFaceViscera.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Scrollbar.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIFace.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ControllerFile/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/Face4/ButtenMana.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestScript/StartPhotoBIGandsamll/UICoom.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/Face4/ChangeButton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventData/PointerEventData.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.rider@1.2.1/Rider/Editor/RiderScriptEditor.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2MtwgT4VxzpKxCEnieV90nTAnOq" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="2" id="新增" />
   </component>
   <component name="ProjectViewState">
@@ -103,13 +90,13 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
       <option name="selectedOptions">
-        <list />
+        <set />
       </option>
       <method v="2" />
     </configuration>
@@ -118,7 +105,7 @@
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
       <option name="selectedOptions">
-        <list />
+        <set />
       </option>
       <method v="2" />
     </configuration>
@@ -145,6 +132,7 @@
       <workItem from="1679564250327" duration="10681000" />
       <workItem from="1679906248300" duration="10486000" />
       <workItem from="1680173595675" duration="7693000" />
+      <workItem from="1680413602868" duration="647000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交">
       <created>1678600451169</created>
@@ -297,6 +285,12 @@
     <MESSAGE value="基础跨面旋转优化" />
     <MESSAGE value="第二个面部分底层" />
     <option name="LAST_COMMIT_MESSAGE" value="第二个面部分底层" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="582" y="321" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1680420882764">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="582" y="321" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.816@0.0.1536.816" timestamp="1680420882764" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
