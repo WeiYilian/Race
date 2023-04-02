@@ -19,31 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="3月17song">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_1_18_37____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_1_18_37____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-14_15_16____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-14_15_16____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-16_21_20____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-16_21_20____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-17_20_46____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-17_20_46____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-28_13_35____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-28_13_35____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-29_22_11____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-29_22_11____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-30_21_48____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-30_21_48____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_24_16_55____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_24_16_55____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_29_15_50____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_29_15_50____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_29_21_21____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_29_21_21____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/Picture/17.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/素材/Picture/17.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/Picture/17.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/素材/Picture/17.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/Picture/18.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/素材/Picture/18.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/Picture/18.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/素材/Picture/18.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/Picture/19.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/素材/Picture/19.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/Picture/19.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/素材/Picture/19.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/Picture/20.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/素材/Picture/25.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/Picture/20.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/素材/Picture/20.gif.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/Picture/21.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/素材/Picture/21.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/Picture/21.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/素材/Picture/21.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" afterDir="false" />
-    </list>
+    <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="答题框" />
     <list id="1f10c6f0-5c40-4f98-9d82-81194a17b6bb" name="在进行更新之前于 2023-03-14 15:16 取消提交了变更 [默认的]" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +108,7 @@
       <workItem from="1679564250327" duration="10681000" />
       <workItem from="1679906248300" duration="10486000" />
       <workItem from="1680173595675" duration="7693000" />
-      <workItem from="1680413602868" duration="647000" />
+      <workItem from="1680413602868" duration="1292000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交">
       <created>1678600451169</created>
@@ -253,7 +229,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680100885614</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="答题框">
+      <created>1680420899451</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1680420899451</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -284,9 +267,14 @@
     <MESSAGE value="保存信息" />
     <MESSAGE value="基础跨面旋转优化" />
     <MESSAGE value="第二个面部分底层" />
-    <option name="LAST_COMMIT_MESSAGE" value="第二个面部分底层" />
+    <MESSAGE value="答题框" />
+    <option name="LAST_COMMIT_MESSAGE" value="答题框" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="361" y="141" key="Vcs.Push.Dialog.v2" timestamp="1680420908762">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="361" y="141" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1680420908762" />
     <state x="582" y="321" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1680420882764">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
