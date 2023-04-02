@@ -37,17 +37,11 @@ public class SliderConter : MonoBehaviour
         value = gameObject.transform.GetComponent<Slider>().value;
         if(value >= 40f && value <= 50f)
         {
-            
-            
-            
-            ButtenMana buttenMana = new ButtenMana();
-            
-            buttenMana.Game(true);
+            ButtenMana.Isgame = true;
         }
         else
         {
-            ButtenMana buttenMana = new ButtenMana();
-            buttenMana.Game(false);
+            ButtenMana.Isgame = false;
            
         }
     }

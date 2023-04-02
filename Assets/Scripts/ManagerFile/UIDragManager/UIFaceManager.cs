@@ -12,19 +12,16 @@ public class UIFaceManager : MonoBehaviour
    
    public List<GameObject> UIFaceList;
 
-   public TwoFaceManager TwoFaceManager;
+   public TwoFaceManager twoFaceManager;
 
    private void Awake()
    {
       if (Instance == null)
          Instance = this;
+      //TODO:初始化;这里暂时挂载，等门面写好后转到门面
+      twoFaceManager = new TwoFaceManager();
    }
-
-   private void Start()
-   {
-       //TODO:初始化;这里暂时挂载，等门面写好后转到门面
-       TwoFaceManager = new TwoFaceManager();
-   }
+   
 
    /// <summary>
    /// 获得当前面的对象以及相邻面的对象
@@ -57,9 +54,19 @@ public class UIFaceManager : MonoBehaviour
        }
    }
 
+   /// <summary>
+   /// 获得TwoFaceManager的实例
+   /// </summary>
+   /// <returns></returns>
    public TwoFaceManager GetTwoFaceManager()
    {
-       return TwoFaceManager;
+       if(twoFaceManager!= null)
+        return twoFaceManager;
+       else
+       {
+           Debug.Log("无法返回");
+           return null;
+       }
    }
    
 }

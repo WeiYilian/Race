@@ -11,40 +11,25 @@ public class ButtenMana : MonoBehaviour
     [SerializeField] Sprite sprite1;
     [SerializeField] Sprite sprite3;
     
-static  bool isgame;
+    public static bool Isgame;
+    
 
+    public List<Button> sequence;
 
-
-    public bool Isgame
+    private int currentPosition;
+    
+    private void Awake()
     {
-        get => isgame;
-        set => isgame = value;
+       sequence = new List<Button>();
+       currentPosition = 0;
     }
 
 
-    public List<Button> sequence = new List<Button>();
-
-    private int currentPosition = 0;
-    
-    void Start()
-    {
-       
-    }
-
-  public void Game(bool a)
-  {
-      ButtenMana buttenMana = new ButtenMana();
-      buttenMana.Isgame = a;
-
-
-  }
-    
- 
     public void OnButtonClick(Button button)
     {
        
        
-            if (isgame)
+            if (Isgame)
             {
                 Debug.Log("开始游戏");
                 if (button == sequence[currentPosition])
