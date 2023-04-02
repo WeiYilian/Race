@@ -81,6 +81,11 @@ static  bool isgame;
             else
             {
                 Debug.Log("不能开始游戏");
+                for(int i=0;i<currentPosition;i++)
+                {
+                    sequence[i].GetComponent<Image>().sprite = sprite1;
+                       
+                }
             }
       
 
