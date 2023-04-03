@@ -15,11 +15,16 @@ public class TowFaceViscera : UIDragByMocha
     public override void Adsorption(PointerEventData eventData)
     {
         if (!AdsorptionFunction) return;
-        if (Mathf.Sqrt((transform.position - AdsorptionTarget.transform.position).magnitude) < adsorptionRange)
+        if (eventData.pointerCurrentRaycast.gameObject.CompareTag("VisceralPits"))
         {
-            transform.SetParent(AdsorptionTarget.transform);
-            transform.position = AdsorptionTarget.transform.position;
+            GameObject go = eventData.pointerCurrentRaycast.gameObject;
+            if (Mathf.Sqrt((transform.position - go.transform.position).magnitude) < adsorptionRange)
+            {
+                transform.SetParent(go.transform);
+                transform.position = go.transform.position;
+            }
         }
+        
         // 判断脏腑是否到了指定位置
         if (transform.parent == AdsorptionTarget.transform)
         {
@@ -33,7 +38,6 @@ public class TowFaceViscera : UIDragByMocha
             // 移动到指定位置后不能在进行移动，将是否可以移动的bool值改成false
             IsPrecision = false;
 
-           
         }
     }
 
