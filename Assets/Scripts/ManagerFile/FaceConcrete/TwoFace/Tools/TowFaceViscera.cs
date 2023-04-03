@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class TowFaceViscera : UIDragByMocha
@@ -11,16 +12,18 @@ public class TowFaceViscera : UIDragByMocha
     private GameObject Answeibg;
     
     // 针对第二面的所需图片特性进行吸附功能重写
-    public override void Adsorption()
+    public override void Adsorption(PointerEventData eventData)
     {
-       
-        base.Adsorption();
+        if (!AdsorptionFunction) return;
+        if (Mathf.Sqrt((transform.position - AdsorptionTarget.transform.position).magnitude) < adsorptionRange)
+        {
+            transform.SetParent(AdsorptionTarget.transform);
+            transform.position = AdsorptionTarget.transform.position;
+        }
         // 判断脏腑是否到了指定位置
         if (transform.parent == AdsorptionTarget.transform)
         {
-            //Debug.Log("到了指定位置");
-            // 遍历找到指定的Viscera
-            //Debug.Log("找到相对应的Viscera");
+            Debug.Log("到了指定位置");
             // 移动到指定位置后可以进行下一步了，将是否可以进行下一步的bool值改成true
             currentViscera.IsGivenPos = true;
             // 将Button打开以进行下一关

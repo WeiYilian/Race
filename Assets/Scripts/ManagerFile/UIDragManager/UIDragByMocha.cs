@@ -39,7 +39,7 @@ public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEnd
     //鼠标初始位置（世界空间）
     private Vector3 mouseWorldPos;
     //吸附范围
-    private float adsorptionRange;
+    protected float adsorptionRange;
     
     
     private void Awake()
@@ -96,7 +96,7 @@ public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEnd
     {
         //Debug.Log("结束时在"+eventData.pointerCurrentRaycast.gameObject.name);
         transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
-        Adsorption();
+        Adsorption(eventData);
         //开启BlocksRaycasts功能
         GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
@@ -160,7 +160,7 @@ public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEnd
     /// <summary>
     /// 常规情况下的指定吸附
     /// </summary>
-    public virtual void Adsorption()
+    public virtual void Adsorption(PointerEventData eventData)
     {
         if (!AdsorptionFunction) return;
         if (Mathf.Sqrt((transform.position - AdsorptionTarget.transform.position).magnitude) < adsorptionRange)
@@ -169,8 +169,12 @@ public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEnd
             transform.position = AdsorptionTarget.transform.position;
         }
     }
-
+    
+    
     #endregion
 
+    /// <summary>
+    /// 针对第二个面的初始化方法
+    /// </summary>
     public virtual void TwoFaceButInit(){ }
 }

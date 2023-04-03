@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="第二面基础">
+    <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="第二面完结">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_3_30_20_52____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_3_30_20_52____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_3_30_21_33____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_3_30_21_33____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-14_15_16____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-14_15_16____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-16_21_20____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-16_21_20____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-17_20_46____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-17_20_46____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-28_13_35____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-28_13_35____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-29_22_11____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-29_22_11____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-30_21_48____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-30_21_48____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_24_16_55____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_24_16_55____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_29_15_50____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_29_15_50____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_29_21_21____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_29_21_21____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_30_22_09____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_30_22_09____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_1_11_00____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_1_11_00____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_1_11_02____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_1_11_02____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_1_11_05____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_1_11_05____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_2_17_57____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_2_17_57____.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/TowFaceViscera.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/TowFaceViscera.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIDragByMocha.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIDragByMocha.cs" afterDir="false" />
     </list>
     <list id="1f10c6f0-5c40-4f98-9d82-81194a17b6bb" name="在进行更新之前于 2023-03-14 15:16 取消提交了变更 [默认的]" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +49,6 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BCCE8684-E0F9-4E36-B639-EE10904F4680/87/c1b74d11/IBeginDragHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/ExecuteEvents.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.rider@1.2.1/Rider/Editor/RiderScriptEditor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/learn/Unity/Race/Race/Assets/Scripts/ManagerFile/FaceConcrete/Face4/ButtenMana.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -65,17 +82,17 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Viscera.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/TowFaceUIDrag.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIDragByMocha.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/Face4/ButtenConter.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/Face4/ButtenManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/Face4/ButenConter.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/Face4/ChangeButton.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager/Base/Viscera.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager/TwoFaceManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIFaceManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/Face4/SliderConter.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/Face4/ButtenMana.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager/TwoFaceManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/TowFaceViscera.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIDragByMocha.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="2MtwgT4VxzpKxCEnieV90nTAnOq" />
@@ -145,6 +162,7 @@
       <workItem from="1679906248300" duration="10486000" />
       <workItem from="1680173595675" duration="7693000" />
       <workItem from="1680223141465" duration="16224000" />
+      <workItem from="1680505060215" duration="1195000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交">
       <created>1678600451169</created>
@@ -293,7 +311,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680437314887</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="第二面完结">
+      <created>1680438533030</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1680438533030</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -326,7 +351,8 @@
     <MESSAGE value="4面" />
     <MESSAGE value="保存信息" />
     <MESSAGE value="第二面基础" />
-    <option name="LAST_COMMIT_MESSAGE" value="第二面基础" />
+    <MESSAGE value="第二面完结" />
+    <option name="LAST_COMMIT_MESSAGE" value="第二面完结" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
