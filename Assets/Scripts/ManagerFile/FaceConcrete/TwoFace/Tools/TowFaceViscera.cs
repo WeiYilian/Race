@@ -36,8 +36,12 @@ public class TowFaceViscera : UIDragByMocha
             // 将自身给Viscera中的VisceraObj
             currentViscera.VisceraObj = gameObject;
             // 移动到指定位置后不能在进行移动，将是否可以移动的bool值改成false
-            IsPrecision = false;
-
+            // IsPrecision = false;
+        }
+        else
+        {
+            currentViscera.IsGivenPos = false;
+            GetComponent<Button>().enabled = false;
         }
     }
 
@@ -48,13 +52,14 @@ public class TowFaceViscera : UIDragByMocha
         //  获得Viscera
         currentViscera = twoFaceManager.GetViscera(transform.name);
         // 获取答题面板
-        Answerbg = GameObject.Find("Canvas").transform.Find("Answerbg").gameObject;
+        Answerbg = GameObject.Find("Canvas").transform.Find("Answeibg").gameObject;
         
         //  判断问题类型
         ProblemType problemType = currentViscera.ProblemType;
         // 点击后触发答题环节
         GetComponent<Button>().onClick.AddListener(() =>
         {
+            if (!twoFaceManager.AnsWer) return;
             Answerbg.gameObject.SetActive(true);
             Debug.Log(transform.name+"类型是："+problemType+"进入答题环节");
             switch (problemType)

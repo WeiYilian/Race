@@ -17,7 +17,7 @@ public class UICoom : MonoBehaviour, IPointerClickHandler
     private float doubleClickInterval = 0.3f;
     //放大系数
    
-   private GameObject parimage;//父物体
+    private GameObject parimage;//父物体
     
     private RectTransform rectTrans; // 要操作的图片的RectTransform组件
     private Vector3 originalPosition; // 原始位置
@@ -28,14 +28,14 @@ public class UICoom : MonoBehaviour, IPointerClickHandler
     {
         parimage = gameObject.transform.parent.gameObject;
         rectTrans = gameObject.GetComponent<RectTransform>(); // 获取RectTransform组件
-       
     }
 
     public void OnPointerClick(PointerEventData eventData)
-    {if (Time.time - lastClickTime < doubleClickInterval)
+    {
+        if (Time.time - lastClickTime < doubleClickInterval)
         {
             // 双击事件
-            //下面的子物体放大
+            // 下面的子物体放大
             if (isEnlarged==false)
             {
                 originalPosition = rectTrans.localPosition; // 记录原始位置
@@ -53,8 +53,6 @@ public class UICoom : MonoBehaviour, IPointerClickHandler
                 }
                 isEnlarged = true;
             }
-
-
             else
             {
                 foreach(var child in gameObject.GetComponentsInChildren<Transform>())
@@ -72,13 +70,8 @@ public class UICoom : MonoBehaviour, IPointerClickHandler
         }
         else
         {
-            
-
             // 更新上一次点击的时间,记录点击时间
             lastClickTime = Time.time;
-
-
-
         }
 
     }

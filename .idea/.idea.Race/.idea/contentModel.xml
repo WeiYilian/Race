@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\29569\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\29569\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_Race.-1705523573.00" t="ExcludeRecursive" />
-    <e p="D:\Race\Race" t="IncludeRecursive">
+    <e p="C:\Users\888\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\888\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Race.1531795562.00" t="ExcludeRecursive" />
+    <e p="D:\learn\Unity\Race\Race" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Package" t="Include">
@@ -40,10 +40,14 @@
           </e>
           <e p="ManagerFile" t="Include">
             <e p="FaceConcrete" t="Include">
-              <e p="Face4" t="Include">
+              <e p="FourFace" t="Include">
                 <e p="ButtenMana.cs" t="Include" />
                 <e p="ChangeButton.cs" t="Include" />
                 <e p="SliderConter.cs" t="Include" />
+              </e>
+              <e p="OneFace" t="Include">
+                <e p="OneFaceManager.cs" t="Include" />
+                <e p="Puzzle.cs" t="Include" />
               </e>
               <e p="TwoFace" t="Include">
                 <e p="Tools" t="Include">

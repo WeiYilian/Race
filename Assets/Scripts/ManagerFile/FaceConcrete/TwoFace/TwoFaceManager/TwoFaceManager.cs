@@ -6,6 +6,9 @@ using UnityEngine;
 public class TwoFaceManager
 {
     public List<Viscera> VisceraList = new List<Viscera>();
+
+    public bool AnsWer;
+    
     public TwoFaceManager()
     {
         // 初始化
@@ -28,5 +31,18 @@ public class TwoFaceManager
         }
 
         return null;
+    }
+
+    private void GetAnswer()
+    {
+        int i = 0;
+        foreach (Viscera viscera in VisceraList)
+        {
+            if (viscera.IsGivenPos)
+                i++;
+        }
+
+        if (i >= 5)
+            AnsWer = true;
     }
 }

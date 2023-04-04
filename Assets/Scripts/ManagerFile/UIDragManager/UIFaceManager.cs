@@ -12,14 +12,15 @@ public class UIFaceManager : MonoBehaviour
    
    public List<GameObject> UIFaceList;
 
-   public TwoFaceManager twoFaceManager;
+   private TwoFaceManager twoFaceManager;
+   
+   private OneFaceManager oneFaceManager;
 
    private void Awake()
    {
       if (Instance == null)
          Instance = this;
-      //TODO:初始化;这里暂时挂载，等门面写好后转到门面
-      twoFaceManager = new TwoFaceManager();
+      
    }
    
 
@@ -54,19 +55,29 @@ public class UIFaceManager : MonoBehaviour
        }
    }
 
+   
+   
+   /// <summary>
+   /// 获得OneFaceManager的实例
+   /// </summary>
+   /// <returns></returns>
+   public OneFaceManager GetOneFaceManager()
+   {
+       if(oneFaceManager == null)
+           oneFaceManager = new OneFaceManager();
+       return oneFaceManager;
+   }
+   
+   
    /// <summary>
    /// 获得TwoFaceManager的实例
    /// </summary>
    /// <returns></returns>
    public TwoFaceManager GetTwoFaceManager()
    {
-       if(twoFaceManager!= null)
-        return twoFaceManager;
-       else
-       {
-           Debug.Log("无法返回");
-           return null;
-       }
+       if(twoFaceManager == null)
+           twoFaceManager = new TwoFaceManager();
+       return twoFaceManager;
    }
    
 }
