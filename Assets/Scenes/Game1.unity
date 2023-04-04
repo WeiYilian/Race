@@ -3607,7 +3607,7 @@ GameObject:
   - component: {fileID: 695987777}
   m_Layer: 0
   m_Name: "\u80BA\u7684\u76EE\u6807\u4F4D\u7F6E"
-  m_TagString: Untagged
+  m_TagString: VisceralPits
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4421,7 +4421,7 @@ GameObject:
   - component: {fileID: 858058558}
   m_Layer: 0
   m_Name: "\u5FC3\u7684\u76EE\u6807\u4F4D\u7F6E"
-  m_TagString: Untagged
+  m_TagString: VisceralPits
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4464,7 +4464,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 6b5c8ee2f25daec458d411bdfc46d901, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6661,7 +6661,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 946ce33213faaae4487e3c93bc0892e7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 68cefdefbd1caae4595389cf96cb32c4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7134,7 +7134,7 @@ GameObject:
   - component: {fileID: 1433260244}
   m_Layer: 0
   m_Name: "\u813E\u7684\u76EE\u6807\u4F4D\u7F6E"
-  m_TagString: Untagged
+  m_TagString: VisceralPits
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7567,7 +7567,7 @@ GameObject:
   - component: {fileID: 1566588593}
   m_Layer: 0
   m_Name: "\u809D\u7684\u76EE\u6807\u4F4D\u7F6E"
-  m_TagString: Untagged
+  m_TagString: VisceralPits
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8261,7 +8261,7 @@ GameObject:
   - component: {fileID: 1629600237}
   - component: {fileID: 1629600236}
   m_Layer: 5
-  m_Name: Answeibg
+  m_Name: Answerbg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9636,7 +9636,7 @@ GameObject:
   - component: {fileID: 1966541764}
   m_Layer: 0
   m_Name: "\u80BE\u7684\u76EE\u6807\u4F4D\u7F6E"
-  m_TagString: Untagged
+  m_TagString: VisceralPits
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

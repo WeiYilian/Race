@@ -9,7 +9,7 @@ public class TowFaceViscera : UIDragByMocha
 {
     private Viscera currentViscera;
 
-    private GameObject Answeibg;
+    private GameObject Answerbg;
     
     // 针对第二面的所需图片特性进行吸附功能重写
     public override void Adsorption(PointerEventData eventData)
@@ -48,26 +48,26 @@ public class TowFaceViscera : UIDragByMocha
         //  获得Viscera
         currentViscera = twoFaceManager.GetViscera(transform.name);
         // 获取答题面板
-        Answeibg = GameObject.Find("Canvas").transform.Find("Answeibg").gameObject;
+        Answerbg = GameObject.Find("Canvas").transform.Find("Answerbg").gameObject;
         
         //  判断问题类型
         ProblemType problemType = currentViscera.ProblemType;
         // 点击后触发答题环节
         GetComponent<Button>().onClick.AddListener(() =>
         {
-            Answeibg.gameObject.SetActive(true);
+            Answerbg.gameObject.SetActive(true);
             Debug.Log(transform.name+"类型是："+problemType+"进入答题环节");
             switch (problemType)
             {
                 // 触发简答题模式
                 case ProblemType.ShortAnswer:
-                    GameObject shortAnswerObj = Answeibg.transform.Find("AnswerPanel/ShortAnswer").gameObject;
+                    GameObject shortAnswerObj = Answerbg.transform.Find("AnswerPanel/ShortAnswer").gameObject;
                     shortAnswerObj.SetActive(true);
                     shortAnswerObj.transform.Find("Question").GetComponent<Text>().text = currentViscera.Matter;
                     break;
                 // 触发填空题模式
                 case ProblemType.FillVacancy:
-                    GameObject fillVacancyObj = Answeibg.transform.Find("AnswerPanel/FillVacancy").gameObject;
+                    GameObject fillVacancyObj = Answerbg.transform.Find("AnswerPanel/FillVacancy").gameObject;
                     fillVacancyObj.SetActive(true);
                     fillVacancyObj.transform.Find("Question").GetComponent<Text>().text = currentViscera.Matter;
                     //TODO:未确定填空题答案是由数据库随机字还是固定字的随机顺序，留待考虑
