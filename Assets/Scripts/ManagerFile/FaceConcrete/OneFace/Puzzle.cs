@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
+using UnityEngine.UIElements;
+using Debug = UnityEngine.Debug;
 
 public enum PuzzleType
 {
@@ -10,31 +14,49 @@ public enum PuzzleType
     TwoJigsawPuzzle
 }
 
+public enum PuzzleState
+{
+    Small,
+    Big,
+    NotVariable
+}
+
 public class Puzzle : MonoBehaviour, IPointerClickHandler
 {
+    private string ONEFACEMANAGER = "PuzzleManager";
+
+    private RectTransform m_rectTransform;
+    
     // 判断是否可以进行大拼图切换
     public bool exchangePuzzle;
-    // 判断是否可以放大拼图
-    public bool magnifyPuzzle;
     // 拼图需要达到的目标位置索引
     public int jpTargetIndex;
+    // 判断是否可以拼图尺寸是否可变化
+    public PuzzleState PuzzleState;
     // 拼图的类型
-    public PuzzleType jpType;
+    public PuzzleType PuzzleType;
     // 当前位置编号
     public int jpCurIndex;
     // 判断是否拼图成功
     private bool isSucceed;
-    //上一次点击时间
+    // 上一次点击时间
     private float lastClickTime;
     // 两次点击之间的最大时间间隔
     private float clickInterval;
     //记录原来信息，方便回退
     [HideInInspector] public Vector3 originalPos;
     [HideInInspector] public Vector2 originalSize;
+    [HideInInspector] public GameObject ParentObj;
+
+    private List<Transform> TraList = new List<Transform>();
     
     // OneFaceManager
     private OneFaceManager oneFaceManager;
 
+    private void Awake()
+    {
+        m_rectTransform = transform.GetComponent<RectTransform>();
+    }
 
     private void Start()
     {
@@ -79,40 +101,44 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
             oneFaceManager.InitialObj.transform.position = secondPos;
             secondPos = firstPos;
             eventData.pointerCurrentRaycast.gameObject.transform.position = secondPos;
-            // 两个物体之间的父物体切换
-            GameObject parentObj = transform.parent.gameObject;
-            transform.SetParent(oneFaceManager.InitialObj.transform.parent);
-            oneFaceManager.InitialObj.transform.SetParent(parentObj.transform);
             // 对Puzzle的属性进行交换
             oneFaceManager.ExchangePuzzleCharacteristic(eventData.pointerCurrentRaycast.gameObject.GetComponent<Puzzle>());
             // 切换完成，释放第一次点击后存储的对象
             oneFaceManager.InitialObj = null;
         }
+       
+
+        // 验证拼图是否完成
+        //oneFaceManager.PuzzleComplete();
     }
 
     
     /// <summary>
     /// 大小拼图切换
     /// </summary>
-    /// <param name="eventData"></param>
-    private void ExchangeSmallPuzzle(PointerEventData eventData)
+    private void ExchangeSmallPuzzle()
     {
-        if (!magnifyPuzzle) return;
+        if (PuzzleState == PuzzleState.NotVariable) return;
         // 判断两次点击时间是否超过clickInterval
         if (Time.time - lastClickTime < clickInterval)
         {
-            // 放大之后设置为不能再次放大，可以与其他拼图交换
-            magnifyPuzzle = false;
-            exchangePuzzle = true;
-            // 记录父物体(大拼图)
-            GameObject parentObj = transform.parent.gameObject;
-            // 记录初始信息
-            originalPos = transform.localPosition;
-            originalSize = transform.GetComponent<RectTransform>().sizeDelta;
-            // 将小拼图的相对位置设置在中心
-            transform.localPosition = Vector3.zero;
-            // 将小拼图变大
-            transform.GetComponent<RectTransform>().sizeDelta = parentObj.GetComponent<RectTransform>().rect.size;
+            switch (PuzzleState)
+            {
+                case PuzzleState.Small:
+                    VariableBig();
+                    break;
+                case PuzzleState.Big:
+                    VariableSmall();
+                    break;
+                case PuzzleState.NotVariable:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            
+            // 验证拼图是否完成
+            //oneFaceManager.PuzzleComplete();
+
         }
         else
         {
@@ -120,12 +146,89 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
             lastClickTime = Time.time;
         }
     }
+
+    /// <summary>
+    /// 放大的方法
+    /// </summary>
+    private void VariableBig()
+    {
+        // 记录父物体(大拼图)
+        ParentObj = transform.parent.gameObject;
+        // 记录初始信息
+        originalPos = transform.localPosition;
+        originalSize = m_rectTransform.sizeDelta;
+        // 将小拼图的相对位置设置在中心
+        transform.localPosition = Vector3.zero;
+        // 将小拼图变大
+        m_rectTransform.sizeDelta = ParentObj.GetComponent<RectTransform>().rect.size;
+        // 隐藏父物体
+        ParentObj.SetActive(false);
+        if (TraList.Count > 0)
+        {
+            // 遍历子物体，将子物体显示
+            foreach (Transform child in TraList)
+            {
+                child.gameObject.SetActive(true);
+            }
+            // 清空TraList
+            TraList.Clear();
+        }
+        // 改变父物体
+        transform.SetParent(ParentObj.transform.parent);
+        // 对Puzzle的属性进行交换
+        oneFaceManager.VariablePuzzleCharacteristic(this);
+        // 放大之后调整设置
+        SwitchState();
+    }
+
+    /// <summary>
+    /// 缩小的方法
+    /// </summary>
+    private void VariableSmall()
+    {
+        // 显示父物体
+        ParentObj.SetActive(true);
+        // 设置父物体
+        transform.SetParent(ParentObj.transform);
+        // 遍历子物体，并将子物体隐藏
+        foreach (Transform child in transform)
+        {
+            TraList.Add(child);
+            child.gameObject.SetActive(false);
+        }
+        // 设置回原来的参数
+        transform.localPosition = originalPos;
+        m_rectTransform.sizeDelta = originalSize;
+        // 对Puzzle的属性进行交换
+        oneFaceManager.VariablePuzzleCharacteristic(this);
+        // 缩小之后调整设置
+        SwitchState();
+    }
     
     
     // 点击事件
     public void OnPointerClick(PointerEventData eventData)
     {
         ExchangeBigPuzzle(eventData);
-        ExchangeSmallPuzzle(eventData);
+        ExchangeSmallPuzzle();
+    }
+
+    
+    /// <summary>
+    /// 拼图状态切换
+    /// </summary>
+    public void SwitchState()
+    {
+        if (transform.parent.name != ONEFACEMANAGER)
+        {
+            PuzzleState = PuzzleState.Small;
+            exchangePuzzle = false;
+        }
+
+        if (transform.parent.name == ONEFACEMANAGER)
+        {
+            PuzzleState = PuzzleState.Big;
+            exchangePuzzle = true;
+        }
     }
 }

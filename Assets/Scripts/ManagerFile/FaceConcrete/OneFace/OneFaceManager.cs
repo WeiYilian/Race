@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,25 +16,25 @@ public class OneFaceManager
     /// 检验拼图是否正确
     /// </summary>
     /// <returns></returns>
-    public bool PuzzleComplete()
+    public void PuzzleComplete()
     {
         // 为第一个拼图定义类型
-        PuzzleType puzzleType = PuzzleDic[0].jpType;
+        PuzzleType puzzleType = PuzzleDic[0].PuzzleType;
         // 定义一个匹配度，当匹配度达到4时，即拼图成功
         int matchingSum = 0;
         foreach (var puzzle in PuzzleDic.Values)
         {
             // 判断是否是同一类型的拼图
-            if (puzzleType != puzzle.jpType) return false;
+            if (puzzleType != puzzle.PuzzleType) return;
             // 判断目标与当前是否匹配
             if (puzzle.jpTargetIndex == puzzle.jpCurIndex)
                 matchingSum++;
         }
 
         if (matchingSum >= SucceedSum)
-            return true;
+            Debug.Log("拼图完成");
         else
-            return false;
+            Debug.Log("拼图未完成");
     }
 
     /// <summary>
@@ -42,8 +43,8 @@ public class OneFaceManager
     /// <param name="secondPuzzle"></param>
     public void ExchangePuzzleCharacteristic(Puzzle secondPuzzle)
     {
-        // 在字典中对Puzzle进行换位
         Puzzle firstPuzzle = InitialObj.GetComponent<Puzzle>();
+        // 在字典中对Puzzle进行换位
         PuzzleDic[firstPuzzle.jpCurIndex] = secondPuzzle;
         PuzzleDic[secondPuzzle.jpCurIndex] = firstPuzzle;
         
@@ -52,12 +53,46 @@ public class OneFaceManager
         firstPuzzle.jpCurIndex = secondPuzzle.jpCurIndex;
         secondPuzzle.jpCurIndex = index;
         
-        // 交换Puzzle中的位置与尺寸信息
+        // 交换Puzzle中的位置、尺寸、状态与父物体信息
         Vector3 pos = firstPuzzle.originalPos;
         firstPuzzle.originalPos = secondPuzzle.originalPos;
         secondPuzzle.originalPos = pos;
         Vector2 size = firstPuzzle.originalSize;
         firstPuzzle.originalSize = secondPuzzle.originalSize;
-        firstPuzzle.originalSize = size;
+        secondPuzzle.originalSize = size;
+        PuzzleState state = firstPuzzle.PuzzleState;
+        firstPuzzle.PuzzleState = secondPuzzle.PuzzleState;
+        secondPuzzle.PuzzleState = state;
+        GameObject obj = firstPuzzle.ParentObj;
+        firstPuzzle.ParentObj = secondPuzzle.ParentObj;
+        secondPuzzle.ParentObj = obj;
+    }
+
+    /// <summary>
+    /// 变换大小时交换属性
+    /// </summary>
+    public void VariablePuzzleCharacteristic(Puzzle puzzle)
+    {
+        Puzzle parentPuzzle = puzzle.ParentObj.transform.GetComponent<Puzzle>();
+        switch (puzzle.PuzzleState)
+        {
+            case PuzzleState.Small:
+                // 对Puzzle中的jpCurIndex进行交换
+                parentPuzzle.jpCurIndex = puzzle.jpCurIndex;
+                // 在字典中对Puzzle进行换位
+                PuzzleDic[parentPuzzle.jpCurIndex] = parentPuzzle;
+                break;
+            case PuzzleState.Big:
+                // 对Puzzle中的jpCurIndex进行交换
+                puzzle.jpCurIndex = parentPuzzle.jpCurIndex;
+                // 在字典中对Puzzle进行换位
+                PuzzleDic[puzzle.jpCurIndex] = puzzle;
+                break;
+            case PuzzleState.NotVariable:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+       
     }
 }

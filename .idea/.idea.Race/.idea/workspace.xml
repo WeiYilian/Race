@@ -3,23 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="第二面完结">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-28_13_35____.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_3_15_00____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_3_15_00____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/在进行更新之前于_2023-03-28_13_35_取消提交了变更_[默认的]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/Face4.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/Face4/ButtenMana.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/Face4/ButtenMana.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/Face4/ChangeButton.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/Face4/ChangeButton.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/Face4/SliderConter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/Face4/SliderConter.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/TowFaceViscera.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/TowFaceViscera.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager/TwoFaceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager/TwoFaceManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIFaceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIFaceManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TestScript/StartPhotoBIGandsamll/UICoom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TestScript/StartPhotoBIGandsamll/UICoom.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/_Heathen Engineering/Assets/UX/HeathenEngineering.UX.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/素材/_Heathen Engineering/Assets/UX/HeathenEngineering.UX.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/OneFaceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/OneFaceManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/Puzzle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/Puzzle.cs" afterDir="false" />
     </list>
     <list id="1f10c6f0-5c40-4f98-9d82-81194a17b6bb" name="在进行更新之前于 2023-03-14 15:16 取消提交了变更 [默认的]" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -329,7 +317,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680512088922</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="保存信息">
+      <created>1680692141775</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1680692141775</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -360,11 +355,11 @@
     <MESSAGE value="基础跨面旋转优化" />
     <MESSAGE value="第二个面部分底层" />
     <MESSAGE value="4面" />
-    <MESSAGE value="保存信息" />
     <MESSAGE value="第二面基础" />
     <MESSAGE value="第二面完结" />
     <MESSAGE value="第二面优化" />
-    <option name="LAST_COMMIT_MESSAGE" value="第二面优化" />
+    <MESSAGE value="保存信息" />
+    <option name="LAST_COMMIT_MESSAGE" value="保存信息" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
