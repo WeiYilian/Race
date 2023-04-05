@@ -40,10 +40,6 @@
           </e>
           <e p="ManagerFile" t="Include">
             <e p="FaceConcrete" t="Include">
-              <e p="Face3" t="Include">
-                <e p="ChangeUI.cs" t="Include" />
-                <e p="Flow.cs" t="Include" />
-              </e>
               <e p="FourFace" t="Include">
                 <e p="ButtenMana.cs" t="Include" />
                 <e p="ChangeButton.cs" t="Include" />
@@ -54,6 +50,7 @@
                 <e p="Puzzle.cs" t="Include" />
               </e>
               <e p="ThreeFace" t="Include">
+                <e p="Flow.cs" t="Include" />
                 <e p="LandChange.cs" t="Include" />
               </e>
               <e p="TwoFace" t="Include">
