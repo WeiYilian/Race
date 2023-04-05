@@ -549,12 +549,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exchangePuzzle: 1
-  magnifyPuzzle: 0
   jpTargetIndex: 2
-  jpType: 0
+  PuzzleState: 2
+  PuzzleType: 0
   jpCurIndex: 2
   originalPos: {x: 0, y: 0, z: 0}
   originalSize: {x: 0, y: 0}
+  ParentObj: {fileID: 0}
 --- !u!114 &57652019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2000,12 +2001,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exchangePuzzle: 0
-  magnifyPuzzle: 1
   jpTargetIndex: 3
-  jpType: 1
+  PuzzleState: 0
+  PuzzleType: 1
   jpCurIndex: 3
   originalPos: {x: 0, y: 0, z: 0}
   originalSize: {x: 0, y: 0}
+  ParentObj: {fileID: 0}
 --- !u!114 &256712524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5830,12 +5832,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exchangePuzzle: 0
-  magnifyPuzzle: 1
   jpTargetIndex: 1
-  jpType: 1
+  PuzzleState: 0
+  PuzzleType: 1
   jpCurIndex: 1
   originalPos: {x: 0, y: 0, z: 0}
   originalSize: {x: 0, y: 0}
+  ParentObj: {fileID: 0}
 --- !u!114 &979275419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7367,8 +7370,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1340389497}
-  m_LocalRotation: {x: -0, y: 0.000000014901161, z: 1.110223e-16, w: 1}
-  m_LocalPosition: {x: -1.6608336, y: -7.300546, z: -192.46738}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 200}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -8396,12 +8399,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exchangePuzzle: 1
-  magnifyPuzzle: 0
   jpTargetIndex: 1
-  jpType: 0
+  PuzzleState: 2
+  PuzzleType: 0
   jpCurIndex: 1
   originalPos: {x: 0, y: 0, z: 0}
   originalSize: {x: 0, y: 0}
+  ParentObj: {fileID: 0}
 --- !u!114 &1532548659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9553,12 +9557,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exchangePuzzle: 0
-  magnifyPuzzle: 1
   jpTargetIndex: 4
-  jpType: 1
+  PuzzleState: 0
+  PuzzleType: 1
   jpCurIndex: 4
   originalPos: {x: 0, y: 0, z: 0}
   originalSize: {x: 0, y: 0}
+  ParentObj: {fileID: 0}
 --- !u!114 &1685080182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9776,12 +9781,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exchangePuzzle: 0
-  magnifyPuzzle: 1
   jpTargetIndex: 2
-  jpType: 1
+  PuzzleState: 0
+  PuzzleType: 1
   jpCurIndex: 2
   originalPos: {x: 0, y: 0, z: 0}
   originalSize: {x: 0, y: 0}
+  ParentObj: {fileID: 0}
 --- !u!114 &1724355484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10699,12 +10705,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exchangePuzzle: 1
-  magnifyPuzzle: 0
   jpTargetIndex: 3
-  jpType: 0
+  PuzzleState: 2
+  PuzzleType: 0
   jpCurIndex: 3
   originalPos: {x: 0, y: 0, z: 0}
   originalSize: {x: 0, y: 0}
+  ParentObj: {fileID: 0}
 --- !u!114 &1929184008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11379,12 +11386,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exchangePuzzle: 1
-  magnifyPuzzle: 0
   jpTargetIndex: 4
-  jpType: 0
+  PuzzleState: 2
+  PuzzleType: 0
   jpCurIndex: 4
   originalPos: {x: 0, y: 0, z: 0}
   originalSize: {x: 0, y: 0}
+  ParentObj: {fileID: 0}
 --- !u!114 &2037447428
 MonoBehaviour:
   m_ObjectHideFlags: 0
