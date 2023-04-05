@@ -53,6 +53,9 @@
                 <e p="OneFaceManager.cs" t="Include" />
                 <e p="Puzzle.cs" t="Include" />
               </e>
+              <e p="ThreeFace" t="Include">
+                <e p="LandChange.cs" t="Include" />
+              </e>
               <e p="TwoFace" t="Include">
                 <e p="Tools" t="Include">
                   <e p="TowFaceViscera.cs" t="Include" />

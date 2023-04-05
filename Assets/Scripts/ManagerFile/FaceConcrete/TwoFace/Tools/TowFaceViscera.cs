@@ -52,7 +52,7 @@ public class TowFaceViscera : UIDragByMocha
         //  获得Viscera
         currentViscera = twoFaceManager.GetViscera(transform.name);
         // 获取答题面板
-        Answerbg = GameObject.Find("Canvas").transform.Find("Answeibg").gameObject;
+        Answerbg = GameObject.Find("Canvas").transform.Find("Answerbg").gameObject;
         
         //  判断问题类型
         ProblemType problemType = currentViscera.ProblemType;
