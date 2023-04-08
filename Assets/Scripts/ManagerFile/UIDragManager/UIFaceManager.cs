@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class UIFaceManager : MonoBehaviour
@@ -15,13 +17,31 @@ public class UIFaceManager : MonoBehaviour
    private TwoFaceManager twoFaceManager;
    
    private OneFaceManager oneFaceManager;
-
+   
+   public CanvasGroup m_canvasGroup;
+   
    private void Awake()
    {
       if (Instance == null)
          Instance = this;
       
    }
+   
+
+   /// <summary>
+   /// 打开消息提示框，并控制消息自动消失
+   /// </summary>
+   public void MessageonCtrol(string Text)
+   {
+       // 填充文字
+       m_canvasGroup.transform.Find("MessageText").GetComponent<Text>().text = Text;
+       // 使消息提示框出现
+       m_canvasGroup.alpha = 1;
+       // 提示消息自动消失
+       m_canvasGroup.DOFade(0, 5);
+
+   }
+
    
 
    /// <summary>

@@ -32,7 +32,11 @@ public class OneFaceManager
         }
 
         if (matchingSum >= SucceedSum)
+        {
             Debug.Log("拼图完成");
+            UIFaceManager.Instance.MessageonCtrol("拼图完成");
+        }
+            
         //else
             //Debug.Log("拼图未完成");
     }
