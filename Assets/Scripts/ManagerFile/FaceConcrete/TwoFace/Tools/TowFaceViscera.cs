@@ -26,23 +26,23 @@ public class TowFaceViscera : UIDragByMocha
         }
         
         // 判断脏腑是否到了指定位置
-        if (transform.parent == AdsorptionTarget.transform)
-        {
-            Debug.Log("到了指定位置");
-            // 移动到指定位置后可以进行下一步了，将是否可以进行下一步的bool值改成true
-            currentViscera.IsGivenPos = true;
-            // 将Button打开以进行下一关
-            GetComponent<Button>().enabled = true;
-            // 将自身给Viscera中的VisceraObj
-            currentViscera.VisceraObj = gameObject;
-            // 移动到指定位置后不能在进行移动，将是否可以移动的bool值改成false
-            // IsPrecision = false;
-        }
-        else
-        {
-            currentViscera.IsGivenPos = false;
-            GetComponent<Button>().enabled = false;
-        }
+        // if (transform.parent == AdsorptionTarget.transform)
+        // {
+        //     Debug.Log("到了指定位置");
+        //     // 移动到指定位置后可以进行下一步了，将是否可以进行下一步的bool值改成true
+        //     currentViscera.IsGivenPos = true;
+        //     // 将Button打开以进行下一关
+        //     GetComponent<Button>().enabled = true;
+        //     // 将自身给Viscera中的VisceraObj
+        //     currentViscera.VisceraObj = gameObject;
+        //     // 移动到指定位置后不能在进行移动，将是否可以移动的bool值改成false
+        //     // IsPrecision = false;
+        // }
+        // else
+        // {
+        //     currentViscera.IsGivenPos = false;
+        //     GetComponent<Button>().enabled = false;
+        // }
     }
 
     public override void TwoFaceButInit()

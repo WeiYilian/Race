@@ -76,8 +76,6 @@ public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEnd
         Camera camera = eventData.pressEventCamera;
         // 将屏幕空间鼠标位置eventData.position转换为鼠标在画布空间的鼠标位置
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRec, eventData.position,camera , out mousePos);
-        // 初始化图片位置
-        //mRt.localPosition = new Vector3(mousePos.x,mousePos.y,0);
         // 关闭BlocksRaycasts功能，这样发射的射线可以返回拖动的物体下面一层的东西
         GetComponent<CanvasGroup>().blocksRaycasts = false;
         
