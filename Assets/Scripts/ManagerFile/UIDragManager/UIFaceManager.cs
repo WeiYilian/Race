@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using DG.Tweening;
+
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Serialization;
@@ -38,7 +38,7 @@ public class UIFaceManager : MonoBehaviour
        // 使消息提示框出现
        m_canvasGroup.alpha = 1;
        // 提示消息自动消失
-       m_canvasGroup.DOFade(0, 5);
+     
 
    }
 
