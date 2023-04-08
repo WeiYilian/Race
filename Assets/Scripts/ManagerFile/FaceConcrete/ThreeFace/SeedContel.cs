@@ -24,7 +24,9 @@ public class SeedContel : MonoBehaviour
     private Button define;
     private Button back;
     //石否激活按钮
-    public static  bool isGame;
+     static  bool isGame;
+     static  bool isGame1;
+     static  bool isGame2;
     void Start()
     {
        TipPanel = GameObject.Find("Canvas").transform.Find("TIP3").gameObject;
@@ -55,9 +57,23 @@ public class SeedContel : MonoBehaviour
         {
             Debug.Log("ss");
             gameObject.GetComponent<Image>().sprite =Updateimage;
-            SeedContel.isGame = true;
+            if (Seedname=="洋甘菊")
+            {
+                SeedContel.isGame = true;
+            }
+
+            if (Seedname == "车前子")
+            {
+                SeedContel.isGame2 = true;
+            }
+            if (Seedname == "凤仙花")
+            {
+                SeedContel.isGame1 = true;
+            }
+
             Destroy(collision.gameObject);
         }
+       
     }
 
     private void MyOnEnable()
@@ -90,11 +106,12 @@ public class SeedContel : MonoBehaviour
 
     public void OnCilk()
     {
-        Debug.Log("1");
+       
        
         
-        if (isGame==false)
-        { Debug.Log("2");
+        if (isGame==false||isGame1==false||isGame2==false)
+        {
+            Debug.Log("2");
             TipPanel.SetActive(true);
             SeedPanel.SetActive(true);
             nametext.text = Seedname;
@@ -107,8 +124,8 @@ public class SeedContel : MonoBehaviour
                 case"凤仙花":
                     seedmangetext.text = "【凤仙花】 \n具体种植信息未激活，请找到对应种子拖入激活具体信息\n是否继续种植请点击确定";
                     break;
-                case "车前草": 
-                    seedmangetext.text = "【车前草】 \n具体种植信息未激活，请找到对应种子拖入激活具体信息\n是否继续种植请点击确定";
+                case "车前子": 
+                    seedmangetext.text = "【车前子】 \n具体种植信息未激活，请找到对应种子拖入激活具体信息\n是否继续种植请点击确定";
                     break;   
                     
             }
@@ -116,21 +133,58 @@ public class SeedContel : MonoBehaviour
 
         if (isGame == true)
         {
+            Debug.Log("1");
             TipPanel.SetActive(true);
             SeedPanel.SetActive(true);
             nametext.text = Seedname;
             Tipeedimage.sprite = Seedimage.sprite;
             switch (gameObject.name)
             {
-                case "seed":
+                case "洋甘菊":
                     seedmangetext.text = "【洋甘菊】 \n喜欢寒冷的环境,更适合秋播。洋甘菊为二年生草花,秋季播种,发芽温度15-18,花期为次年3月至5月洋甘菊需要充足的阳光," +
                                          "良好的通风,排水良好的沙壤土或土壤深厚的疏松壤土,抗寒性强\n\n\n如若继续请点击确定";
                     break;
-                case"2":
-                    seedmangetext.text = "";
+                // case"凤仙花":
+                //     seedmangetext.text = "";
+                //     break;
+                // case "车前子": 
+                //     seedmangetext.text = "";
+                //     break;   
+                    
+            }
+        }
+        if (isGame1 == true)
+        {
+            Debug.Log("1");
+            TipPanel.SetActive(true);
+            SeedPanel.SetActive(true);
+            nametext.text = Seedname;
+            Tipeedimage.sprite = Seedimage.sprite;
+            switch (gameObject.name)
+            {
+                
+                case"凤仙花":
+                    seedmangetext.text = "222";
                     break;
-                case "3": 
-                    seedmangetext.text = "";
+                // case "车前子": 
+                //     seedmangetext.text = "";
+                //     break;   
+                    
+            }
+        }
+        if (isGame2 == true)
+        {
+            Debug.Log("1");
+            TipPanel.SetActive(true);
+            SeedPanel.SetActive(true);
+            nametext.text = Seedname;
+            Tipeedimage.sprite = Seedimage.sprite;
+            switch (gameObject.name)
+            {
+                
+               
+                case "车前子": 
+                    seedmangetext.text = "12";
                     break;   
                     
             }

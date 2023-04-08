@@ -46,6 +46,7 @@ public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEnd
     {
         mRt = gameObject.GetComponent<RectTransform>();
         canvasRec = transform.parent.parent.GetComponent<RectTransform>();
+        
     }
 
     void Start()
@@ -79,6 +80,7 @@ public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEnd
         //mRt.localPosition = new Vector3(mousePos.x,mousePos.y,0);
         // 关闭BlocksRaycasts功能，这样发射的射线可以返回拖动的物体下面一层的东西
         GetComponent<CanvasGroup>().blocksRaycasts = false;
+        
     }
 
     //拖拽过程中触发
