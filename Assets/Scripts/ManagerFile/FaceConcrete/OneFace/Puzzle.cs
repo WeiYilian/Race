@@ -23,8 +23,6 @@ public enum PuzzleState
 
 public class Puzzle : MonoBehaviour, IPointerClickHandler
 {
-    private string ONEFACEMANAGER = "PuzzleManager";
-
     private RectTransform m_rectTransform;
     
     // 判断是否可以进行大拼图切换
@@ -82,17 +80,19 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
     private void ExchangeBigPuzzle(PointerEventData eventData)
     {
         if (!exchangePuzzle) return;
+        
         if (!oneFaceManager.InitialObj)
         {
-            //如果未进行第一次点击，就记录第一次点击的物体
+            // 如果未进行第一次点击，就记录第一次点击的物体
             oneFaceManager.InitialObj = eventData.pointerCurrentRaycast.gameObject;
-            // 如果是双击则不记录
-            if (Time.time - lastClickTime < clickInterval)
-                oneFaceManager.InitialObj = null;
+
             //TODO:同时使第一个点击的物体触发点击特效
         }
         else
         {
+            // 如果是双击则不触发交换位置方法
+            if (Time.time - lastClickTime < clickInterval) return;
+            
             // 存放第一次点击的物体位置
             Vector3 firstPos = oneFaceManager.InitialObj.transform.position;
             // 存放第二次点击的物体位置
@@ -106,10 +106,6 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
             // 切换完成，释放第一次点击后存储的对象
             oneFaceManager.InitialObj = null;
         }
-       
-
-        // 验证拼图是否完成
-        //oneFaceManager.PuzzleComplete();
     }
 
     
@@ -135,10 +131,6 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            
-            // 验证拼图是否完成
-            //oneFaceManager.PuzzleComplete();
-
         }
         else
         {
@@ -209,8 +201,10 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
     // 点击事件
     public void OnPointerClick(PointerEventData eventData)
     {
-        ExchangeBigPuzzle(eventData);
+        // 拼图大小切换
         ExchangeSmallPuzzle();
+        // 拼图位置切换
+        ExchangeBigPuzzle(eventData);
     }
 
     
@@ -219,16 +213,33 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
     /// </summary>
     public void SwitchState()
     {
-        if (transform.parent.name != ONEFACEMANAGER)
-        {
-            PuzzleState = PuzzleState.Small;
-            exchangePuzzle = false;
-        }
+        // if (transform.parent.name != ONEFACEMANAGER)
+        // {
+        //     PuzzleState = PuzzleState.Small;
+        //     exchangePuzzle = false;
+        // }
+        //
+        // if (transform.parent.name == ONEFACEMANAGER)
+        // {
+        //     PuzzleState = PuzzleState.Big;
+        //     exchangePuzzle = true;
+        // }
 
-        if (transform.parent.name == ONEFACEMANAGER)
+        switch (PuzzleState)
         {
-            PuzzleState = PuzzleState.Big;
-            exchangePuzzle = true;
+            case PuzzleState.Small:
+                PuzzleState = PuzzleState.Big;
+                exchangePuzzle = true;
+                break;
+            case PuzzleState.Big:
+                PuzzleState = PuzzleState.Small;
+                exchangePuzzle = false;
+                break;
+            case PuzzleState.NotVariable:
+                exchangePuzzle = true;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 }
