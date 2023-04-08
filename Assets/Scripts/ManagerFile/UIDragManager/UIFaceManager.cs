@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-
+using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Animations;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class UIFaceManager : MonoBehaviour
 {
@@ -38,11 +34,10 @@ public class UIFaceManager : MonoBehaviour
        // 使消息提示框出现
        m_canvasGroup.alpha = 1;
        // 提示消息自动消失
-     
-
+       m_canvasGroup.DOFade(0, 5);
    }
 
-   
+
 
    /// <summary>
    /// 获得当前面的对象以及相邻面的对象
@@ -75,29 +70,35 @@ public class UIFaceManager : MonoBehaviour
        }
    }
 
+
+   #region 获得某个面的管理者
+
+    /// <summary>
+    /// 获得OneFaceManager的实例
+    /// </summary>
+    /// <returns></returns>
+    public OneFaceManager GetOneFaceManager()
+    {
+      if(oneFaceManager == null)
+          oneFaceManager = new OneFaceManager();
+      return oneFaceManager;
+    }
+
+
+    /// <summary>
+    /// 获得TwoFaceManager的实例
+    /// </summary>
+    /// <returns></returns>
+    public TwoFaceManager GetTwoFaceManager()
+    {
+      if(twoFaceManager == null)
+          twoFaceManager = new TwoFaceManager();
+      return twoFaceManager;
+    }
+
+   #endregion
    
    
-   /// <summary>
-   /// 获得OneFaceManager的实例
-   /// </summary>
-   /// <returns></returns>
-   public OneFaceManager GetOneFaceManager()
-   {
-       if(oneFaceManager == null)
-           oneFaceManager = new OneFaceManager();
-       return oneFaceManager;
-   }
-   
-   
-   /// <summary>
-   /// 获得TwoFaceManager的实例
-   /// </summary>
-   /// <returns></returns>
-   public TwoFaceManager GetTwoFaceManager()
-   {
-       if(twoFaceManager == null)
-           twoFaceManager = new TwoFaceManager();
-       return twoFaceManager;
-   }
+  
    
 }
