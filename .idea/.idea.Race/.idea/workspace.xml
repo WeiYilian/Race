@@ -1,30 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="第二面完结">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_8_17_24____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_8_17_24____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_8_17_42____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_8_17_42____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-08_17_39____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-08_17_39____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-08_18_38____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-08_18_38____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_8_19_03____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_8_19_03____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/___.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/___.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/第一关具体各面的素材/面2/圆盘.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/第一关具体各面的素材/面2/圆盘.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/第一关具体各面的素材/面2/外圆盘.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/第一关具体各面的素材/面2/外圆盘.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/第一关具体各面的素材/面2/背景.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/第一关具体各面的素材/面2/背景.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/第一关具体各面的素材/面2/面2bg(1).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/第一关具体各面的素材/面2/面2bg(1).png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/第一关具体各面的素材/面2/面2bg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Package/第一关具体各面的素材/面2/面2bg.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/TowFaceViscera.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/TowFaceViscera.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIDragByMocha.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIDragByMocha.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIFaceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIFaceManager.cs" afterDir="false" />
-    </list>
+    <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="第二面完结" />
     <list id="1f10c6f0-5c40-4f98-9d82-81194a17b6bb" name="在进行更新之前于 2023-03-14 15:16 取消提交了变更 [默认的]" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +153,7 @@
       <workItem from="1680602690588" duration="11560000" />
       <workItem from="1680858739055" duration="2954000" />
       <workItem from="1680935454130" duration="1290000" />
-      <workItem from="1681025942757" duration="15138000" />
+      <workItem from="1681025942757" duration="15466000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交">
       <created>1678600451169</created>
@@ -353,7 +330,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680952596354</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="保存信息">
+      <created>1681046663433</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1681046663433</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -387,6 +371,7 @@
     <MESSAGE value="第二面基础" />
     <MESSAGE value="第二面完结" />
     <MESSAGE value="第二面优化" />
+    <MESSAGE value="第二面基础圆盘旋转" />
     <MESSAGE value="保存信息" />
     <option name="LAST_COMMIT_MESSAGE" value="保存信息" />
   </component>
