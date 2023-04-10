@@ -1,11 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
 
 public class InFaceRotation : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandler
 {
+    // 存储五行小元素的列表
     public List<RectTransform> WuXing = new List<RectTransform>();
+    
+    public Queue<string> wuxingQueue = new Queue<string>();
 
     private Vector2 ModelPos;
     //当前鼠标位置
@@ -16,8 +20,12 @@ public class InFaceRotation : MonoBehaviour, IBeginDragHandler, IDragHandler,IEn
     private Quaternion q; 
     //模型欧拉角存储变量
     private Vector3 localEluer;
-
+    // 旋转速度
     public float rotSpeed;
+    // 内盘上每个端点相距的角度
+    private int distanceAngle;
+    // 上次更新的点位
+    private int point = 0;
     
 
     //控件所在画布
@@ -26,6 +34,11 @@ public class InFaceRotation : MonoBehaviour, IBeginDragHandler, IDragHandler,IEn
     private void Start()
     {
         canvasRec = UIFaceManager.Instance.UIFaceList[2].GetComponent<RectTransform>();
+        distanceAngle = 360 / 5;
+        for (int i = 0; i < WuXing.Count; i++)
+        {
+            wuxingQueue.Enqueue(WuXing[i].name);
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -62,45 +75,59 @@ public class InFaceRotation : MonoBehaviour, IBeginDragHandler, IDragHandler,IEn
             localEluer.z += k * RotateAngle * rotSpeed;
             //进行旋转
             transform.localEulerAngles = localEluer;
+            Debug.Log(transform.localEulerAngles);
             for (int i = 0; i < WuXing.Count; i++)
             {
+                //对五个小元素进行反方向旋转，以保证小元素不旋转
                 WuXing[i].transform.localEulerAngles = -localEluer;
             }
             premousePos = mousePos;
         }
-
-        if (Mathf.Abs(localEluer.z) % 70 < 5)
-        {
-            var transformRotation = transform.rotation;
-            transformRotation.z = GetAngles(transform.localEulerAngles.z);
-        }
     }
-
-    /// <summary>
-    /// 计算角度值
-    /// </summary>
-    private float GetAngles(float Angles)
-    {
-        float a;
-        a = (Angles % 70) < 35 ? (Angles % 70) : (70 - Mathf.Abs(Angles % 70));
-        if ((Angles % 70) < 35)
-        {
-            a = (Angles % 70);
-            return Angles - a;
-        }
-        else
-        {
-            a = 70 - Mathf.Abs(Angles % 70);
-            if (Angles > 0)
-                return Angles + a;
-            else
-                return Angles - a;
-        }
-    }
-    
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        
+        // 获取自身欧拉角的z值
+        var transformRotation = transform.GetComponent<RectTransform>().rotation.eulerAngles.z;
+        //  若与点位的值小于10则吸附至点位
+        if (Mathf.Abs(transformRotation) % distanceAngle < 10)
+        {
+            transform.localEulerAngles = new Vector3(0,0,GetAngles(transformRotation));
+            UpdataQuene((int)transformRotation);
+        }
+            
+        UIFaceManager.Instance.GetTwoFaceManager().MatchJudgment();
+    }
+    
+    /// <summary>
+    /// 计算角度值是否位于端点附近
+    /// </summary>
+    private float GetAngles(float angles)
+    {
+        int a = 0;
+        int boundary = distanceAngle / 2;
+        //若余数未超过35度则取余，若余数超过35度则用70度减去余数
+        if (angles % distanceAngle > boundary)
+            a = (int) (angles / distanceAngle) + 1;
+        else if(angles%distanceAngle <= boundary)
+            a = (int) (angles / distanceAngle);
+
+        return a * distanceAngle;
+    }
+    
+    /// <summary>
+    /// 更新队列
+    /// 金对应肺，木对应肝，水对应肾，火对应心，土对应脾
+    /// </summary>
+    private void UpdataQuene(int angles)
+    {
+        int i = angles / distanceAngle;
+        // 更新五行队列顺序
+        for (int j = 0; j < i-point; j++)
+        {
+            string obj = wuxingQueue.Dequeue();
+            wuxingQueue.Enqueue(obj);
+        }
+        point = i;
     }
 }

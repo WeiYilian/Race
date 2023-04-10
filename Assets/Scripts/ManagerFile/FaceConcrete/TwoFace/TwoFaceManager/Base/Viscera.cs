@@ -12,8 +12,6 @@ public class Viscera
 {
     //脏腑名字
     public string Name;
-    //是否在指定位置
-    public bool IsGivenPos = false;
     //脏腑物体
     public GameObject VisceraObj;
     //判断点击按钮之后的问题类型
@@ -21,5 +19,5 @@ public class Viscera
     //点击按钮之后的问题
     public string Matter;
     //填空题答案选项
-    public List<string> AnswerList = null;
+    public List<string> AnswerList = new List<string>();
 }
