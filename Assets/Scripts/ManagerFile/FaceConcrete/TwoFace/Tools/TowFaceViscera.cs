@@ -10,6 +10,12 @@ public class TowFaceViscera : UIDragByMocha
     private Viscera currentViscera;
 
     private GameObject Answerbg;
+
+    private List<Text> selectedAnswer;
+    
+    private List<Text> selectAnswer;
+    
+    private List<string> correctAnswer;
     
     // 针对第二面的所需图片特性进行吸附功能重写
     public override void Adsorption(PointerEventData eventData)
@@ -54,6 +60,8 @@ public class TowFaceViscera : UIDragByMocha
         // 获取答题面板
         Answerbg = GameObject.Find("Canvas").transform.Find("Answerbg").gameObject;
         
+        
+        
         //  判断问题类型
         ProblemType problemType = currentViscera.ProblemType;
         // 点击后触发答题环节
@@ -69,6 +77,7 @@ public class TowFaceViscera : UIDragByMocha
                     GameObject shortAnswerObj = Answerbg.transform.Find("AnswerPanel/ShortAnswer").gameObject;
                     shortAnswerObj.SetActive(true);
                     shortAnswerObj.transform.Find("Question").GetComponent<Text>().text = currentViscera.Matter;
+                    //TODO：确认正确答案
                     break;
                 // 触发填空题模式
                 case ProblemType.FillVacancy:
@@ -82,5 +91,41 @@ public class TowFaceViscera : UIDragByMocha
             }
         });
     }
+
     
+    /// <summary>
+    /// 遍历子物体并赋值
+    /// </summary>
+    private void GetAnswer(GameObject parentObj,bool isSelect = true)
+    {
+        foreach (Transform child in parentObj.transform)
+        {
+            if(isSelect)
+                selectedAnswer.Add(child.GetComponent<Text>());
+            else
+                selectAnswer.Add(child.GetComponent<Text>());
+        }
+    }
+    
+    
+    /// <summary>
+    /// 判断填空题答案是否正确
+    /// </summary>
+    /// <returns></returns>
+    private bool IsCorrect_Short()
+    {
+        int sum = 0;
+        for (int i = 0; i < correctAnswer.Count; i++)
+        {
+            if (correctAnswer[i] == selectedAnswer[i].text)
+            {
+                sum++;
+            }
+        }
+
+        if (sum >= correctAnswer.Count)
+            return true;
+        else
+            return false;
+    }
 }
