@@ -20,4 +20,6 @@ public class Viscera
     public ProblemType ProblemType;
     //点击按钮之后的问题
     public string Matter;
+    //填空题答案选项
+    public List<string> AnswerList = null;
 }
