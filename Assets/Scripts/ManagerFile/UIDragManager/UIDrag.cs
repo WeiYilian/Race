@@ -67,8 +67,6 @@ public class UIDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHan
     //开始拖拽触发
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log(eventData.pointerCurrentRaycast.gameObject.transform.parent);
-        Debug.Log(eventData.pointerCurrentRaycast.gameObject.transform.position);
         if (!IsPrecision) return;
         // 将父物体设置为bg
         transform.SetParent(UIFaceManager.Instance.UIFaceList[CurrentFaceIndex].transform.Find("Panel/bg"));
