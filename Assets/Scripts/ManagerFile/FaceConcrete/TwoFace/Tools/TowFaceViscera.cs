@@ -101,6 +101,7 @@ public class TowFaceViscera : UIDrag
     /// </summary>
     private void GetAnswer(Transform parentObj,List<Text> list)
     {
+        list = new List<Text>();
         foreach (Transform child in parentObj)
         {
             list.Add(child.GetComponent<Text>());
