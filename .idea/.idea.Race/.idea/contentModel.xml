@@ -71,6 +71,10 @@
                 <e p="Flow.cs" t="Include" />
                 <e p="LandChange.cs" t="Include" />
                 <e p="SeedContel.cs" t="Include" />
+                <e p="ThreeFaceManager" t="Include">
+                  <e p="ThreeFaceMange.cs" t="Include" />
+                </e>
+                <e p="UIConter.cs" t="Include" />
               </e>
               <e p="TwoFace" t="Include">
                 <e p="Tools" t="Include">
@@ -98,7 +102,7 @@
             </e>
             <e p="StartUIManager.cs" t="Include" />
             <e p="UIDragManager" t="Include">
-              <e p="UIDragByMocha.cs" t="Include" />
+              <e p="UIDrag.cs" t="Include" />
               <e p="UIFace.cs" t="Include" />
               <e p="UIFaceManager.cs" t="Include" />
             </e>

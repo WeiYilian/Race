@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public enum DragDirection { UP, DOWN, RIGHT, LEFT }
 
 [RequireComponent(typeof(CanvasGroup))]
-public class UIDragByMocha : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandler
+public class UIDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandler
 {
 
     [Header("是否需要拖拽功能")]

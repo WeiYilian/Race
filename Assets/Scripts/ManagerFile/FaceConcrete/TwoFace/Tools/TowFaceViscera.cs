@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TowFaceViscera : UIDragByMocha
+public class TowFaceViscera : UIDrag
 {
     // 第二个面管理者
     private TwoFaceManager twoFaceManager;
@@ -13,15 +13,13 @@ public class TowFaceViscera : UIDragByMocha
     private Viscera currentViscera;
     // 问题的UI物体
     private GameObject Answerbg;
-
+    // 填空题已选择的答案空
     private List<Text> selectedAnswer;
-    
+    // 填空题可以被选择的答案
     private List<Text> selectAnswer;
-    
-    private List<string> correctAnswer;
 
-    
-    
+
+
     // 针对第二面的所需图片特性进行吸附功能重写
     public override void Adsorption(PointerEventData eventData)
     {
@@ -56,6 +54,15 @@ public class TowFaceViscera : UIDragByMocha
         Answerbg = GameObject.Find("Canvas").transform.Find("Answerbg").gameObject;
         //  判断问题类型
         ProblemType problemType = currentViscera.ProblemType;
+        // 初始化selectedAnswer
+        Transform Answers = Answerbg.transform.Find("FillVacancy/Answers");
+        Transform AnswerSelect = Answerbg.transform.Find("FillVacancy/AnswerSelect");
+        GetAnswer(Answers,selectAnswer);//可选择答案区的Text
+        GetAnswer(AnswerSelect,selectedAnswer);//已选择答案区的Text
+
+
+        #region 问题按钮初始化
+
         // 点击后触发答题环节
         GetComponent<Button>().onClick.AddListener(() =>
         {
@@ -83,42 +90,23 @@ public class TowFaceViscera : UIDragByMocha
                     throw new ArgumentOutOfRangeException();
             }
         });
+
+        #endregion
+        
     }
 
     
     /// <summary>
-    /// 遍历子物体并赋值
+    /// 遍历子物体并获取Text组件
     /// </summary>
-    private void GetAnswer(GameObject parentObj,bool isSelect = true)
+    private void GetAnswer(Transform parentObj,List<Text> list)
     {
-        foreach (Transform child in parentObj.transform)
+        foreach (Transform child in parentObj)
         {
-            if(isSelect)
-                selectedAnswer.Add(child.GetComponent<Text>());
-            else
-                selectAnswer.Add(child.GetComponent<Text>());
+            list.Add(child.GetComponent<Text>());
         }
     }
     
     
-    /// <summary>
-    /// 判断填空题答案是否正确
-    /// </summary>
-    /// <returns></returns>
-    private bool IsCorrect_Short()
-    {
-        int sum = 0;
-        for (int i = 0; i < correctAnswer.Count; i++)
-        {
-            if (correctAnswer[i] == selectedAnswer[i].text)
-            {
-                sum++;
-            }
-        }
-        if (sum >= correctAnswer.Count)
-            return true;
-        
-        
-        return false;
-    }
+    
 }

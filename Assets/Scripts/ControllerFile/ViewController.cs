@@ -54,8 +54,8 @@ public class ViewController : MonoBehaviour
     private void initObjDistance()
     { 
         //最大与最小范围随物体改变
-        minZoom = box.transform.localScale.magnitude/2;
-        maxZoom = box.transform.localScale.magnitude*2 ;
+        minZoom = box.transform.localScale.magnitude;
+        maxZoom = box.transform.localScale.magnitude * 2;
         zoomSpeed =maxZoom/2;
     }
 
@@ -94,7 +94,7 @@ public class ViewController : MonoBehaviour
         if(mHROt != 0 || mVROt != 0)
         {
             //限制旋转角度
-            if ((transform.position.y >= limitUp && mVROt > 0) || (transform.position.y <= limitDown && mVROt < 0)) 
+            if ((transform.position.y >= limitUp && mVROt > 0) || (transform.position.y <= limitDown && mVROt < 0))
                 mVROt = 0;
 
             transform.RotateAround(box.transform.transform.position, Vector3.up, mHROt * rotSpeed * Time.deltaTime);
