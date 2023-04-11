@@ -13,7 +13,6 @@ public class Flow : MonoBehaviour
     void Start()
     {
         //开花的动画和获取浇水
-        
         animator = flowanmition.GetComponent<Animator>();
         flow = flowanmition.transform.Find("flow").gameObject;
         

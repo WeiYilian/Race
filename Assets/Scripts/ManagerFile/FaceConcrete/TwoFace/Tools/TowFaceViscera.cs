@@ -9,14 +9,11 @@ public class TowFaceViscera : UIDragByMocha
 {
     // 第二个面管理者
     private TwoFaceManager twoFaceManager;
-    
     // 当前的脏腑对应的Viscera
     private Viscera currentViscera;
     // 问题的UI物体
     private GameObject Answerbg;
-    
-    
-    
+
     private List<Text> selectedAnswer;
     
     private List<Text> selectAnswer;
@@ -38,11 +35,17 @@ public class TowFaceViscera : UIDragByMocha
                 transform.SetParent(go.transform);
                 transform.position = go.transform.position;
 
-                twoFaceManager.MatchJudgment();
+                if (twoFaceManager.MatchJudgment())
+                {
+                    GetComponent<Button>().enabled = true;
+                    AdsorptionFunction = false;// 如果完成了匹配就不允许再拖动
+                }
+                    
             }
         }
     }
 
+    // 初始化
     public override void TwoFaceButInit()
     {
         // 获取TwoFaceManager的对象
@@ -56,7 +59,8 @@ public class TowFaceViscera : UIDragByMocha
         // 点击后触发答题环节
         GetComponent<Button>().onClick.AddListener(() =>
         {
-            if (!twoFaceManager.AnsWer) return;
+            //if (!twoFaceManager.Matching) return;
+            
             Answerbg.gameObject.SetActive(true);
             Debug.Log(transform.name+"类型是："+problemType+"进入答题环节");
             switch (problemType)

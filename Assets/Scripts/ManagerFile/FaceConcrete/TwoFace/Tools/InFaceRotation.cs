@@ -75,7 +75,6 @@ public class InFaceRotation : MonoBehaviour, IBeginDragHandler, IDragHandler,IEn
             localEluer.z += k * RotateAngle * rotSpeed;
             //进行旋转
             transform.localEulerAngles = localEluer;
-            Debug.Log(transform.localEulerAngles);
             for (int i = 0; i < WuXing.Count; i++)
             {
                 //对五个小元素进行反方向旋转，以保证小元素不旋转
@@ -89,11 +88,17 @@ public class InFaceRotation : MonoBehaviour, IBeginDragHandler, IDragHandler,IEn
     {
         // 获取自身欧拉角的z值
         var transformRotation = transform.GetComponent<RectTransform>().rotation.eulerAngles.z;
+        Debug.Log(transformRotation);
         //  若与点位的值小于10则吸附至点位
-        if (Mathf.Abs(transformRotation) % distanceAngle < 10)
+        if (Mathf.Abs(transformRotation) % distanceAngle < 10 || Mathf.Abs(transformRotation) % distanceAngle > distanceAngle-10)
         {
             transform.localEulerAngles = new Vector3(0,0,GetAngles(transformRotation));
-            UpdataQuene((int)transformRotation);
+            for (int i = 0; i < WuXing.Count; i++)
+            {
+                //对五个小元素进行反方向定位，以保证小元素不旋转
+                WuXing[i].transform.localEulerAngles = new Vector3(0,0,-GetAngles(transformRotation));
+            }
+            UpdataQuene(GetAngles(transformRotation));
         }
             
         UIFaceManager.Instance.GetTwoFaceManager().MatchJudgment();
@@ -102,7 +107,7 @@ public class InFaceRotation : MonoBehaviour, IBeginDragHandler, IDragHandler,IEn
     /// <summary>
     /// 计算角度值是否位于端点附近
     /// </summary>
-    private float GetAngles(float angles)
+    private int GetAngles(float angles)
     {
         int a = 0;
         int boundary = distanceAngle / 2;
@@ -122,12 +127,20 @@ public class InFaceRotation : MonoBehaviour, IBeginDragHandler, IDragHandler,IEn
     private void UpdataQuene(int angles)
     {
         int i = angles / distanceAngle;
+        //当圆盘转一圈回来时
+        if (angles == 0)
+            i = 5;
         // 更新五行队列顺序
-        for (int j = 0; j < i-point; j++)
+        for (int j = 0; j < 5-(i-point); j++)
         {
             string obj = wuxingQueue.Dequeue();
             wuxingQueue.Enqueue(obj);
         }
         point = i;
+
+        // foreach (string s in wuxingQueue)
+        // {
+        //     Debug.Log("五行名："+s);
+        // }
     }
 }

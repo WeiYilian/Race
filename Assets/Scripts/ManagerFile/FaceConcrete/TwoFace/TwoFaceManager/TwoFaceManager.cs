@@ -17,7 +17,7 @@ public class TwoFaceManager
     // 存储Viscera对应的密码表
     private Dictionary<string, string> visceraCode = new Dictionary<string, string>();
     // 判断是否全部匹配的bool值
-    public bool AnsWer;
+    public bool Matching;
 
     public TwoFaceManager()
     {
@@ -112,6 +112,7 @@ public class TwoFaceManager
     
     /// <summary>
     /// 判断全部匹配
+    /// 金对应肺，木对应肝，水对应肾，火对应心，土对应脾
     /// </summary>
     public bool MatchJudgment()
     {
@@ -124,7 +125,9 @@ public class TwoFaceManager
             //根据五行名获取密码表对应的Viscera名字
             if (visceraCode.TryGetValue(wuXingName, out string visceraName))
             {
-                if (visceraDesDic[i.ToString()] == visceraName)
+                
+                //Debug.Log("五脏名："+visceraDesDic.ElementAt(i).Value);
+                if (visceraDesDic.ElementAt(i).Value == visceraName)
                     matchesNumber++;
             }
 
@@ -132,7 +135,10 @@ public class TwoFaceManager
         }
 
         if (matchesNumber >= visceraDesDic.Count)
+        {
+            Matching = true;
             return true;
+        }
 
         return false;
     }
