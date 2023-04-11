@@ -13,6 +13,8 @@ public class UIFaceManager : MonoBehaviour
    private TwoFaceManager twoFaceManager;
    
    private OneFaceManager oneFaceManager;
+   private ThreeFaceMange threeFaceMange;
+   
    
    public CanvasGroup m_canvasGroup;
    
@@ -95,7 +97,17 @@ public class UIFaceManager : MonoBehaviour
       return twoFaceManager;
     }
 
-   #endregion
+    /// <summary>
+    /// 获得ThreeFaceMange的实例
+    /// </summary>
+    /// <returns></returns>
+    public ThreeFaceMange GetThreeFaceMange()
+    {
+        if(threeFaceMange == null)
+            threeFaceMange = new ThreeFaceMange();
+        return threeFaceMange;
+    }
+    #endregion
    
    
   

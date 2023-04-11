@@ -46,36 +46,38 @@ public class SeedContel : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //检测是否将各个种子找到
         if (collision.name == Seedname)
         {
             Debug.Log("ss");
             gameObject.GetComponent<Image>().sprite =Updateimage;
             if (Seedname=="洋甘菊")
-            {
+            {UIFaceManager.Instance.MessageonCtrol("洋甘菊已激活");
                 SeedContel.isGame = true;
+                ThreeFaceMange.Seed1 = true;
             }
 
             if (Seedname == "车前子")
-            {
+            {  UIFaceManager.Instance.MessageonCtrol("车前子已激活");
                 SeedContel.isGame2 = true;
+                ThreeFaceMange.Seed2 = true;
             }
             if (Seedname == "凤仙花")
-            {
+            { 
+                UIFaceManager.Instance.MessageonCtrol("凤仙花已激活");
                 SeedContel.isGame1 = true;
+                ThreeFaceMange.Seed3 = true;
             }
 
-            Destroy(collision.gameObject);
+            Destroy(collision.gameObject);//找到后销毁
         }
        
     }
-
+//管理各个面板按钮
     private void MyOnEnable()
     {
         //种子信息面板按钮管理
@@ -119,13 +121,16 @@ public class SeedContel : MonoBehaviour
             switch (gameObject.name)
             {
                 case "洋甘菊":
-                    seedmangetext.text = "【洋甘菊】 \n具体种植信息未激活，请找到对应种子拖入激活具体信息\n是否继续种植请点击确定";
+                    seedmangetext.text = "【洋甘菊】 \n<color=#FF0000>具体种植信息未激活，请找到对应种子拖入激活具体信息</color>\n是否继续种植请点击确定";
+                    UIFaceManager.Instance.MessageonCtrol("种子未激活");
                     break;
                 case"凤仙花":
-                    seedmangetext.text = "【凤仙花】 \n具体种植信息未激活，请找到对应种子拖入激活具体信息\n是否继续种植请点击确定";
+                    seedmangetext.text = "【凤仙花】 \n<color=#FF0000>具体种植信息未激活，请找到对应种子拖入激活具体信息</color>\n是否继续种植请点击确定";
+                    UIFaceManager.Instance.MessageonCtrol("种子未激活");
                     break;
                 case "车前子": 
-                    seedmangetext.text = "【车前子】 \n具体种植信息未激活，请找到对应种子拖入激活具体信息\n是否继续种植请点击确定";
+                    seedmangetext.text = "【车前子】 \n<color=#FF0000>具体种植信息未激活，请找到对应种子拖入激活具体信息</color>\n是否继续种植请点击确定";
+                    UIFaceManager.Instance.MessageonCtrol("种子未激活");
                     break;   
                     
             }
@@ -141,15 +146,11 @@ public class SeedContel : MonoBehaviour
             switch (gameObject.name)
             {
                 case "洋甘菊":
-                    seedmangetext.text = "【洋甘菊】 \n喜欢寒冷的环境,更适合秋播。洋甘菊为二年生草花,秋季播种,发芽温度15-18,花期为次年3月至5月洋甘菊需要充足的阳光," +
-                                         "良好的通风,排水良好的沙壤土或土壤深厚的疏松壤土,抗寒性强\n\n\n如若继续请点击确定";
+                    seedmangetext.text = "【洋甘菊】 \n喜欢寒冷的环境,更适合秋播。洋甘菊为二年生草花,秋季播种,发芽温度15-18度,开花时需要充足的阳光," +
+                                         "良好的通风,排水良好的沙壤土或土壤深厚的疏松壤土,抗寒性强\n是否进入模拟系统";
+                    
                     break;
-                // case"凤仙花":
-                //     seedmangetext.text = "";
-                //     break;
-                // case "车前子": 
-                //     seedmangetext.text = "";
-                //     break;   
+                
                     
             }
         }
@@ -164,11 +165,11 @@ public class SeedContel : MonoBehaviour
             {
                 
                 case"凤仙花":
-                    seedmangetext.text = "222";
+                    seedmangetext.text = "【车前草】 \n种植的季节以4月播种最为适宜，凤仙花各期性喜阳光，凤仙花适应能力强壤，可选用疏松肥沃、富含腐殖质的黑土，" +
+                                         "不可长期的置于荫蔽处，以免枝叶徒长，花开稀少，花色暗淡\n是否进入模拟系统";
+                   
                     break;
-                // case "车前子": 
-                //     seedmangetext.text = "";
-                //     break;   
+                
                     
             }
         }
@@ -184,7 +185,9 @@ public class SeedContel : MonoBehaviour
                 
                
                 case "车前子": 
-                    seedmangetext.text = "12";
+                    seedmangetext.text = "【车前草】 \n车前草原产于热带地区，生长的环境温度比较高，喜欢生长在比较松软的土壤中，它喜欢阳光充足的生长环境，除了夏季都可以给它全天的日照。" +
+                                         "夏季的时候注意在周围喷水进行保湿\n是否进入模拟系统。";
+                  
                     break;   
                     
             }
