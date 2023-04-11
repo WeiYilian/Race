@@ -88,7 +88,6 @@ public class InFaceRotation : MonoBehaviour, IBeginDragHandler, IDragHandler,IEn
     {
         // 获取自身欧拉角的z值
         var transformRotation = transform.GetComponent<RectTransform>().rotation.eulerAngles.z;
-        Debug.Log(transformRotation);
         //  若与点位的值小于10则吸附至点位
         if (Mathf.Abs(transformRotation) % distanceAngle < 10 || Mathf.Abs(transformRotation) % distanceAngle > distanceAngle-10)
         {

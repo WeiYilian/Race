@@ -47,9 +47,9 @@ public class TwoFaceManager
 
         #region Viscera目的地列表初始化
         // 获得innerDiscIFR
-        innerDiscIFR = GameObject.Find("Box").transform.Find("2/Panel/bg/内圆盘").GetComponent<InFaceRotation>();
+        innerDiscIFR = UIFaceManager.Instance.UIFaceList[0].transform.Find("2/Panel/bg/内圆盘").GetComponent<InFaceRotation>();
         // 获取外圆盘
-        outerDisc = GameObject.Find("Box").transform.Find("2/Panel/bg/外圆盘").gameObject;
+        outerDisc = UIFaceManager.Instance.UIFaceList[0].transform.Find("2/Panel/bg/外圆盘").gameObject;
         // 初始化visceraDesList
         foreach (Transform child in outerDisc.transform)
         {

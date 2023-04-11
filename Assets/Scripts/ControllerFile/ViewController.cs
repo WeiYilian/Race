@@ -44,6 +44,7 @@ public class ViewController : MonoBehaviour
 
     private void Start()
     {
+        //box = UIFaceManager.Instance.UIFaceList[0];
         initObjDistance();
     }
 
@@ -54,9 +55,9 @@ public class ViewController : MonoBehaviour
     private void initObjDistance()
     { 
         //最大与最小范围随物体改变
-        minZoom = box.transform.localScale.magnitude;
+        minZoom = box.transform.localScale.magnitude / 2;
         maxZoom = box.transform.localScale.magnitude * 2;
-        zoomSpeed =maxZoom/2;
+        zoomSpeed = (maxZoom + minZoom) / 2;
     }
 
     

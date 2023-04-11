@@ -16,7 +16,7 @@ public class UIFaceManager : MonoBehaviour
    private ThreeFaceMange threeFaceMange;
    
    
-   public CanvasGroup m_canvasGroup;
+   private CanvasGroup m_canvasGroup;
    
    private void Awake()
    {
