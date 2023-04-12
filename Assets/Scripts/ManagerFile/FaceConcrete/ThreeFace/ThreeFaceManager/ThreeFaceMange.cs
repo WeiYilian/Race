@@ -11,6 +11,9 @@ public class ThreeFaceMange
     public  static  bool Seed2;//种子二
     public  static  bool Seed3;//种子三
     //完成进程
+    public static bool seedend1;//完成一
+    public static bool seedend2;//完成2
+    public static bool seedend3;//完成3
     public void Completeprocess()
     {
      

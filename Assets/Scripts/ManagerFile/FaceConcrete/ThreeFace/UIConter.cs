@@ -74,7 +74,7 @@ public class UIConter : MonoBehaviour
                     }
                     else
                     {
-                        Landidex = 0;
+                        Landidex = 4;
                     }
                 } break;
                 case "凤仙花":
@@ -86,7 +86,7 @@ public class UIConter : MonoBehaviour
                     }
                     else
                     {
-                        Landidex = 0;
+                        Landidex = 5;
                     }
                 } break;
                 case "车前子":
@@ -98,7 +98,7 @@ public class UIConter : MonoBehaviour
                     }
                     else
                     {
-                        Landidex = 0;
+                        Landidex = 6;
                     }
                 } break;
             }
@@ -121,7 +121,7 @@ public class UIConter : MonoBehaviour
                     }
                     else
                     {
-                        Landidex = 0;
+                        Landidex = 4;
                     }
                 } break;
                 case "凤仙花":
@@ -133,7 +133,7 @@ public class UIConter : MonoBehaviour
                     }
                     else
                     {
-                        Landidex = 0;
+                        Landidex = 5;
                     }
                 } break;
                 case "车前子":
@@ -145,7 +145,7 @@ public class UIConter : MonoBehaviour
                     }
                     else
                     {
-                        Landidex = 0;
+                        Landidex = 6;
                     }
                 } 
                     break;
@@ -187,7 +187,7 @@ public class UIConter : MonoBehaviour
                 }
                 else
                 {
-                    Seasonidex = 0;
+                    Seasonidex = 4;
                 }
             }
                 break;
@@ -201,7 +201,7 @@ public class UIConter : MonoBehaviour
                 }
                 else
                 {
-                    Seasonidex = 0;
+                    Seasonidex = 5;
                 }
             }
                 break;
@@ -215,7 +215,7 @@ public class UIConter : MonoBehaviour
                 }
                 else
                 {
-                    Seasonidex = 0;
+                    Seasonidex = 6;
                 }
             }
                 break;
@@ -242,7 +242,7 @@ public class UIConter : MonoBehaviour
                 }
                 else
                 {
-                    sunidex = 0;
+                    sunidex = 4;
                 }
             }
                 break;
@@ -256,7 +256,7 @@ public class UIConter : MonoBehaviour
                 }
                 else
                 {
-                    sunidex = 0;
+                    sunidex = 5;
                 }
             }
                 break;
@@ -270,7 +270,7 @@ public class UIConter : MonoBehaviour
                 }
                 else
                 {
-                    sunidex = 0;
+                    sunidex = 6;
                 }
             }
                 break;
@@ -293,7 +293,7 @@ public class UIConter : MonoBehaviour
                 }
                 else
                 {
-                    temidex = 0;
+                    temidex = 4;
                 }
             }
                 break;
@@ -307,7 +307,7 @@ public class UIConter : MonoBehaviour
                 }
                 else
                 {
-                    temidex = 0;
+                    temidex = 5;
                 }
             }
                 break;
@@ -321,7 +321,7 @@ public class UIConter : MonoBehaviour
                 }
                 else
                 {
-                    temidex = 0;
+                    temidex = 6;
                 }
             }
                 break;
