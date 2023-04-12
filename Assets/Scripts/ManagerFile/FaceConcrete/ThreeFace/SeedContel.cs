@@ -191,7 +191,7 @@ public class SeedContel : MonoBehaviour
 
                     else
                     {
-                        seedmangetext.text = "洋甘菊古代中国叫作春黄菊，、稚子书传白菊开，西成相滞未容回。月明阶下窗纱薄，多少清香透入来。这是《忆白菊》里面描绘的白菊花，菊不仅仅能入药更多依托的人们不畏艰难，顽强斗争，风霜高洁的品质，\n 已种植完成继续模拟";
+                        seedmangetext.text = "\n \n洋甘菊古代中国叫作春黄菊，、稚子书传白菊开，西成相滞未容回。月明阶下窗纱薄，多少清香透入来。\n 这是《忆白菊》里面描绘的白菊花，\n菊不仅仅能入药更多依托的人们不畏艰难，顽强斗争，风霜高洁的品质，\n 已种植完成继续模拟";
                     }
                     break;
                 
@@ -216,7 +216,7 @@ public class SeedContel : MonoBehaviour
                     }
                     else
                     {
-                        seedmangetext.text ="《纲目拾遗》谓：凤仙花，一名透骨草，以其性利，能软坚，故有此名，在文人们的眼里，无疑是个娇艳的“媚客”。凤仙花古称金凤花，因单瓣花朵“宛如飞凤，头翅尾足俱全”，翩翩然“欲羽化而登仙”得名。" +
+                        seedmangetext.text ="\n \n《纲目拾遗》谓：凤仙花，一名透骨草，以其性利，能软坚，故有此名，在文人们的眼里，无疑是个娇艳的“媚客”。\n凤仙花古称金凤花，因单瓣花朵“宛如飞凤，头翅尾足俱全”，翩翩然“欲羽化而登仙”得名。" +
                                             "“细看金凤小花丛，费尽司花染作工，雪色白边紫色袍，更饶深浅日般红。”说的就是凤仙花。\n 已种植完成继续模拟";
                     }
                    
@@ -245,7 +245,7 @@ public class SeedContel : MonoBehaviour
                     }
                     else
                     {
-                        seedmangetext.text = " 车前在《神农本草经》列为上品。好生道旁及牛马足迹中，有车前当道，及牛遗马舄之名，故又名当道、牛遗、地衣、过路、胜马、车前突。古诗中有写车前草的诗篇——《诗经·周南·芣苢》采采芣苢，薄言采之。采采芣苢薄言有之\n 已种植完成继续模拟";
+                        seedmangetext.text = " \n车前在《神农本草经》列为上品。好生道旁及牛马足迹中，有车前当道，及牛遗马舄之名，故又名当道、牛遗、地衣、过路、胜马、车前突。\n古诗中有写车前草的诗篇——《诗经·周南·芣苢》采采芣苢，薄言采之。采采芣苢薄言有之\n 已种植完成继续模拟";
                     }
 
                     break;
@@ -289,7 +289,7 @@ public class SeedContel : MonoBehaviour
 
                 Debug.Log("开始");
                
-                    //判断是否都达到了
+                  
                    
                     if (UIConter.Landidex == 0&& UIConter.Seasonidex==0&& UIConter.temidex==0&& UIConter.sunidex==0)
                     {
@@ -302,77 +302,99 @@ public class SeedContel : MonoBehaviour
                         seedmangetext2.text = "<color=#FF0000>模拟失败!条件未设置\n 是否继续模拟</color> \n 返回信息面板阅读信息继续模拟";
                         
                     }
-                   if (UIConter.Landidex == 4&& UIConter.Seasonidex==4&& UIConter.temidex==4&& UIConter.sunidex==4)
-                    {
-                        Debug.Log("洋甘菊失败");
-                        SeedPlathPanel.SetActive(false);
-                        SeedendPanel.SetActive(true);
-                        nametext2.text = Seedname;
-                        Tipeedimage2.sprite = Seedimage.sprite;
-                        seedmangetext2.text = "<color=#FF0000>模拟失败!条件选择不正确\n 是否继续模拟</color> \n 返回信息面板阅读信息继续模拟";
-                    }
-                     if (UIConter.Landidex == 5&& UIConter.Seasonidex==5&& UIConter.temidex==5&& UIConter.sunidex==5)
-                    {
-                        Debug.Log("凤仙花失败");
-                        SeedPlathPanel.SetActive(false);
-                        SeedendPanel.SetActive(true);
-                        nametext2.text = Seedname;
-                        Tipeedimage2.sprite = Seedimage.sprite;
-                        seedmangetext2.text = "<color=#FF0000>模拟失败!条件选择不正确\n 是否继续模拟</color> \n 返回信息面板阅读信息继续模拟";
-                    }
-                     if (UIConter.Landidex == 6&& UIConter.Seasonidex==6&& UIConter.temidex==6&& UIConter.sunidex==6||UIConter.Landidex == 0&& UIConter.Seasonidex==6&& UIConter.temidex==6&& UIConter.sunidex==0)
-                    {
-                        Debug.Log("车前子失败");
-                        SeedPlathPanel.SetActive(false);
-                        SeedendPanel.SetActive(true);
-                        nametext2.text = Seedname;
-                        Tipeedimage2.sprite = Seedimage.sprite;
-                        seedmangetext2.text = "<color=#FF0000>模拟失败!条件选择不正确\n 是否继续模拟</color> \n 返回信息面板阅读信息继续模拟";
-                    }
-                     if (UIConter.Landidex == 1&& UIConter.Seasonidex==1&& UIConter.temidex==1&& UIConter.sunidex==1)
-                     {
-                         Debug.Log("洋甘菊成功");
-                         UIFaceManager.Instance.MessageonCtrol("洋甘菊模拟种植开始");
-                         SeedPlathPanel.SetActive(false);
-                         TipPanel.SetActive(false);
-                         
-                         video_img.SetActive(true);
-                         seedmanger.gameObject.SetActive(false);
-
-                         ThreeFaceMange.seedend1 = true;
-
-                     }
-                    if (UIConter.Landidex == 2&& UIConter.Seasonidex==2&& UIConter.temidex==2&& UIConter.sunidex==2)
-                    {
-                        Debug.Log("凤仙花已成功");
-                        UIFaceManager.Instance.MessageonCtrol("凤仙花模拟种植开始");
-                        SeedPlathPanel.SetActive(false);
-                        TipPanel.SetActive(false);
-                        
-                        video_img.SetActive(true);
-                        seedmanger.gameObject.SetActive(false);
-                        ThreeFaceMange.seedend3 = true;
-                    }
-                    if (UIConter.Landidex == 3&& UIConter.Seasonidex==3&& UIConter.temidex==3&& UIConter.sunidex==3)
-                    {
-                        Debug.Log("车前草已成功");
-                        UIFaceManager.Instance.MessageonCtrol("车前子模拟种植开始");
-                        SeedPlathPanel.SetActive(false);
-                        TipPanel.SetActive(false);
-                        video_img.SetActive(true);
-                        seedmanger.gameObject.SetActive(false); 
-                        ThreeFaceMange.seedend2 = true;
-                    }
                     else
                     {
-                        UIFaceManager.Instance.MessageonCtrol(""+gameObject.name+"模拟失败");
+                        if (UIConter.Landidex == 4&& UIConter.Seasonidex==4&& UIConter.temidex==4&& UIConter.sunidex==4)
+                        {
+                            Debug.Log("洋甘菊失败");
+                            SeedPlathPanel.SetActive(false);
+                            SeedendPanel.SetActive(true);
+                            nametext2.text = Seedname;
+                            Tipeedimage2.sprite = Seedimage.sprite;
+                            seedmangetext2.text = "<color=#FF0000>模拟失败!条件选择不正确\n 是否继续模拟</color> \n 返回信息面板阅读信息继续模拟";
+                        }
+                        else
+                        {
+                            if (UIConter.Landidex == 5&& UIConter.Seasonidex==5&& UIConter.temidex==5&& UIConter.sunidex==5)
+                            {
+                                Debug.Log("凤仙花失败");
+                                SeedPlathPanel.SetActive(false);
+                                SeedendPanel.SetActive(true);
+                                nametext2.text = Seedname;
+                                Tipeedimage2.sprite = Seedimage.sprite;
+                                seedmangetext2.text = "<color=#FF0000>模拟失败!条件选择不正确\n 是否继续模拟</color> \n 返回信息面板阅读信息继续模拟";
+                            }
+                            else
+                            {
+                                if (UIConter.Landidex == 6&& UIConter.Seasonidex==6&& UIConter.temidex==6&& UIConter.sunidex==6||UIConter.Landidex == 0&& UIConter.Seasonidex==6&& UIConter.temidex==6&& UIConter.sunidex==0)
+                                {
+                                    Debug.Log("车前子失败");
+                                    SeedPlathPanel.SetActive(false);
+                                    SeedendPanel.SetActive(true);
+                                    nametext2.text = Seedname;
+                                    Tipeedimage2.sprite = Seedimage.sprite;
+                                    seedmangetext2.text = "<color=#FF0000>模拟失败!条件选择不正确\n 是否继续模拟</color> \n 返回信息面板阅读信息继续模拟";
+                                }
+                                else
+                                {
+                                    if (UIConter.Landidex == 1&& UIConter.Seasonidex==1&& UIConter.temidex==1&& UIConter.sunidex==1)
+                                    {
+                                        Debug.Log("洋甘菊成功");
+                                        UIFaceManager.Instance.MessageonCtrol("洋甘菊模拟种植开始");
+                                        SeedPlathPanel.SetActive(false);
+                                        TipPanel.SetActive(false);
+                                        seedmanger.gameObject.SetActive(false);
+                                        SeedendPanel.gameObject.SetActive(false);
+                                        video_img.SetActive(true);
+                         
+
+                                        ThreeFaceMange.seedend1 = true;
+
+                                    }
+                                    else
+                                    {
+                                        if (UIConter.Landidex == 2&& UIConter.Seasonidex==2&& UIConter.temidex==2&& UIConter.sunidex==2)
+                                        {
+                                            Debug.Log("凤仙花已成功");
+                                            UIFaceManager.Instance.MessageonCtrol("凤仙花模拟种植开始");
+                                            SeedPlathPanel.SetActive(false);
+                                            TipPanel.SetActive(false);
                         
-                        SeedendPanel.SetActive(true);
-                        nametext2.text = nametext1.text;
-                        Tipeedimage2.sprite = Tipeedimage1.sprite;
-                        SeedPlathPanel.SetActive(false);
-                        seedmangetext2.text = "<color=#FF0000>模拟失败!条件选择不正确\n 是否继续模拟</color> \n 返回信息面板阅读信息继续模拟";
+                                            video_img.SetActive(true);
+                                            seedmanger.gameObject.SetActive(false);
+                                            ThreeFaceMange.seedend3 = true;
+                                        }
+                                        else
+                                        {
+                                            if (UIConter.Landidex == 3&& UIConter.Seasonidex==3&& UIConter.temidex==3&& UIConter.sunidex==3)
+                                            {
+                                                Debug.Log("车前草已成功");
+                                                UIFaceManager.Instance.MessageonCtrol("车前子模拟种植开始");
+                                                SeedPlathPanel.SetActive(false);
+                                                TipPanel.SetActive(false);
+                                                video_img.SetActive(true);
+                                                seedmanger.gameObject.SetActive(false); 
+                                                ThreeFaceMange.seedend2 = true;
+                                            }
+                                            else
+                                            {
+                                                UIFaceManager.Instance.MessageonCtrol(""+gameObject.name+"模拟失败");
+                        
+                                                SeedendPanel.SetActive(true);
+                                                nametext2.text = nametext1.text;
+                                                Tipeedimage2.sprite = Tipeedimage1.sprite;
+                                                SeedPlathPanel.SetActive(false);
+                                                seedmangetext2.text = "<color=#FF0000>模拟失败!条件选择不正确\n 是否继续模拟</color> \n 返回信息面板阅读信息继续模拟";
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
+
+                
+                    
 
             }
                 break;

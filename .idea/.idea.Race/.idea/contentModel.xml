@@ -80,6 +80,7 @@
               </e>
               <e p="TwoFace" t="Include">
                 <e p="Tools" t="Include">
+                  <e p="AnswerManager.cs" t="Include" />
                   <e p="InFaceRotation.cs" t="Include" />
                   <e p="TowFaceViscera.cs" t="Include" />
                 </e>
