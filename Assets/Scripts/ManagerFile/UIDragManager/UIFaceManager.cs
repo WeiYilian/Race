@@ -16,26 +16,27 @@ public class UIFaceManager : MonoBehaviour
    private ThreeFaceMange threeFaceMange;
    
    
-   private CanvasGroup m_canvasGroup;
+   public CanvasGroup m_canvasGroup;
+   private GameObject message;
    
    private void Awake()
    {
       if (Instance == null)
          Instance = this;
    }
-   
 
+   
    /// <summary>
    /// 打开消息提示框，并控制消息自动消失
    /// </summary>
    public void MessageonCtrol(string Text)
    {
        // 填充文字
-       m_canvasGroup.transform.Find("MessageText").GetComponent<Text>().text = Text;
+       m_canvasGroup.transform.GetChild(0).GetComponent<Text>().text =Text;
        // 使消息提示框出现
        m_canvasGroup.alpha = 1;
        // 提示消息自动消失
-       m_canvasGroup.DOFade(0, 5);
+       m_canvasGroup.DOFade(0, 3);
    }
 
 
