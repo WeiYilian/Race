@@ -50,6 +50,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/ExecuteEvents.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Button.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.rider@1.2.1/Rider/Editor/RiderScriptEditor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/learn/Unity/Race/Race/Assets/Scripts/ManagerFile/UIDragManager/UIDrag.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/ThreeFace/SeedContel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://D:/learn/Unity/Race/Race/Assets/Scripts/ManagerFile/FaceConcrete/ThreeFace/Flow.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -61,8 +62,8 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager/TwoFaceManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/InFaceRotation.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ControllerFile/ViewController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIDrag.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIFaceManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIDrag.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="2MtwgT4VxzpKxCEnieV90nTAnOq" />
@@ -139,7 +140,7 @@
       <workItem from="1680935454130" duration="1290000" />
       <workItem from="1681116257008" duration="4004000" />
       <workItem from="1681137163178" duration="133000" />
-      <workItem from="1681191790592" duration="15425000" />
+      <workItem from="1681191790592" duration="15697000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交">
       <created>1678600451169</created>
@@ -351,7 +352,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681221306755</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="换了个盒子">
+      <created>1681221411522</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1681221411522</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
