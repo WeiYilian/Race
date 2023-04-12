@@ -19,9 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="问题">
+    <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="保存信息">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/ThreeFace/Flow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/ThreeFace/Flow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/第一关具体各面的素材/面3/凤仙花.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Package/第一关具体各面的素材/面3/凤仙花.mp4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/ThreeFace/SeedContel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/ThreeFace/SeedContel.cs" afterDir="false" />
     </list>
     <list id="1f10c6f0-5c40-4f98-9d82-81194a17b6bb" name="在进行更新之前于 2023-03-14 15:16 取消提交了变更 [默认的]" comment="" />
@@ -68,8 +69,9 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/ControllerFile/ViewController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIFaceManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIDrag.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/ThreeFace/SeedContel.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/ThreeFace/Flow.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/ThreeFace/SeedContel.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/ThreeFace/VoidConter.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="2MtwgT4VxzpKxCEnieV90nTAnOq" />
@@ -365,7 +367,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681221411522</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="保存信息">
+      <created>1681278268389</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1681278268389</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

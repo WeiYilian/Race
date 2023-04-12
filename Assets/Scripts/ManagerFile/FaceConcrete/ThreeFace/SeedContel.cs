@@ -130,16 +130,16 @@ public class SeedContel : MonoBehaviour
             {
                 case "洋甘菊":
                     
-                    seedmangetext.text = "【洋甘菊】 \n<color=#FF0000>具体种植信息未激活，请找到对应种子拖入激活具体信息</color>\n是否继续种植请点击确定";
+                    seedmangetext.text = "【洋甘菊】\n \n<color=#FF0000>具体种植信息未激活，请找到对应种子拖入激活具体信息</color>\n  \n是否直接进入模拟种植点击确定";
                     UIFaceManager.Instance.MessageonCtrol("种子未激活");
                     break;
                 case"凤仙花":
-                    seedmangetext.text = "【凤仙花】 \n<color=#FF0000>具体种植信息未激活，请找到对应种子拖入激活具体信息</color>\n是否继续种植请点击确定";
+                    seedmangetext.text = "【凤仙花】\n \n<color=#FF0000>具体种植信息未激活，请找到对应种子拖入激活具体信息</color>\n \n是否直接进入模拟种植点击确定";
                     UIFaceManager.Instance.MessageonCtrol("种子未激活");
                     
                     break;
                 case "车前子": 
-                    seedmangetext.text = "【车前子】 \n<color=#FF0000>具体种植信息未激活，请找到对应种子拖入激活具体信息</color>\n是否继续种植请点击确定";
+                    seedmangetext.text = "【车前子】\n \n<color=#FF0000>具体种植信息未激活，请找到对应种子拖入激活具体信息</color>\n  \n是否直接进入模拟种植点击确定";
                     UIFaceManager.Instance.MessageonCtrol("种子未激活");
                     break;   
                     
@@ -148,7 +148,7 @@ public class SeedContel : MonoBehaviour
 
         if (isGame == true)
         {
-            Debug.Log("1");
+           
             TipPanel.SetActive(true);
             SeedPanel.SetActive(true);
             nametext.text = Seedname;
@@ -156,8 +156,8 @@ public class SeedContel : MonoBehaviour
             switch (gameObject.name)
             {
                 case "洋甘菊":
-                    seedmangetext.text = "【洋甘菊】 \n喜欢寒冷的环境,更适合秋播。洋甘菊为二年生草花,秋季播种,发芽温度15-18度,开花到结种时需要充足的阳光," +
-                                         "良好的通风,排水良好的“沙壤土”或土壤深厚的疏松壤土,抗寒性强\n是否进入模拟系统";
+                    seedmangetext.text = "【洋甘菊】\n \n喜欢寒冷的环境,更适合<color=#A52A2A>秋播</color>。洋甘菊为二年生草花,秋季播种,<color=#A52A2A>发芽温度15-18度</color>,开花到结种时需要充足的阳光," +
+                                         "良好的通风,排水良好的<color=#A52A2A>“沙壤土”</color>或土壤深厚的疏松壤土,抗寒性强\n是否进入模拟系统";
                     
                     break;
                 
@@ -175,7 +175,7 @@ public class SeedContel : MonoBehaviour
             {
                 
                 case"凤仙花":
-                    seedmangetext.text = "【凤仙花】 \n种植的季节以4月播种最为适宜，凤仙花各期性喜阳光，最适合生长的温度为20-26℃,凤仙花适应能力强壤，可选用疏松肥沃、“富含腐殖质的黑土”，" +
+                    seedmangetext.text = "【凤仙花】\n \n种植的季节以<color=#A52A2A>4月</color>播种最为适宜，凤仙花<color=#A52A2A>各期性喜阳光</color>，最适合生长的温度为<color=#A52A2A>20-26℃</color>,凤仙花适应能力强壤，可选用疏松肥沃、<color=#A52A2A>“富含腐殖质的黑土”</color>，" +
                                          "不可长期的置于荫蔽处，以免枝叶徒长，花开稀少，花色暗淡\n是否进入模拟系统";
                    
                     break;
@@ -195,8 +195,8 @@ public class SeedContel : MonoBehaviour
                 
                
                 case "车前子": 
-                    seedmangetext.text = "【车前草】 \n车前草原产于热带地区，20℃及以上的温度更适合它的生长，喜欢生长在比较松软的“土壤”中，它喜欢阳光充足的生长环境，除了夏季都可以给它全天的日照。" +
-                                         "结子注意在周围喷水进行保湿遮阳\n是否进入模拟系统。";
+                    seedmangetext.text = "【车前草】 \n  \n车前草原产于热带地区，<color=#A52A2A>20℃及以上的温度</color>更适合它的生长，喜欢生长在比较松软的<color=#A52A2A>“土壤”</color>中，它喜欢阳光充足的生长环境，除了<color=#A52A2A>夏季</color>都可以给它全天的日照。" +
+                                         "<color=#A52A2A>结子注意在周围喷水进行保湿遮阳</color>\n是否进入模拟系统。";
                   
                     break;   
                     
