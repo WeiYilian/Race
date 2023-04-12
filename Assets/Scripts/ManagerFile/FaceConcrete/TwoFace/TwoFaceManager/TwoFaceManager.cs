@@ -24,24 +24,11 @@ public class TwoFaceManager
         #region VisceraList初始化
 
         // 初始化
-        VisceraList.Add(new Viscera(){Name = "心",ProblemType = ProblemType.ShortAnswer,Matter = "怎样理解心主血脉，其华在面和开窍于舌？",correctAnswer = ""});
-        VisceraList.Add(new Viscera()
-        {
-            Name = "肝",ProblemType = ProblemType.FillVacancy,Matter = "无阴则阳无以生，无阳则阴无以化，体现了____",AnswerList = 
-                {"交","阴","长","互","阳","感","用","根","消","力"},correctAnswer = ""
-        });
-        VisceraList.Add(new Viscera()
-        {
-            Name = "脾",ProblemType = ProblemType.FillVacancy,Matter = "五行中土的特性是____",AnswerList =
-                {"净","育","炎","柔","长","发","化","清","杀","养"},correctAnswer = ""
-        });
-        VisceraList.Add(new Viscera()
-        {
-            Name = "肺",ProblemType = ProblemType.FillVacancy,Matter = "肺主一身之气取决于肺的____",AnswerList = 
-                {"吸","脉","气","宣","功","生","百","呼","能","朝"},correctAnswer = ""
-            
-        });
-        VisceraList.Add(new Viscera(){Name = "肾",ProblemType = ProblemType.ShortAnswer,Matter = "简述心肾相交的含义",correctAnswer = ""});
+        VisceraList.Add(new Viscera() {Name = "心", ProblemType = ProblemType.ShortAnswer});
+        VisceraList.Add(new Viscera() {Name = "肝",ProblemType = ProblemType.FillVacancy});
+        VisceraList.Add(new Viscera() {Name = "脾",ProblemType = ProblemType.ShortAnswer});
+        VisceraList.Add(new Viscera() {Name = "肺",ProblemType = ProblemType.FillVacancy});
+        VisceraList.Add(new Viscera(){Name = "肾",ProblemType = ProblemType.ShortAnswer});
 
         #endregion
 
@@ -114,7 +101,7 @@ public class TwoFaceManager
     /// 判断全部匹配
     /// 金对应肺，木对应肝，水对应肾，火对应心，土对应脾
     /// </summary>
-    public bool MatchJudgment()
+    public void MatchJudgment()
     {
         // 记录匹配了多少个脏腑与五行
         int matchesNumber = 0;
@@ -137,9 +124,7 @@ public class TwoFaceManager
         if (matchesNumber >= visceraDesDic.Count)
         {
             Matching = true;
-            return true;
+            UIFaceManager.Instance.MessageonCtrol("匹配成功");
         }
-
-        return false;
     }
 }
