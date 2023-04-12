@@ -245,7 +245,7 @@ public class SeedContel : MonoBehaviour
                     if (UIConter.Landidex == 2&& UIConter.Seasonidex==2&& UIConter.temidex==2&& UIConter.sunidex==2)
                     {
                         Debug.Log("凤仙花已成功");
-                       // UIFaceManager.Instance.MessageonCtrol("凤仙花模拟种植开始");
+                        UIFaceManager.Instance.MessageonCtrol("凤仙花模拟种植开始");
                         SeedPlathPanel.SetActive(false);
                         TipPanel.SetActive(false);
                         

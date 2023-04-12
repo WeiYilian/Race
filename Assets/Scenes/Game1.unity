@@ -4970,8 +4970,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 2}
-  m_SizeDelta: {x: 0, y: 150}
+  m_AnchoredPosition: {x: 4.1, y: 2}
+  m_SizeDelta: {x: 8.088257, y: 177.11044}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &366791545
 MonoBehaviour:
@@ -6517,8 +6517,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 5, y: -0.5}
-  m_SizeDelta: {x: -30, y: -3}
+  m_AnchoredPosition: {x: 10, y: -1}
+  m_SizeDelta: {x: -20, y: -2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &449341379
 MonoBehaviour:
@@ -6541,18 +6541,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 0b95e6acd78dff54e875c965e24dac9e, type: 3}
-    m_FontSize: 14
+    m_FontSize: 26
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Option A
+  m_Text: jjj
 --- !u!222 &449341380
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8712,8 +8712,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00039661, y: -0.8717}
-  m_SizeDelta: {x: 92.66261, y: 83.58342}
+  m_AnchoredPosition: {x: 0.0000038154, y: -0.87169}
+  m_SizeDelta: {x: 92.66341, y: 83.58345}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &606228831
 MonoBehaviour:
@@ -8735,11 +8735,11 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 606228829}
   m_Enabled: 1
-  m_VideoClip: {fileID: 0}
+  m_VideoClip: {fileID: 32900000, guid: cdf8cfe11e5a624468615fe54290adc4, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: b0b29a15aa3f5244f942f2e2a3db10a9, type: 2}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: _MainTex
@@ -11211,8 +11211,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 20}
+  m_AnchoredPosition: {x: 0, y: -6.5}
+  m_SizeDelta: {x: 0, y: 33.004883}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &743195468
 MonoBehaviour:
@@ -23627,6 +23627,7 @@ MonoBehaviour:
   - {fileID: 1279545162}
   - {fileID: 1046422982}
   - {fileID: 1009093790}
+  m_canvasGroup: {fileID: 1115848426}
 --- !u!4 &1720465827
 Transform:
   m_ObjectHideFlags: 0
