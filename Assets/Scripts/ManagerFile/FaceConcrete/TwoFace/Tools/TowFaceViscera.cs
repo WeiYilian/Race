@@ -85,6 +85,7 @@ public class TowFaceViscera : UIDrag
                     fillVacancyObj.SetActive(true);
                     fillVacancyObj.transform.Find("Question").GetComponent<Text>().text = currentViscera.Matter;
                     //TODO:未确定填空题答案是由数据库随机字还是固定字的随机顺序，留待考虑
+                    
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
