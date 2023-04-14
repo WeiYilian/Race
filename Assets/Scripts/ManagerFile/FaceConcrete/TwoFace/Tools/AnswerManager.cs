@@ -27,6 +27,7 @@ public class AnswerManager : MonoBehaviour
     // 选择题
     private List<Button> Options_Btn;
     private List<Text> Options_Text;
+    private string selectAnswer;
 
     private void Awake()
     {
@@ -66,36 +67,42 @@ public class AnswerManager : MonoBehaviour
         SelectAnswerDic.Add(new List<string>()
         {
             "我国第一部药典是（ ）","《神农本草经》","《新修本草》","《神农本草经》","《证类本草》","《中药大辞典》"
-        });SelectAnswerDic.Add(new List<string>()
+        });
+        SelectAnswerDic.Add(new List<string>()
         {
-            "我国第一部药典是（ ）","《神农本草经》","《新修本草》","《神农本草经》","《证类本草》","《中药大辞典》"
-        });SelectAnswerDic.Add(new List<string>()
+            "《伤寒杂病论》的作者是（ ）","张仲景","张仲景","扁鹊","华佗","李时珍"
+        });
+        SelectAnswerDic.Add(new List<string>()
         {
-            "我国第一部药典是（ ）","《神农本草经》","《新修本草》","《神农本草经》","《证类本草》","《中药大辞典》"
-        });SelectAnswerDic.Add(new List<string>()
+            "五位是指药物的（ ）","最基本滋味","五种作用","部份味道","最基本滋味","全部味道"
+        });
+        SelectAnswerDic.Add(new List<string>()
         {
-            "我国第一部药典是（ ）","《神农本草经》","《新修本草》","《神农本草经》","《证类本草》","《中药大辞典》"
-        });SelectAnswerDic.Add(new List<string>()
+            "华佗、张仲景、（ ）被并称为“建安三神医”","董奉","李东垣","董奉","扁鹊","杨继洲"
+        });
+        SelectAnswerDic.Add(new List<string>()
         {
-            "我国第一部药典是（ ）","《神农本草经》","《新修本草》","《神农本草经》","《证类本草》","《中药大辞典》"
-        });SelectAnswerDic.Add(new List<string>()
+            "在五行生克关系中，下列错误的是（ ）","水克木","木克土","火生土","金生水","水克木"
+        });
+        SelectAnswerDic.Add(new List<string>()
         {
-            "我国第一部药典是（ ）","《神农本草经》","《新修本草》","《神农本草经》","《证类本草》","《中药大辞典》"
-        });SelectAnswerDic.Add(new List<string>()
+            "《铜人腧穴针灸图经》的作者是（ ）","王惟一","万密斋","皇甫谧","王惟一","李东垣"
+        });
+        SelectAnswerDic.Add(new List<string>()
         {
-            "我国第一部药典是（ ）","《神农本草经》","《新修本草》","《神农本草经》","《证类本草》","《中药大辞典》"
-        });SelectAnswerDic.Add(new List<string>()
+            "国内首先进行现代药理研究的中药是（ ）","麻黄","黄连","黄芩","麻黄","人参"
+        });
+        SelectAnswerDic.Add(new List<string>()
         {
-            "我国第一部药典是（ ）","《神农本草经》","《新修本草》","《神农本草经》","《证类本草》","《中药大辞典》"
-        });SelectAnswerDic.Add(new List<string>()
+            "以下中医著作为钱乙所著的是（ ）","《《小儿药证直诀》》","《温疫论》","《小儿药证直诀》","《温热论》","《脾胃论》"
+        });
+        SelectAnswerDic.Add(new List<string>()
         {
-            "我国第一部药典是（ ）","《神农本草经》","《新修本草》","《神农本草经》","《证类本草》","《中药大辞典》"
-        });SelectAnswerDic.Add(new List<string>()
+            "下列著作为孙思邈所作的是（ ）","《千金要方》","《脾胃论》","《本草纲目》","《食疗本草》","《千金要方》"
+        });
+        SelectAnswerDic.Add(new List<string>()
         {
-            "我国第一部药典是（ ）","《神农本草经》","《新修本草》","《神农本草经》","《证类本草》","《中药大辞典》"
-        });SelectAnswerDic.Add(new List<string>()
-        {
-            "我国第一部药典是（ ）","《神农本草经》","《新修本草》","《神农本草经》","《证类本草》","《中药大辞典》"
+            "下列被称为“医圣”的是（ ）","张仲景","扁鹊","李时珍","华佗","张仲景"
         });
 
         #endregion
@@ -105,38 +112,44 @@ public class AnswerManager : MonoBehaviour
         FillVacancyAnswerDic.Add(new List<string>()
         {
             "无阴则阳无以生，无阳则阴无以化，体现了_____","阴阳互根","交","阴","长","互","阳","感","用","根","消","力"
-        });FillVacancyAnswerDic.Add(new List<string>()
-        {
-            "无阴则阳无以生，无阳则阴无以化，体现了_____","阴阳互根","交","阴","长","互","阳","感","用","根","消","力"
-        });FillVacancyAnswerDic.Add(new List<string>()
-        {
-            "无阴则阳无以生，无阳则阴无以化，体现了_____","阴阳互根","交","阴","长","互","阳","感","用","根","消","力"
-        });FillVacancyAnswerDic.Add(new List<string>()
-        {
-            "无阴则阳无以生，无阳则阴无以化，体现了_____","阴阳互根","交","阴","长","互","阳","感","用","根","消","力"
-        });FillVacancyAnswerDic.Add(new List<string>()
-        {
-            "无阴则阳无以生，无阳则阴无以化，体现了_____","阴阳互根","交","阴","长","互","阳","感","用","根","消","力"
-        });FillVacancyAnswerDic.Add(new List<string>()
-        {
-            "无阴则阳无以生，无阳则阴无以化，体现了_____","阴阳互根","交","阴","长","互","阳","感","用","根","消","力"
-        });FillVacancyAnswerDic.Add(new List<string>()
-        {
-            "无阴则阳无以生，无阳则阴无以化，体现了_____","阴阳互根","交","阴","长","互","阳","感","用","根","消","力"
-        });FillVacancyAnswerDic.Add(new List<string>()
-        {
-            "无阴则阳无以生，无阳则阴无以化，体现了_____","阴阳互根","交","阴","长","互","阳","感","用","根","消","力"
-        });FillVacancyAnswerDic.Add(new List<string>()
-        {
-            "无阴则阳无以生，无阳则阴无以化，体现了_____","阴阳互根","交","阴","长","互","阳","感","用","根","消","力"
-        });FillVacancyAnswerDic.Add(new List<string>()
-        {
-            "无阴则阳无以生，无阳则阴无以化，体现了_____","阴阳互根","交","阴","长","互","阳","感","用","根","消","力"
-        });FillVacancyAnswerDic.Add(new List<string>()
-        {
-            "无阴则阳无以生，无阳则阴无以化，体现了_____","阴阳互根","交","阴","长","互","阳","感","用","根","消","力"
         });
-        
+        FillVacancyAnswerDic.Add(new List<string>()
+        {
+            "肺主一身之气取决于肺的____","呼吸功能","吸","脉","气","宣","功","生","百","呼","能","朝"
+        });
+        FillVacancyAnswerDic.Add(new List<string>()
+        {
+            "根据五行学说推断，____可作为心病的诊断依据","面见赤色","耳","赤","急","甜","见","槁","面","易","燥","色"
+        });
+        FillVacancyAnswerDic.Add(new List<string>()
+        {
+            "中医学的基本特点是____和辨证论治","整体观念","念","谐","体","和","木","观","益","补","整","论"
+        });
+        FillVacancyAnswerDic.Add(new List<string>()
+        {
+            "五行中土的特性是","长养化育","育","净","炎","柔","化","发","清","养","杀","长"
+        });
+        FillVacancyAnswerDic.Add(new List<string>()
+        {
+            "五脏的共同生理特点是化生和____","贮藏精气","化","气","内","贮","和","温","藏","脏","热","精"
+        });
+        FillVacancyAnswerDic.Add(new List<string>()
+        {
+            "脉象有力是指____","柔和有力","力","沉","取","有","柔","从","不","容","和","缓"
+        });
+        FillVacancyAnswerDic.Add(new List<string>()
+        {
+            "“春养脾气；夏养肺气；秋养肝气；冬养心气”出自：《____》","食疗本草","经","草","乙","灸","本","腧","甲","疗","针","食"
+        });
+        FillVacancyAnswerDic.Add(new List<string>()
+        {
+            "“安谷则昌，绝谷则亡。”出自：《____》","本草纲目","伤","纲","草","病","寒","目","杂","论","疗","本"
+        });
+        FillVacancyAnswerDic.Add(new List<string>()
+        {
+            "“上医医国，中医医人，下医医病。”出自：《____》","千金要方","草","要","本","目","金","千","难","纲","经","方"
+        });
+
         #endregion
 
         #endregion
@@ -157,6 +170,21 @@ public class AnswerManager : MonoBehaviour
                 BtnDelegate(Options_Btn[1]);
                 BtnDelegate(Options_Btn[2]);
                 BtnDelegate(Options_Btn[3]);
+                transform.Find("ConfirmBtn").GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    if (SelectAnswerDic[rod][1] == selectAnswer)
+                    {
+                        //回答正确
+                        UIFaceManager.Instance.MessageonCtrol("回答正确");
+                        SelectAnswerDic.RemoveAt(rod);
+                    }
+                    else
+                    {
+                        //回答错误
+                        UIFaceManager.Instance.MessageonCtrol("回答错误");
+                    }
+                    transform.parent.gameObject.SetActive(false);
+                });
                 break;
             case ProblemType.FillVacancy:
                 BtnDelegate(SelAnswerArea_Btn[0],false);
@@ -169,6 +197,15 @@ public class AnswerManager : MonoBehaviour
                 BtnDelegate(SelAnswerArea_Btn[7],false);
                 BtnDelegate(SelAnswerArea_Btn[8],false);
                 BtnDelegate(SelAnswerArea_Btn[9],false);
+                transform.Find("ClearBtn").GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    selectSum = 0;
+                    foreach (Text text in AnswerArea_Text)
+                    {
+                        text.text = null;
+                    }
+                });
+                
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -181,18 +218,7 @@ public class AnswerManager : MonoBehaviour
         {
             button.onClick.AddListener(() =>
             {
-                if (SelectAnswerDic[rod][1] == button.transform.GetChild(0).GetComponent<Text>().text)
-                {
-                    //回答正确
-                    UIFaceManager.Instance.MessageonCtrol("回答正确");
-                    SelectAnswerDic.RemoveAt(rod);
-                }
-                else
-                {
-                    //回答错误
-                    UIFaceManager.Instance.MessageonCtrol("回答错误");
-                }
-                transform.parent.gameObject.SetActive(false);
+                selectAnswer = button.transform.GetChild(0).GetComponent<Text>().text;
             });
         }
         else
