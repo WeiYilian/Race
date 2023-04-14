@@ -186,6 +186,7 @@ public class AnswerManager : MonoBehaviour
                     //回答正确
                     UIFaceManager.Instance.MessageonCtrol("回答正确");
                     SelectAnswerDic.RemoveAt(rod);
+                    UIFaceManager.Instance.GetTwoFaceManager().Integral++;
                 }
                 else
                 {
@@ -218,6 +219,7 @@ public class AnswerManager : MonoBehaviour
                     {
                         UIFaceManager.Instance.MessageonCtrol("回答正确");
                         FillVacancyAnswerDic.RemoveAt(rod);
+                        UIFaceManager.Instance.GetTwoFaceManager().Integral++;
                         transform.parent.gameObject.SetActive(false);
                     }
                     else

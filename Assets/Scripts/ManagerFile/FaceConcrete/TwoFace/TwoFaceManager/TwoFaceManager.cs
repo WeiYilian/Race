@@ -18,6 +18,8 @@ public class TwoFaceManager
     private Dictionary<string, string> visceraCode = new Dictionary<string, string>();
     // 判断是否全部匹配的bool值
     public bool Matching;
+    //答题积分
+    public int Integral;
 
     public TwoFaceManager()
     {
@@ -55,7 +57,6 @@ public class TwoFaceManager
         visceraCode.Add("土","脾");
 
         #endregion
-
     }
 
     /// <summary>
