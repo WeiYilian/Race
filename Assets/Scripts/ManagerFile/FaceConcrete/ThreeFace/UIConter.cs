@@ -65,7 +65,7 @@ public class UIConter : MonoBehaviour
             ShowPlayer(index1);
             switch (seedname.text)
             {
-                case "洋甘菊":
+                case "甘菊":
                 {
                     if (index1 == 1)
                     {
@@ -111,7 +111,7 @@ public class UIConter : MonoBehaviour
             ShowPlayer(index1);
             switch (seedname.text)
             {
-                case "洋甘菊":
+                case "甘菊":
 
                 {
                     if (index1 == 1)
@@ -177,7 +177,7 @@ public class UIConter : MonoBehaviour
         Debug.Log(text);
         switch (seedname.text)
         {
-            case "洋甘菊":
+            case "甘菊":
 
             {
                 if (text == "秋")
@@ -232,7 +232,7 @@ public class UIConter : MonoBehaviour
         Debug.Log(text);
         switch (seedname.text)
         {
-            case "洋甘菊":
+            case "甘菊":
 
             {
                 if (text == "中后期")
@@ -283,7 +283,7 @@ public class UIConter : MonoBehaviour
         
         switch (seedname.text)
         {
-            case "洋甘菊":
+            case "甘菊":
 
             {
                 if(value >= 15f && value <= 20f)

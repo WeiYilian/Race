@@ -27,7 +27,7 @@ public class VoidConter : MonoBehaviour
             videoPlayer.clip=videos[0];
         }
 
-        if (seedname.text=="洋甘菊")
+        if (seedname.text=="甘菊")
         {
             videoPlayer.clip=videos[1];
         }
@@ -58,7 +58,7 @@ public class VoidConter : MonoBehaviour
                 UIFaceManager.Instance.MessageonCtrol("车前子已完成种植");
                 backguand.sprite = BG2;
             }
-            if (seedname.text=="洋甘菊")
+            if (seedname.text=="甘菊")
             {
                 
                 UIFaceManager.Instance.MessageonCtrol("洋甘菊已完成种植");

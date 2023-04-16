@@ -80,8 +80,8 @@ public class SeedContel : MonoBehaviour
         {
             Debug.Log("ss");
             gameObject.GetComponent<Image>().sprite =Updateimage;
-            if (Seedname=="洋甘菊")
-            {UIFaceManager.Instance.MessageonCtrol("洋甘菊已激活");
+            if (Seedname=="甘菊")
+            {UIFaceManager.Instance.MessageonCtrol("甘菊已激活");
                 SeedContel.isGame = true;
                 ThreeFaceMange.Seed1 = true;
             }
@@ -155,9 +155,9 @@ public class SeedContel : MonoBehaviour
             Tipeedimage.sprite = Seedimage.sprite;
             switch (gameObject.name)
             {
-                case "洋甘菊":
+                case "甘菊":
                     
-                    seedmangetext.text = "【洋甘菊】\n \n<color=#FF0000>具体种植信息未激活，请找到对应种子拖入激活具体信息</color>\n  \n是否直接进入模拟种植点击确定";
+                    seedmangetext.text = "【甘菊】\n \n<color=#FF0000>具体种植信息未激活，请找到对应种子拖入激活具体信息</color>\n  \n是否直接进入模拟种植点击确定";
                     UIFaceManager.Instance.MessageonCtrol("种子未激活");
                     break;
                 case"凤仙花":
@@ -182,16 +182,16 @@ public class SeedContel : MonoBehaviour
             Tipeedimage.sprite = Seedimage.sprite;
             switch (gameObject.name)
             {
-                case "洋甘菊":
+                case "甘菊":
                     if (ThreeFaceMange.seedend1 == false)
                     {
-                        seedmangetext.text = "【洋甘菊】\n \n喜欢寒冷的环境,更适合<color=#A52A2A>秋播</color>。洋甘菊为二年生草花,秋季播种,<color=#A52A2A>发芽温度15-18度</color>,开花到结种时需要充足的阳光," +
+                        seedmangetext.text = "【甘菊】\n 喜欢寒冷的环境,更适合<color=#A52A2A>秋播</color>。甘菊为二年生草花,秋季播种,<color=#A52A2A>发芽温度15-18度,开花到结种时需要充足的阳光,</color>" +
                                              "良好的通风,排水良好的<color=#A52A2A>“沙壤土”</color>或土壤深厚的疏松壤土,抗寒性强\n是否进入模拟系统";
                     }
 
                     else
                     {
-                        seedmangetext.text = "\n \n洋甘菊古代中国叫作春黄菊，、稚子书传白菊开，西成相滞未容回。月明阶下窗纱薄，多少清香透入来。\n 这是《忆白菊》里面描绘的白菊花，\n菊不仅仅能入药更多依托的人们不畏艰难，顽强斗争，风霜高洁的品质，\n 已种植完成继续模拟";
+                        seedmangetext.text = "在《食疗本草》有其叶，正月采，可作羹；茎，五月五日采；花，九月九日采。(证)\n甘菊古代中国叫作春黄菊，稚子书传白菊开，西成相滞未容回。月明阶下窗纱薄，多少清香透入来。\n菊不仅仅能入药更多依托的人们不畏艰难，顽强斗争，风霜高洁的品质，\n 已种植完成继续模拟";
                     }
                     break;
                 
@@ -216,7 +216,7 @@ public class SeedContel : MonoBehaviour
                     }
                     else
                     {
-                        seedmangetext.text ="\n \n《纲目拾遗》谓：凤仙花，一名透骨草，以其性利，能软坚，故有此名，在文人们的眼里，无疑是个娇艳的“媚客”。\n凤仙花古称金凤花，因单瓣花朵“宛如飞凤，头翅尾足俱全”，翩翩然“欲羽化而登仙”得名。" +
+                        seedmangetext.text ="\n \n《本草纲目》草部第十七卷有“凤仙……茎有红白二色，其大如指，中空而脆，”在文人们的眼里，无疑是个娇艳的“媚客”。\n凤仙花古称金凤花，因单瓣花朵“宛如飞凤，头翅尾足俱全”，翩翩然“欲羽化而登仙”得名。" +
                                             "“细看金凤小花丛，费尽司花染作工，雪色白边紫色袍，更饶深浅日般红。”说的就是凤仙花。\n 已种植完成继续模拟";
                     }
                    
@@ -245,7 +245,7 @@ public class SeedContel : MonoBehaviour
                     }
                     else
                     {
-                        seedmangetext.text = " \n车前在《神农本草经》列为上品。好生道旁及牛马足迹中，有车前当道，及牛遗马舄之名，故又名当道、牛遗、地衣、过路、胜马、车前突。\n古诗中有写车前草的诗篇——《诗经·周南·芣苢》采采芣苢，薄言采之。采采芣苢薄言有之\n 已种植完成继续模拟";
+                        seedmangetext.text = " \n车前《本草纲目》：王旻《山居录》，有种车前剪苗食法,则昔人常以为蔬矣。今野人犹采食之。故又名当道、牛遗、地衣、过路、胜马、车前突。\n古诗中有写车前草的诗篇——《诗经·周南·芣苢》采采芣苢，薄言采之。采采芣苢薄言有之\n 已种植完成继续模拟";
                     }
 
                     break;
@@ -306,7 +306,7 @@ public class SeedContel : MonoBehaviour
                     {
                         if (UIConter.Landidex == 4&& UIConter.Seasonidex==4&& UIConter.temidex==4&& UIConter.sunidex==4)
                         {
-                            Debug.Log("洋甘菊失败");
+                            Debug.Log("甘菊失败");
                             SeedPlathPanel.SetActive(false);
                             SeedendPanel.SetActive(true);
                             nametext2.text = Seedname;
@@ -339,8 +339,8 @@ public class SeedContel : MonoBehaviour
                                 {
                                     if (UIConter.Landidex == 1&& UIConter.Seasonidex==1&& UIConter.temidex==1&& UIConter.sunidex==1)
                                     {
-                                        Debug.Log("洋甘菊成功");
-                                        UIFaceManager.Instance.MessageonCtrol("洋甘菊模拟种植开始");
+                                        Debug.Log("甘菊成功");
+                                        UIFaceManager.Instance.MessageonCtrol("甘菊模拟种植开始");
                                         SeedPlathPanel.SetActive(false);
                                         TipPanel.SetActive(false);
                                         seedmanger.gameObject.SetActive(false);
