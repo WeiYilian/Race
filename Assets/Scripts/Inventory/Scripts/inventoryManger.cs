@@ -30,12 +30,12 @@ public class inventoryManger : MonoBehaviour
     
     public void NULLItem()
     {
-        for (int k = 0; k < playerInventory.ItemList.Count;)
+        for (int k = 0; k < playerInventory.ItemList.Count;k++)
         {
            
             playerInventory.ItemList[k] = null;
-            k = k + 1;
-            break;
+            
+          
             
         }
     }
