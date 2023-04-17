@@ -11,7 +11,7 @@ public class VoidConter : MonoBehaviour
     public GameObject seefman;//模拟系统
     double video_time, currentTime;
     private Text seedname;
-    public Sprite BG;//洋甘菊
+    public Sprite BG;//甘菊
     public Sprite BG1;//指甲花
     public Sprite BG2;//车前草
     
@@ -61,7 +61,7 @@ public class VoidConter : MonoBehaviour
             if (seedname.text=="甘菊")
             {
                 
-                UIFaceManager.Instance.MessageonCtrol("洋甘菊已完成种植");
+                UIFaceManager.Instance.MessageonCtrol("甘菊已完成种植");
                 backguand.sprite = BG;
             }
            
