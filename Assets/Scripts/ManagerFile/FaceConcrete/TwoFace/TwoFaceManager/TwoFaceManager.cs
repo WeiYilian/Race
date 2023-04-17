@@ -127,6 +127,10 @@ public class TwoFaceManager
         if (matchesNumber >= visceraDesDic.Count)
         {
             Matching = true;
+            foreach (Transform item in outerDisc.transform)
+            {
+                item.GetComponent<TowFaceViscera>().IsPrecision = false;
+            }
             UIFaceManager.Instance.MessageonCtrol("匹配成功");
         }
     }

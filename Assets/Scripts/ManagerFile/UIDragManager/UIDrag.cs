@@ -101,7 +101,6 @@ public class UIDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHan
     {
         if (!IsPrecision) return;
         //Debug.Log("结束时在"+eventData.pointerCurrentRaycast.gameObject.name);
-        transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
         Adsorption(eventData);
         //开启BlocksRaycasts功能
         GetComponent<CanvasGroup>().blocksRaycasts = true;
@@ -168,6 +167,7 @@ public class UIDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHan
     /// </summary>
     public virtual void Adsorption(PointerEventData eventData)
     {
+        transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
         if (!AdsorptionFunction) return;
         if (Mathf.Sqrt((transform.position - AdsorptionTarget.transform.position).magnitude) < adsorptionRange)
         {

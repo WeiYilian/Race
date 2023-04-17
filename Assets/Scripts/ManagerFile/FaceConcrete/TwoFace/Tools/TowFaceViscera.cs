@@ -19,17 +19,17 @@ public class TowFaceViscera : UIDrag
     public override void Adsorption(PointerEventData eventData)
     {
         if (!AdsorptionFunction) return;
+        GameObject go = eventData.pointerCurrentRaycast.gameObject;
+        if (go.name != "内圆盘")
+            transform.SetParent(go.transform);
         if (eventData.pointerCurrentRaycast.gameObject.CompareTag("VisceralPits"))
         {
-            GameObject go = eventData.pointerCurrentRaycast.gameObject;
             if (Mathf.Sqrt((transform.position - go.transform.position).magnitude) < adsorptionRange)
             {
                 twoFaceManager.JoinVisDesDic(go, transform.parent.gameObject,currentViscera);
                 transform.SetParent(go.transform);
                 transform.position = go.transform.position;
                 twoFaceManager.MatchJudgment();
-                if (twoFaceManager.Matching)
-                    AdsorptionFunction = false;// 如果完成了匹配就不允许再拖动
             }
         }
     }
