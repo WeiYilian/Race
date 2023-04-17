@@ -225,7 +225,6 @@ public class AnswerManager : MonoBehaviour
                         //回答正确
                         UIFaceManager.Instance.MessageonCtrol("回答正确");
                         OptionAnswer.DOColor(Color.green, 0.5f);
-                        //TODO:显示答案解析
 
                         UIFaceManager.Instance.GetTwoFaceManager().CurAnsViscera.AnswerOver = true;
                         SelectAnswerList.RemoveAt(rod);
@@ -241,7 +240,6 @@ public class AnswerManager : MonoBehaviour
                             if(item.text == SelectAnswerList[rod][1])
                                 item.DOColor(Color.green, 0.5f);
                         }
-                        //TODO:显示答案解析
                     }
                     
                     BtnStateSwitch(Options_Btn);
@@ -332,8 +330,6 @@ public class AnswerManager : MonoBehaviour
                         }
 
                         BtnStateSwitch(SelAnswerArea_Btn);
-                        //TODO:给出答案解析
-                        
                         
                         UIFaceManager.Instance.GetTwoFaceManager().CurAnsViscera.AnswerOver = true;
                         FillVacancyAnswerList.RemoveAt(rod);
@@ -351,7 +347,6 @@ public class AnswerManager : MonoBehaviour
                         {
                             item.transform.Find("Text").GetComponent<Text>().color = Color.red;
                             item.transform.Find("Text").GetComponent<Text>().DOColor(Color.black, 1f);
-                            //TODO:留待解决item.GetComponent<Highlighter>().constant = false;
                         }
                         AnswerArea.Clear();
                     }
