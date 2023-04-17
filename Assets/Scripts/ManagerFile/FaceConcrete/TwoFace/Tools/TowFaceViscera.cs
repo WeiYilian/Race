@@ -53,7 +53,9 @@ public class TowFaceViscera : UIDrag
         // 点击后触发答题环节
         GetComponent<Button>().onClick.AddListener(() =>
         {
-            if (!twoFaceManager.Matching) return;
+            if (!twoFaceManager.Matching || currentViscera.AnswerOver) return;
+
+            twoFaceManager.CurAnsViscera = currentViscera;
             
             Answerbg.gameObject.SetActive(true);
             GameObject shortAnswerObj = Answerbg.transform.Find("ShortAnswer").gameObject;

@@ -226,8 +226,8 @@ public class AnswerManager : MonoBehaviour
                         UIFaceManager.Instance.MessageonCtrol("回答正确");
                         OptionAnswer.DOColor(Color.green, 0.5f);
                         //TODO:显示答案解析
-                        
-                        
+
+                        UIFaceManager.Instance.GetTwoFaceManager().CurAnsViscera.AnswerOver = true;
                         SelectAnswerList.RemoveAt(rod);
                         UIFaceManager.Instance.GetTwoFaceManager().Integral += 2;
                     }
@@ -335,6 +335,7 @@ public class AnswerManager : MonoBehaviour
                         //TODO:给出答案解析
                         
                         
+                        UIFaceManager.Instance.GetTwoFaceManager().CurAnsViscera.AnswerOver = true;
                         FillVacancyAnswerList.RemoveAt(rod);
                         UIFaceManager.Instance.GetTwoFaceManager().Integral += 3;
                     }
@@ -427,6 +428,11 @@ public class AnswerManager : MonoBehaviour
                     for (int i = 0; i < SelAnswerArea_Text.Count; i++)
                     {
                         SelAnswerArea_Text[i].text = questions[i + 2];
+                    }
+                    
+                    foreach (var text in ShowAnswerArea_Text)
+                    {
+                        text.text = "";
                     }
                 }
                 break;

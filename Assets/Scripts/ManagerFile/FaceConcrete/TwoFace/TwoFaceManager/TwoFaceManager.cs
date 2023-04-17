@@ -18,6 +18,8 @@ public class TwoFaceManager
     private Dictionary<string, string> visceraCode = new Dictionary<string, string>();
     // 判断是否全部匹配的bool值
     public bool Matching;
+    //正在进行答题的元素
+    public Viscera CurAnsViscera;
     //答题积分
     public int Integral;
 
