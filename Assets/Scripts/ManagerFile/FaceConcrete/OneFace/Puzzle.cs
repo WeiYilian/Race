@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
-using UnityEngine.UIElements;
-using Debug = UnityEngine.Debug;
 
 public enum PuzzleType
 {
@@ -41,6 +37,8 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
     private float lastClickTime;
     // 两次点击之间的最大时间间隔
     private float clickInterval;
+    //高亮组件
+    private Highlighter m_highlighter;
     //记录原来信息，方便回退
     [HideInInspector] public Vector3 originalPos;
     [HideInInspector] public Vector2 originalSize;
@@ -54,6 +52,7 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
     private void Awake()
     {
         m_rectTransform = transform.GetComponent<RectTransform>();
+        //m_highlighter = GetComponent<Highlighter>();
     }
 
     private void Start()
@@ -85,8 +84,8 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
         {
             // 如果未进行第一次点击，就记录第一次点击的物体
             oneFaceManager.InitialObj = eventData.pointerCurrentRaycast.gameObject;
-
             //TODO:同时使第一个点击的物体触发点击特效
+            //m_highlighter.ConstantOn();
         }
         else
         {
@@ -213,18 +212,6 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
     /// </summary>
     public void SwitchState()
     {
-        // if (transform.parent.name != ONEFACEMANAGER)
-        // {
-        //     PuzzleState = PuzzleState.Small;
-        //     exchangePuzzle = false;
-        // }
-        //
-        // if (transform.parent.name == ONEFACEMANAGER)
-        // {
-        //     PuzzleState = PuzzleState.Big;
-        //     exchangePuzzle = true;
-        // }
-
         switch (PuzzleState)
         {
             case PuzzleState.Small:

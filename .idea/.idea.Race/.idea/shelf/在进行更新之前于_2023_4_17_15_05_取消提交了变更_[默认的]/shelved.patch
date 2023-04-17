@@ -1,0 +1,1883 @@
+Index: Assets/Scripts/ManagerFile/FaceConcrete/OneFace/Puzzle.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using System;\r\nusing System.Collections;\r\nusing System.Collections.Generic;\r\nusing System.Diagnostics;\r\nusing UnityEngine;\r\nusing UnityEngine.EventSystems;\r\nusing UnityEngine.Serialization;\r\nusing UnityEngine.UIElements;\r\nusing Debug = UnityEngine.Debug;\r\n\r\npublic enum PuzzleType\r\n{\r\n    OneJigsawPuzzle,\r\n    TwoJigsawPuzzle\r\n}\r\n\r\npublic enum PuzzleState\r\n{\r\n    Small,\r\n    Big,\r\n    NotVariable\r\n}\r\n\r\npublic class Puzzle : MonoBehaviour, IPointerClickHandler\r\n{\r\n    private RectTransform m_rectTransform;\r\n    \r\n    // 判断是否可以进行大拼图切换\r\n    public bool exchangePuzzle;\r\n    // 拼图需要达到的目标位置索引\r\n    public int jpTargetIndex;\r\n    // 判断是否可以拼图尺寸是否可变化\r\n    public PuzzleState PuzzleState;\r\n    // 拼图的类型\r\n    public PuzzleType PuzzleType;\r\n    // 当前位置编号\r\n    public int jpCurIndex;\r\n    // 判断是否拼图成功\r\n    private bool isSucceed;\r\n    // 上一次点击时间\r\n    private float lastClickTime;\r\n    // 两次点击之间的最大时间间隔\r\n    private float clickInterval;\r\n    //记录原来信息，方便回退\r\n    [HideInInspector] public Vector3 originalPos;\r\n    [HideInInspector] public Vector2 originalSize;\r\n    [HideInInspector] public GameObject ParentObj;\r\n\r\n    private List<Transform> TraList = new List<Transform>();\r\n    \r\n    // OneFaceManager\r\n    private OneFaceManager oneFaceManager;\r\n\r\n    private void Awake()\r\n    {\r\n        m_rectTransform = transform.GetComponent<RectTransform>();\r\n    }\r\n\r\n    private void Start()\r\n    {\r\n        Init();\r\n    }\r\n\r\n    // 初始化\r\n    private void Init()\r\n    {\r\n        // 获取OneFaceManager\r\n        oneFaceManager = UIFaceManager.Instance.GetOneFaceManager();\r\n        // 将自身加进字典中\r\n        oneFaceManager.PuzzleDic[jpCurIndex] = this;\r\n        // 初始化时间间隔\r\n        clickInterval = 0.3f;\r\n    }\r\n    \r\n\r\n    /// <summary>\r\n    /// 大拼图切换\r\n    /// </summary>\r\n    /// <param name=\"eventData\"></param>\r\n    private void ExchangeBigPuzzle(PointerEventData eventData)\r\n    {\r\n        if (!exchangePuzzle) return;\r\n        \r\n        if (!oneFaceManager.InitialObj)\r\n        {\r\n            // 如果未进行第一次点击，就记录第一次点击的物体\r\n            oneFaceManager.InitialObj = eventData.pointerCurrentRaycast.gameObject;\r\n\r\n            //TODO:同时使第一个点击的物体触发点击特效\r\n        }\r\n        else\r\n        {\r\n            // 如果是双击则不触发交换位置方法\r\n            if (Time.time - lastClickTime < clickInterval) return;\r\n            \r\n            // 存放第一次点击的物体位置\r\n            Vector3 firstPos = oneFaceManager.InitialObj.transform.position;\r\n            // 存放第二次点击的物体位置\r\n            Vector3 secondPos = eventData.pointerCurrentRaycast.gameObject.transform.position;\r\n            // 两个物体之间的位置切换\r\n            oneFaceManager.InitialObj.transform.position = secondPos;\r\n            secondPos = firstPos;\r\n            eventData.pointerCurrentRaycast.gameObject.transform.position = secondPos;\r\n            // 对Puzzle的属性进行交换\r\n            oneFaceManager.ExchangePuzzleCharacteristic(eventData.pointerCurrentRaycast.gameObject.GetComponent<Puzzle>());\r\n            // 切换完成，释放第一次点击后存储的对象\r\n            oneFaceManager.InitialObj = null;\r\n        }\r\n    }\r\n\r\n    \r\n    /// <summary>\r\n    /// 大小拼图切换\r\n    /// </summary>\r\n    private void ExchangeSmallPuzzle()\r\n    {\r\n        if (PuzzleState == PuzzleState.NotVariable) return;\r\n        // 判断两次点击时间是否超过clickInterval\r\n        if (Time.time - lastClickTime < clickInterval)\r\n        {\r\n            switch (PuzzleState)\r\n            {\r\n                case PuzzleState.Small:\r\n                    VariableBig();\r\n                    break;\r\n                case PuzzleState.Big:\r\n                    VariableSmall();\r\n                    break;\r\n                case PuzzleState.NotVariable:\r\n                    break;\r\n                default:\r\n                    throw new ArgumentOutOfRangeException();\r\n            }\r\n        }\r\n        else\r\n        {\r\n            // 更新上一次点击的时间,记录点击时间\r\n            lastClickTime = Time.time;\r\n        }\r\n    }\r\n\r\n    /// <summary>\r\n    /// 放大的方法\r\n    /// </summary>\r\n    private void VariableBig()\r\n    {\r\n        // 记录父物体(大拼图)\r\n        ParentObj = transform.parent.gameObject;\r\n        // 记录初始信息\r\n        originalPos = transform.localPosition;\r\n        originalSize = m_rectTransform.sizeDelta;\r\n        // 将小拼图的相对位置设置在中心\r\n        transform.localPosition = Vector3.zero;\r\n        // 将小拼图变大\r\n        m_rectTransform.sizeDelta = ParentObj.GetComponent<RectTransform>().rect.size;\r\n        // 隐藏父物体\r\n        ParentObj.SetActive(false);\r\n        if (TraList.Count > 0)\r\n        {\r\n            // 遍历子物体，将子物体显示\r\n            foreach (Transform child in TraList)\r\n            {\r\n                child.gameObject.SetActive(true);\r\n            }\r\n            // 清空TraList\r\n            TraList.Clear();\r\n        }\r\n        // 改变父物体\r\n        transform.SetParent(ParentObj.transform.parent);\r\n        // 对Puzzle的属性进行交换\r\n        oneFaceManager.VariablePuzzleCharacteristic(this);\r\n        // 放大之后调整设置\r\n        SwitchState();\r\n    }\r\n\r\n    /// <summary>\r\n    /// 缩小的方法\r\n    /// </summary>\r\n    private void VariableSmall()\r\n    {\r\n        // 显示父物体\r\n        ParentObj.SetActive(true);\r\n        // 设置父物体\r\n        transform.SetParent(ParentObj.transform);\r\n        // 遍历子物体，并将子物体隐藏\r\n        foreach (Transform child in transform)\r\n        {\r\n            TraList.Add(child);\r\n            child.gameObject.SetActive(false);\r\n        }\r\n        // 设置回原来的参数\r\n        transform.localPosition = originalPos;\r\n        m_rectTransform.sizeDelta = originalSize;\r\n        // 对Puzzle的属性进行交换\r\n        oneFaceManager.VariablePuzzleCharacteristic(this);\r\n        // 缩小之后调整设置\r\n        SwitchState();\r\n    }\r\n    \r\n    \r\n    // 点击事件\r\n    public void OnPointerClick(PointerEventData eventData)\r\n    {\r\n        // 拼图大小切换\r\n        ExchangeSmallPuzzle();\r\n        // 拼图位置切换\r\n        ExchangeBigPuzzle(eventData);\r\n    }\r\n\r\n    \r\n    /// <summary>\r\n    /// 拼图状态切换\r\n    /// </summary>\r\n    public void SwitchState()\r\n    {\r\n        // if (transform.parent.name != ONEFACEMANAGER)\r\n        // {\r\n        //     PuzzleState = PuzzleState.Small;\r\n        //     exchangePuzzle = false;\r\n        // }\r\n        //\r\n        // if (transform.parent.name == ONEFACEMANAGER)\r\n        // {\r\n        //     PuzzleState = PuzzleState.Big;\r\n        //     exchangePuzzle = true;\r\n        // }\r\n\r\n        switch (PuzzleState)\r\n        {\r\n            case PuzzleState.Small:\r\n                PuzzleState = PuzzleState.Big;\r\n                exchangePuzzle = true;\r\n                break;\r\n            case PuzzleState.Big:\r\n                PuzzleState = PuzzleState.Small;\r\n                exchangePuzzle = false;\r\n                break;\r\n            case PuzzleState.NotVariable:\r\n                exchangePuzzle = true;\r\n                break;\r\n            default:\r\n                throw new ArgumentOutOfRangeException();\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/Puzzle.cs b/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/Puzzle.cs
+--- a/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/Puzzle.cs	(revision 8e7415e4e778a502788349f50c54a240a4855f69)
++++ b/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/Puzzle.cs	(date 1681656086077)
+@@ -1,12 +1,8 @@
+ using System;
+-using System.Collections;
+ using System.Collections.Generic;
+-using System.Diagnostics;
++using HighlightingSystem;
+ using UnityEngine;
+ using UnityEngine.EventSystems;
+-using UnityEngine.Serialization;
+-using UnityEngine.UIElements;
+-using Debug = UnityEngine.Debug;
+ 
+ public enum PuzzleType
+ {
+@@ -41,6 +37,8 @@
+     private float lastClickTime;
+     // 两次点击之间的最大时间间隔
+     private float clickInterval;
++    //高亮组件
++    private Highlighter m_highlighter;
+     //记录原来信息，方便回退
+     [HideInInspector] public Vector3 originalPos;
+     [HideInInspector] public Vector2 originalSize;
+@@ -54,6 +52,7 @@
+     private void Awake()
+     {
+         m_rectTransform = transform.GetComponent<RectTransform>();
++        m_highlighter = GetComponent<Highlighter>();
+     }
+ 
+     private void Start()
+@@ -85,8 +84,8 @@
+         {
+             // 如果未进行第一次点击，就记录第一次点击的物体
+             oneFaceManager.InitialObj = eventData.pointerCurrentRaycast.gameObject;
+-
+             //TODO:同时使第一个点击的物体触发点击特效
++            m_highlighter.ConstantOn();
+         }
+         else
+         {
+@@ -213,18 +212,6 @@
+     /// </summary>
+     public void SwitchState()
+     {
+-        // if (transform.parent.name != ONEFACEMANAGER)
+-        // {
+-        //     PuzzleState = PuzzleState.Small;
+-        //     exchangePuzzle = false;
+-        // }
+-        //
+-        // if (transform.parent.name == ONEFACEMANAGER)
+-        // {
+-        //     PuzzleState = PuzzleState.Big;
+-        //     exchangePuzzle = true;
+-        // }
+-
+         switch (PuzzleState)
+         {
+             case PuzzleState.Small:
+Index: .idea/.idea.Race/.idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectModuleManager\">\r\n    <modules>\r\n      <module fileurl=\"file://$PROJECT_DIR$/.idea/.idea.Race/riderModule.iml\" filepath=\"$PROJECT_DIR$/.idea/.idea.Race/riderModule.iml\" />\r\n    </modules>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.idea.Race/.idea/modules.xml b/.idea/.idea.Race/.idea/modules.xml
+--- a/.idea/.idea.Race/.idea/modules.xml	(revision 8e7415e4e778a502788349f50c54a240a4855f69)
++++ b/.idea/.idea.Race/.idea/modules.xml	(date 1681712149662)
+@@ -2,7 +2,7 @@
+ <project version="4">
+   <component name="ProjectModuleManager">
+     <modules>
+-      <module fileurl="file://$PROJECT_DIR$/.idea/.idea.Race/riderModule.iml" filepath="$PROJECT_DIR$/.idea/.idea.Race/riderModule.iml" />
++      <module fileurl="file://$PROJECT_DIR$/.idea/.idea.Race/.idea/riderModule.iml" filepath="$PROJECT_DIR$/.idea/.idea.Race/.idea/riderModule.iml" />
+     </modules>
+   </component>
+ </project>
+\ No newline at end of file
+Index: .idea/.idea.Race/.idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"BranchesTreeState\">\r\n    <expand>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </expand>\r\n    <select />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"3f681314-839d-4fc6-9491-50771a848bcb\" name=\"默认的\" comment=\"保存信息\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_10_16_44____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_10_16_44____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_11_15_05____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_11_15_05____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_12_17_51____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_12_17_51____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_12_8_48____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_12_8_48____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_13_20_31____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_13_20_31____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_6_18_00____.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_8_17_24____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_8_17_24____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_8_17_42____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_8_17_42____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_9_14_54____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_9_14_54____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-14_15_16____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-14_15_16____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-16_21_20____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-16_21_20____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-17_20_46____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-17_20_46____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-02_17_13____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-02_17_13____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-04_22_32____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-04_22_32____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-05_10_18____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-05_10_18____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-08_15_04____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-08_15_04____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-08_17_39____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-08_17_39____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-08_18_38____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-08_18_38____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-11_8_46____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-11_8_46____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-12_20_51____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-12_20_51____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-12_21_48____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-12_21_48____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_24_16_55____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_24_16_55____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_10_19_28____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_10_19_28____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_11_17_22____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_11_17_22____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_12_16_07____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_12_16_07____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_12_18_50____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_12_18_50____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_12_21_28____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_12_21_28____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_1_11_00____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_1_11_00____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_1_11_02____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_1_11_02____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_1_11_05____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_1_11_05____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_6_20_32____.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_8_16_31____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_8_16_31____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_8_19_03____.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_8_19_03____.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/___.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/___.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/在进行Update之前于_2023_4_6_18_00_取消提交了变更_[默认的]/shelved.patch\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/在进行更新之前于_2023_4_6_20_32_取消提交了变更_[默认的]/shelved.patch\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/AnswerManager.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/AnswerManager.cs\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager/TwoFaceManager.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager/TwoFaceManager.cs\" afterDir=\"false\" />\r\n    </list>\r\n    <list id=\"1f10c6f0-5c40-4f98-9d82-81194a17b6bb\" name=\"在进行更新之前于 2023-03-14 15:16 取消提交了变更 [默认的]\" comment=\"\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"RESET_MODE\" value=\"HARD\" />\r\n  </component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"file://$PROJECT_DIR$/Assets/Scripts/TestScript/StartPhotoBIGandsamll/UICoom.cs\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/AnswerManager.cs\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/Assets/Scripts/ControllerFile/CameraController.cs\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventData/PointerEventData.cs\" root0=\"SKIP_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/Assets/Scripts/TestScript/UI/TIPConterl.cs\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/Puzzle.cs\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIFace.cs\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/Canvas/CanvasGroupInheritedAlpha.cs\" root0=\"SKIP_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/InFaceRotation.cs\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/TowFaceViscera.cs\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Scrollbar.cs\" root0=\"SKIP_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/Assets/Scripts/TestScript/StartPhotoBIGandsamll/UISamll.cs\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/OneFaceManager.cs\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/ExecuteEvents.cs\" root0=\"SKIP_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Button.cs\" root0=\"SKIP_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.rider@1.2.1/Rider/Editor/RiderScriptEditor.cs\" root0=\"SKIP_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/ThreeFace/SeedContel.cs\" root0=\"FORCE_HIGHLIGHTING\" />\r\n  </component>\r\n  <component name=\"IdeDocumentHistory\">\r\n    <changedPaths>\r\n      <option value=\"$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/ThreeFace/Flow.cs\" />\r\n      <option value=\"$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager/Base/Viscera.cs\" />\r\n      <option value=\"$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/TowFaceViscera.cs\" />\r\n      <option value=\"$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager/TwoFaceManager.cs\" />\r\n      <option value=\"$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/InFaceRotation.cs\" />\r\n      <option value=\"$PROJECT_DIR$/Assets/Scripts/ControllerFile/ViewController.cs\" />\r\n      <option value=\"$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIFaceManager.cs\" />\r\n      <option value=\"$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIDrag.cs\" />\r\n      <option value=\"$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/AnswerManager.cs\" />\r\n    </changedPaths>\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2MtwgT4VxzpKxCEnieV90nTAnOq\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n    <ConfirmationsSetting value=\"2\" id=\"新增\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"Discover.Launch.Via.Unity\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"node.js.detected.package.eslint\" value=\"true\" />\r\n    <property name=\"node.js.detected.package.tslint\" value=\"true\" />\r\n    <property name=\"node.js.path.for.package.eslint\" value=\"project\" />\r\n    <property name=\"node.js.path.for.package.tslint\" value=\"project\" />\r\n    <property name=\"node.js.selected.package.eslint\" value=\"(autodetect)\" />\r\n    <property name=\"node.js.selected.package.tslint\" value=\"(autodetect)\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"configurable.group.appearance\" />\r\n    <property name=\"vue.rearranger.settings.migration\" value=\"true\" />\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Attach to Unity Editor.Attach to Unity Editor\">\r\n    <configuration name=\"Attach to Unity Editor &amp; Play\" type=\"UNITY_DEBUG_RUN_CONFIGURATION\" factoryName=\"UNITY_ATTACH_AND_PLAY\" show_console_on_std_err=\"false\" show_console_on_std_out=\"false\" port=\"50000\" address=\"localhost\">\r\n      <option name=\"allowRunningInParallel\" value=\"false\" />\r\n      <option name=\"listenPortForConnections\" value=\"false\" />\r\n      <option name=\"pid\" />\r\n      <option name=\"selectedOptions\">\r\n        <list />\r\n      </option>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"Attach to Unity Editor\" type=\"UNITY_DEBUG_RUN_CONFIGURATION\" factoryName=\"Unity Debug\" show_console_on_std_err=\"false\" show_console_on_std_out=\"false\" port=\"50000\" address=\"localhost\">\r\n      <option name=\"allowRunningInParallel\" value=\"false\" />\r\n      <option name=\"listenPortForConnections\" value=\"false\" />\r\n      <option name=\"pid\" />\r\n      <option name=\"selectedOptions\">\r\n        <list />\r\n      </option>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"默认任务\">\r\n      <changelist id=\"3f681314-839d-4fc6-9491-50771a848bcb\" name=\"默认的\" comment=\"\" />\r\n      <created>1678600318931</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1678600318931</updated>\r\n      <workItem from=\"1678600326038\" duration=\"1000\" />\r\n      <workItem from=\"1678600345539\" duration=\"1658000\" />\r\n      <workItem from=\"1678607953566\" duration=\"1357000\" />\r\n      <workItem from=\"1678686071972\" duration=\"3903000\" />\r\n      <workItem from=\"1678690540189\" duration=\"362000\" />\r\n      <workItem from=\"1678714212595\" duration=\"580000\" />\r\n      <workItem from=\"1678759511912\" duration=\"2809000\" />\r\n      <workItem from=\"1678859235380\" duration=\"7444000\" />\r\n      <workItem from=\"1678879626756\" duration=\"8890000\" />\r\n      <workItem from=\"1678968494226\" duration=\"3938000\" />\r\n      <workItem from=\"1679404028511\" duration=\"4770000\" />\r\n      <workItem from=\"1679564250327\" duration=\"10681000\" />\r\n      <workItem from=\"1679906248300\" duration=\"10486000\" />\r\n      <workItem from=\"1680173595675\" duration=\"7693000\" />\r\n      <workItem from=\"1680223141465\" duration=\"16224000\" />\r\n      <workItem from=\"1680505060215\" duration=\"1195000\" />\r\n      <workItem from=\"1680520785540\" duration=\"5891000\" />\r\n      <workItem from=\"1680602690588\" duration=\"11560000\" />\r\n      <workItem from=\"1680858739055\" duration=\"2954000\" />\r\n      <workItem from=\"1680935454130\" duration=\"1290000\" />\r\n      <workItem from=\"1681116257008\" duration=\"4004000\" />\r\n      <workItem from=\"1681137163178\" duration=\"133000\" />\r\n      <workItem from=\"1681191790592\" duration=\"15697000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"第一次提交\">\r\n      <created>1678600451169</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1678600451169</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"第二次提交\">\r\n      <created>1678601114175</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1678601114175</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"3\">\r\n      <created>1678608792655</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1678608792655</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Start场景\">\r\n      <created>1678689674485</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1678689674485</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Start场景\">\r\n      <created>1678689851651</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1678689851651</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"场景切换\">\r\n      <created>1678787002788</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1678787002788</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"场景切换\">\r\n      <created>1678787019833</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1678787019833</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"场景切换\">\r\n      <created>1678787367864</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1678787367864</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"场景切换\">\r\n      <created>1678787426416</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1678787426416</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"场景切换\">\r\n      <created>1678787841071</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1678787841071</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"保存信息\">\r\n      <created>1678859385606</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1678859385606</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"基础1\">\r\n      <created>1679570752746</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1679570752746</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"保存信息\">\r\n      <created>1679906510603</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1679906510603</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"基础跨面旋转优化\">\r\n      <created>1680096093631</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1680096093631</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"基础跨面旋转优化\">\r\n      <created>1680096098991</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1680096098991</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"第二个面部分底层\">\r\n      <created>1680100711610</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1680100711610</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\"第二个面部分底层\">\r\n      <created>1680100885614</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1680100885614</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00018\" summary=\"4面\">\r\n      <created>1680184435337</created>\r\n      <option name=\"number\" value=\"00018\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1680184435337</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00019\" summary=\"4面\">\r\n      <created>1680184929447</created>\r\n      <option name=\"number\" value=\"00019\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1680184929447</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00020\" summary=\"保存信息\">\r\n      <created>1680430095869</created>\r\n      <option name=\"number\" value=\"00020\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1680430095869</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00021\" summary=\"第二面基础\">\r\n      <created>1680437314887</created>\r\n      <option name=\"number\" value=\"00021\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1680437314887</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00022\" summary=\"第二面完结\">\r\n      <created>1680438533030</created>\r\n      <option name=\"number\" value=\"00022\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1680438533030</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00023\" summary=\"第二面优化\">\r\n      <created>1680512088922</created>\r\n      <option name=\"number\" value=\"00023\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1680512088922</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00024\" summary=\"保存信息\">\r\n      <created>1680692141775</created>\r\n      <option name=\"number\" value=\"00024\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1680692141775</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00025\" summary=\"问题\">\r\n      <created>1681120111569</created>\r\n      <option name=\"number\" value=\"00025\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00025\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1681120111569</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00026\" summary=\"第二面优化完成！！！！！！！！！\">\r\n      <created>1681137207526</created>\r\n      <option name=\"number\" value=\"00026\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00026\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1681137207526</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00027\" summary=\"第二面基础功能实现\">\r\n      <created>1681205263566</created>\r\n      <option name=\"number\" value=\"00027\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00027\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1681205263566</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00028\" summary=\"第二面基础功能实现\">\r\n      <created>1681217274579</created>\r\n      <option name=\"number\" value=\"00028\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00028\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1681217274579</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00029\" summary=\"第二面基础功能实现\">\r\n      <created>1681217371760</created>\r\n      <option name=\"number\" value=\"00029\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00029\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1681217371760</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00030\" summary=\"换了个盒子\">\r\n      <created>1681221306755</created>\r\n      <option name=\"number\" value=\"00030\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00030\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1681221306755</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00031\" summary=\"换了个盒子\">\r\n      <created>1681221411522</created>\r\n      <option name=\"number\" value=\"00031\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00031\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1681221411522</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"32\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"UnityProjectConfiguration\" hasMinimizedUI=\"true\" />\r\n  <component name=\"UnityUnitTestConfiguration\" currentTestLauncher=\"EditMode\" />\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"CLEAR_INITIAL_COMMIT_MESSAGE\" value=\"true\" />\r\n    <MESSAGE value=\"第一次提交\" />\r\n    <MESSAGE value=\"第二次提交\" />\r\n    <MESSAGE value=\"3\" />\r\n    <MESSAGE value=\"Start场景\" />\r\n    <MESSAGE value=\"场景切换\" />\r\n    <MESSAGE value=\"基础1\" />\r\n    <MESSAGE value=\"基础跨面旋转优化\" />\r\n    <MESSAGE value=\"第二个面部分底层\" />\r\n    <MESSAGE value=\"4面\" />\r\n    <MESSAGE value=\"第二面基础\" />\r\n    <MESSAGE value=\"第二面完结\" />\r\n    <MESSAGE value=\"第二面优化\" />\r\n    <MESSAGE value=\"保存信息\" />\r\n    <MESSAGE value=\"问题\" />\r\n    <MESSAGE value=\"第二面优化完成！！！！！！！！！\" />\r\n    <MESSAGE value=\"第二面基础功能实现\" />\r\n    <MESSAGE value=\"换了个盒子\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"换了个盒子\" />\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.idea.Race/.idea/workspace.xml b/.idea/.idea.Race/.idea/workspace.xml
+--- a/.idea/.idea.Race/.idea/workspace.xml	(revision 8e7415e4e778a502788349f50c54a240a4855f69)
++++ b/.idea/.idea.Race/.idea/workspace.xml	(date 1681715072479)
+@@ -21,45 +21,38 @@
+   <component name="ChangeListManager">
+     <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="保存信息">
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/modules.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_10_16_44____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_10_16_44____.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_11_15_05____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_11_15_05____.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_12_17_51____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_12_17_51____.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_12_8_48____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_12_8_48____.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_13_20_31____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_13_20_31____.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_6_18_00____.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_8_17_24____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_8_17_24____.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_8_17_42____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_8_17_42____.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_9_14_54____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_9_14_54____.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_16_16_14____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_16_16_14____.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-14_15_16____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-14_15_16____.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-16_21_20____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-16_21_20____.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-17_20_46____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-17_20_46____.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-02_17_13____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-02_17_13____.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-04_22_32____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-04_22_32____.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-05_10_18____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-05_10_18____.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-08_15_04____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-08_15_04____.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-08_17_39____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-08_17_39____.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-08_18_38____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-08_18_38____.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-11_8_46____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-11_8_46____.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-12_20_51____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-12_20_51____.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-12_21_48____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-12_21_48____.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-16_13_35____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-04-16_13_35____.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_24_16_55____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_3_24_16_55____.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_10_19_28____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_10_19_28____.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_11_17_22____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_11_17_22____.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_12_16_07____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_12_16_07____.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_12_18_50____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_12_18_50____.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_12_21_28____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_12_21_28____.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_14_16_59____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_14_16_59____.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_1_11_00____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_1_11_00____.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_1_11_02____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_1_11_02____.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_1_11_05____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_1_11_05____.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_6_20_32____.xml" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_8_16_31____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_8_16_31____.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_8_19_03____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_8_19_03____.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/___.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/___.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/在进行Update之前于_2023_4_6_18_00_取消提交了变更_[默认的]/shelved.patch" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/在进行更新之前于_2023_4_6_20_32_取消提交了变更_[默认的]/shelved.patch" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/AnswerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/AnswerManager.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager/TwoFaceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager/TwoFaceManager.cs" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/Puzzle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/Puzzle.cs" afterDir="false" />
+     </list>
+     <list id="1f10c6f0-5c40-4f98-9d82-81194a17b6bb" name="在进行更新之前于 2023-03-14 15:16 取消提交了变更 [默认的]" comment="" />
+     <option name="SHOW_DIALOG" value="false" />
+@@ -94,13 +87,14 @@
+     <changedPaths>
+       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/ThreeFace/Flow.cs" />
+       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager/Base/Viscera.cs" />
+-      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/TowFaceViscera.cs" />
+       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager/TwoFaceManager.cs" />
+       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/InFaceRotation.cs" />
+       <option value="$PROJECT_DIR$/Assets/Scripts/ControllerFile/ViewController.cs" />
+       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIFaceManager.cs" />
+       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIDrag.cs" />
++      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/TowFaceViscera.cs" />
+       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/AnswerManager.cs" />
++      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/Puzzle.cs" />
+     </changedPaths>
+   </component>
+   <component name="ProjectId" id="2MtwgT4VxzpKxCEnieV90nTAnOq" />
+@@ -178,6 +172,7 @@
+       <workItem from="1681116257008" duration="4004000" />
+       <workItem from="1681137163178" duration="133000" />
+       <workItem from="1681191790592" duration="15697000" />
++      <workItem from="1681712149726" duration="1224000" />
+     </task>
+     <task id="LOCAL-00001" summary="第一次提交">
+       <created>1678600451169</created>
+@@ -396,7 +391,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1681221411522</updated>
+     </task>
+-    <option name="localTasksCounter" value="32" />
++    <task id="LOCAL-00032" summary="第二面功能全部实现">
++      <created>1681654544680</created>
++      <option name="number" value="00032" />
++      <option name="presentableId" value="LOCAL-00032" />
++      <option name="project" value="LOCAL" />
++      <updated>1681654544680</updated>
++    </task>
++    <option name="localTasksCounter" value="33" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -435,7 +437,8 @@
+     <MESSAGE value="第二面优化完成！！！！！！！！！" />
+     <MESSAGE value="第二面基础功能实现" />
+     <MESSAGE value="换了个盒子" />
+-    <option name="LAST_COMMIT_MESSAGE" value="换了个盒子" />
++    <MESSAGE value="第二面功能全部实现" />
++    <option name="LAST_COMMIT_MESSAGE" value="第二面功能全部实现" />
+   </component>
+   <component name="XSLT-Support.FileAssociations.UIState">
+     <expand />
+Index: Assets/Scenes/Game1.unity
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Assets/Scenes/Game1.unity b/Assets/Scenes/Game1.unity
+--- a/Assets/Scenes/Game1.unity	(revision 8e7415e4e778a502788349f50c54a240a4855f69)
++++ b/Assets/Scenes/Game1.unity	(date 1681656098217)
+@@ -950,6 +950,124 @@
+   m_PrefabAsset: {fileID: 0}
+   m_GameObject: {fileID: 51128132}
+   m_CullTransparentMesh: 0
++--- !u!1 &56147170
++GameObject:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  serializedVersion: 6
++  m_Component:
++  - component: {fileID: 56147171}
++  - component: {fileID: 56147174}
++  - component: {fileID: 56147173}
++  - component: {fileID: 56147172}
++  m_Layer: 5
++  m_Name: "\u5173\u95ED"
++  m_TagString: Untagged
++  m_Icon: {fileID: 0}
++  m_NavMeshLayer: 0
++  m_StaticEditorFlags: 0
++  m_IsActive: 1
++--- !u!224 &56147171
++RectTransform:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 56147170}
++  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
++  m_LocalPosition: {x: 0, y: 0, z: 0}
++  m_LocalScale: {x: 1, y: 1, z: 1}
++  m_Children: []
++  m_Father: {fileID: 2028488329}
++  m_RootOrder: 0
++  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
++  m_AnchorMin: {x: 1, y: 1}
++  m_AnchorMax: {x: 1, y: 1}
++  m_AnchoredPosition: {x: 0, y: 0}
++  m_SizeDelta: {x: 78, y: 70}
++  m_Pivot: {x: 0.49999997, y: 0.5}
++--- !u!114 &56147172
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 56147170}
++  m_Enabled: 1
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  m_Navigation:
++    m_Mode: 3
++    m_SelectOnUp: {fileID: 0}
++    m_SelectOnDown: {fileID: 0}
++    m_SelectOnLeft: {fileID: 0}
++    m_SelectOnRight: {fileID: 0}
++  m_Transition: 1
++  m_Colors:
++    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
++    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
++    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
++    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
++    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
++    m_ColorMultiplier: 1
++    m_FadeDuration: 0.1
++  m_SpriteState:
++    m_HighlightedSprite: {fileID: 0}
++    m_PressedSprite: {fileID: 0}
++    m_SelectedSprite: {fileID: 0}
++    m_DisabledSprite: {fileID: 0}
++  m_AnimationTriggers:
++    m_NormalTrigger: Normal
++    m_HighlightedTrigger: Highlighted
++    m_PressedTrigger: Pressed
++    m_SelectedTrigger: Selected
++    m_DisabledTrigger: Disabled
++  m_Interactable: 1
++  m_TargetGraphic: {fileID: 56147173}
++  m_OnClick:
++    m_PersistentCalls:
++      m_Calls: []
++--- !u!114 &56147173
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 56147170}
++  m_Enabled: 1
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  m_Material: {fileID: 0}
++  m_Color: {r: 1, g: 1, b: 1, a: 1}
++  m_RaycastTarget: 1
++  m_Maskable: 1
++  m_OnCullStateChanged:
++    m_PersistentCalls:
++      m_Calls: []
++  m_Sprite: {fileID: 21300000, guid: 47565f1c13abfc342a102c7c310f4d9d, type: 3}
++  m_Type: 0
++  m_PreserveAspect: 0
++  m_FillCenter: 1
++  m_FillMethod: 4
++  m_FillAmount: 1
++  m_FillClockwise: 1
++  m_FillOrigin: 0
++  m_UseSpriteMesh: 0
++  m_PixelsPerUnitMultiplier: 1
++--- !u!222 &56147174
++CanvasRenderer:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 56147170}
++  m_CullTransparentMesh: 0
+ --- !u!1 &56876839
+ GameObject:
+   m_ObjectHideFlags: 0
+@@ -1433,6 +1551,7 @@
+   - component: {fileID: 83594295}
+   - component: {fileID: 83594294}
+   - component: {fileID: 83594293}
++  - component: {fileID: 83594296}
+   m_Layer: 0
+   m_Name: JigsawPuzzle6
+   m_TagString: Untagged
+@@ -1516,6 +1635,68 @@
+   m_PrefabAsset: {fileID: 0}
+   m_GameObject: {fileID: 83594291}
+   m_CullTransparentMesh: 0
++--- !u!114 &83594296
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 83594291}
++  m_Enabled: 1
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: 67d4de287b46eb34e83a61e4f9115070, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  mode: 0
++  forceRender: 0
++  color: {r: 1, g: 1, b: 1, a: 1}
++  _overlay: 0
++  _occluder: 0
++  _tween: 0
++  _tweenGradient:
++    serializedVersion: 2
++    key0: {r: 0, g: 1, b: 1, a: 0}
++    key1: {r: 0, g: 1, b: 1, a: 1}
++    key2: {r: 0, g: 0, b: 0, a: 0}
++    key3: {r: 0, g: 0, b: 0, a: 0}
++    key4: {r: 0, g: 0, b: 0, a: 0}
++    key5: {r: 0, g: 0, b: 0, a: 0}
++    key6: {r: 0, g: 0, b: 0, a: 0}
++    key7: {r: 0, g: 0, b: 0, a: 0}
++    ctime0: 0
++    ctime1: 65535
++    ctime2: 0
++    ctime3: 0
++    ctime4: 0
++    ctime5: 0
++    ctime6: 0
++    ctime7: 0
++    atime0: 0
++    atime1: 65535
++    atime2: 0
++    atime3: 0
++    atime4: 0
++    atime5: 0
++    atime6: 0
++    atime7: 0
++    m_Mode: 0
++    m_NumColorKeys: 2
++    m_NumAlphaKeys: 2
++  _tweenDuration: 1
++  _tweenReverse: 0
++  _tweenLoop: 2
++  _tweenEasing: 0
++  _tweenDelay: 0
++  _tweenRepeatCount: -1
++  _tweenUseUnscaledTime: 0
++  _constant: 0
++  _constantColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
++  _constantFadeInTime: 0.1
++  _constantFadeOutTime: 0.25
++  _constantEasing: 0
++  _constantUseUnscaledTime: 0
++  _filterMode: 0
++  _filterList: []
+ --- !u!1 &84183063
+ GameObject:
+   m_ObjectHideFlags: 0
+@@ -2345,7 +2526,6 @@
+   - component: {fileID: 149413422}
+   - component: {fileID: 149413421}
+   - component: {fileID: 149413420}
+-  - component: {fileID: 149413423}
+   m_Layer: 5
+   m_Name: Button
+   m_TagString: Untagged
+@@ -2453,68 +2633,6 @@
+   m_PrefabAsset: {fileID: 0}
+   m_GameObject: {fileID: 149413418}
+   m_CullTransparentMesh: 0
+---- !u!114 &149413423
+-MonoBehaviour:
+-  m_ObjectHideFlags: 0
+-  m_CorrespondingSourceObject: {fileID: 0}
+-  m_PrefabInstance: {fileID: 0}
+-  m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 149413418}
+-  m_Enabled: 1
+-  m_EditorHideFlags: 0
+-  m_Script: {fileID: 11500000, guid: 67d4de287b46eb34e83a61e4f9115070, type: 3}
+-  m_Name: 
+-  m_EditorClassIdentifier: 
+-  mode: 0
+-  forceRender: 0
+-  color: {r: 1, g: 1, b: 1, a: 1}
+-  _overlay: 0
+-  _occluder: 0
+-  _tween: 0
+-  _tweenGradient:
+-    serializedVersion: 2
+-    key0: {r: 0, g: 1, b: 1, a: 0}
+-    key1: {r: 0, g: 1, b: 1, a: 1}
+-    key2: {r: 0, g: 0, b: 0, a: 0}
+-    key3: {r: 0, g: 0, b: 0, a: 0}
+-    key4: {r: 0, g: 0, b: 0, a: 0}
+-    key5: {r: 0, g: 0, b: 0, a: 0}
+-    key6: {r: 0, g: 0, b: 0, a: 0}
+-    key7: {r: 0, g: 0, b: 0, a: 0}
+-    ctime0: 0
+-    ctime1: 65535
+-    ctime2: 0
+-    ctime3: 0
+-    ctime4: 0
+-    ctime5: 0
+-    ctime6: 0
+-    ctime7: 0
+-    atime0: 0
+-    atime1: 65535
+-    atime2: 0
+-    atime3: 0
+-    atime4: 0
+-    atime5: 0
+-    atime6: 0
+-    atime7: 0
+-    m_Mode: 0
+-    m_NumColorKeys: 2
+-    m_NumAlphaKeys: 2
+-  _tweenDuration: 1
+-  _tweenReverse: 0
+-  _tweenLoop: 2
+-  _tweenEasing: 0
+-  _tweenDelay: 0
+-  _tweenRepeatCount: -1
+-  _tweenUseUnscaledTime: 0
+-  _constant: 0
+-  _constantColor: {r: 1, g: 1, b: 1, a: 1}
+-  _constantFadeInTime: 0.1
+-  _constantFadeOutTime: 0.25
+-  _constantEasing: 0
+-  _constantUseUnscaledTime: 0
+-  _filterMode: 0
+-  _filterList: []
+ --- !u!1 &149800901
+ GameObject:
+   m_ObjectHideFlags: 0
+@@ -3490,7 +3608,6 @@
+   - component: {fileID: 201931484}
+   - component: {fileID: 201931483}
+   - component: {fileID: 201931482}
+-  - component: {fileID: 201931485}
+   m_Layer: 5
+   m_Name: Button (5)
+   m_TagString: Untagged
+@@ -3598,68 +3715,6 @@
+   m_PrefabAsset: {fileID: 0}
+   m_GameObject: {fileID: 201931480}
+   m_CullTransparentMesh: 0
+---- !u!114 &201931485
+-MonoBehaviour:
+-  m_ObjectHideFlags: 0
+-  m_CorrespondingSourceObject: {fileID: 0}
+-  m_PrefabInstance: {fileID: 0}
+-  m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 201931480}
+-  m_Enabled: 1
+-  m_EditorHideFlags: 0
+-  m_Script: {fileID: 11500000, guid: 67d4de287b46eb34e83a61e4f9115070, type: 3}
+-  m_Name: 
+-  m_EditorClassIdentifier: 
+-  mode: 0
+-  forceRender: 0
+-  color: {r: 1, g: 1, b: 1, a: 1}
+-  _overlay: 0
+-  _occluder: 0
+-  _tween: 0
+-  _tweenGradient:
+-    serializedVersion: 2
+-    key0: {r: 0, g: 1, b: 1, a: 0}
+-    key1: {r: 0, g: 1, b: 1, a: 1}
+-    key2: {r: 0, g: 0, b: 0, a: 0}
+-    key3: {r: 0, g: 0, b: 0, a: 0}
+-    key4: {r: 0, g: 0, b: 0, a: 0}
+-    key5: {r: 0, g: 0, b: 0, a: 0}
+-    key6: {r: 0, g: 0, b: 0, a: 0}
+-    key7: {r: 0, g: 0, b: 0, a: 0}
+-    ctime0: 0
+-    ctime1: 65535
+-    ctime2: 0
+-    ctime3: 0
+-    ctime4: 0
+-    ctime5: 0
+-    ctime6: 0
+-    ctime7: 0
+-    atime0: 0
+-    atime1: 65535
+-    atime2: 0
+-    atime3: 0
+-    atime4: 0
+-    atime5: 0
+-    atime6: 0
+-    atime7: 0
+-    m_Mode: 0
+-    m_NumColorKeys: 2
+-    m_NumAlphaKeys: 2
+-  _tweenDuration: 1
+-  _tweenReverse: 0
+-  _tweenLoop: 2
+-  _tweenEasing: 0
+-  _tweenDelay: 0
+-  _tweenRepeatCount: -1
+-  _tweenUseUnscaledTime: 0
+-  _constant: 0
+-  _constantColor: {r: 1, g: 1, b: 1, a: 1}
+-  _constantFadeInTime: 0.1
+-  _constantFadeOutTime: 0.25
+-  _constantEasing: 0
+-  _constantUseUnscaledTime: 0
+-  _filterMode: 0
+-  _filterList: []
+ --- !u!1 &209636871
+ GameObject:
+   m_ObjectHideFlags: 0
+@@ -4277,7 +4332,6 @@
+   - component: {fileID: 254921329}
+   - component: {fileID: 254921328}
+   - component: {fileID: 254921327}
+-  - component: {fileID: 254921330}
+   m_Layer: 5
+   m_Name: Button (1)
+   m_TagString: Untagged
+@@ -4385,68 +4439,6 @@
+   m_PrefabAsset: {fileID: 0}
+   m_GameObject: {fileID: 254921325}
+   m_CullTransparentMesh: 0
+---- !u!114 &254921330
+-MonoBehaviour:
+-  m_ObjectHideFlags: 0
+-  m_CorrespondingSourceObject: {fileID: 0}
+-  m_PrefabInstance: {fileID: 0}
+-  m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 254921325}
+-  m_Enabled: 1
+-  m_EditorHideFlags: 0
+-  m_Script: {fileID: 11500000, guid: 67d4de287b46eb34e83a61e4f9115070, type: 3}
+-  m_Name: 
+-  m_EditorClassIdentifier: 
+-  mode: 0
+-  forceRender: 0
+-  color: {r: 1, g: 1, b: 1, a: 1}
+-  _overlay: 0
+-  _occluder: 0
+-  _tween: 0
+-  _tweenGradient:
+-    serializedVersion: 2
+-    key0: {r: 0, g: 1, b: 1, a: 0}
+-    key1: {r: 0, g: 1, b: 1, a: 1}
+-    key2: {r: 0, g: 0, b: 0, a: 0}
+-    key3: {r: 0, g: 0, b: 0, a: 0}
+-    key4: {r: 0, g: 0, b: 0, a: 0}
+-    key5: {r: 0, g: 0, b: 0, a: 0}
+-    key6: {r: 0, g: 0, b: 0, a: 0}
+-    key7: {r: 0, g: 0, b: 0, a: 0}
+-    ctime0: 0
+-    ctime1: 65535
+-    ctime2: 0
+-    ctime3: 0
+-    ctime4: 0
+-    ctime5: 0
+-    ctime6: 0
+-    ctime7: 0
+-    atime0: 0
+-    atime1: 65535
+-    atime2: 0
+-    atime3: 0
+-    atime4: 0
+-    atime5: 0
+-    atime6: 0
+-    atime7: 0
+-    m_Mode: 0
+-    m_NumColorKeys: 2
+-    m_NumAlphaKeys: 2
+-  _tweenDuration: 1
+-  _tweenReverse: 0
+-  _tweenLoop: 2
+-  _tweenEasing: 0
+-  _tweenDelay: 0
+-  _tweenRepeatCount: -1
+-  _tweenUseUnscaledTime: 0
+-  _constant: 0
+-  _constantColor: {r: 1, g: 1, b: 1, a: 1}
+-  _constantFadeInTime: 0.1
+-  _constantFadeOutTime: 0.25
+-  _constantEasing: 0
+-  _constantUseUnscaledTime: 0
+-  _filterMode: 0
+-  _filterList: []
+ --- !u!1 &256712521
+ GameObject:
+   m_ObjectHideFlags: 0
+@@ -4554,6 +4546,7 @@
+   - component: {fileID: 258960395}
+   - component: {fileID: 258960394}
+   - component: {fileID: 258960393}
++  - component: {fileID: 258960396}
+   m_Layer: 0
+   m_Name: JigsawPuzzle8
+   m_TagString: Untagged
+@@ -4637,6 +4630,68 @@
+   m_PrefabAsset: {fileID: 0}
+   m_GameObject: {fileID: 258960391}
+   m_CullTransparentMesh: 0
++--- !u!114 &258960396
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 258960391}
++  m_Enabled: 1
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: 67d4de287b46eb34e83a61e4f9115070, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  mode: 0
++  forceRender: 0
++  color: {r: 1, g: 1, b: 1, a: 1}
++  _overlay: 0
++  _occluder: 0
++  _tween: 0
++  _tweenGradient:
++    serializedVersion: 2
++    key0: {r: 0, g: 1, b: 1, a: 0}
++    key1: {r: 0, g: 1, b: 1, a: 1}
++    key2: {r: 0, g: 0, b: 0, a: 0}
++    key3: {r: 0, g: 0, b: 0, a: 0}
++    key4: {r: 0, g: 0, b: 0, a: 0}
++    key5: {r: 0, g: 0, b: 0, a: 0}
++    key6: {r: 0, g: 0, b: 0, a: 0}
++    key7: {r: 0, g: 0, b: 0, a: 0}
++    ctime0: 0
++    ctime1: 65535
++    ctime2: 0
++    ctime3: 0
++    ctime4: 0
++    ctime5: 0
++    ctime6: 0
++    ctime7: 0
++    atime0: 0
++    atime1: 65535
++    atime2: 0
++    atime3: 0
++    atime4: 0
++    atime5: 0
++    atime6: 0
++    atime7: 0
++    m_Mode: 0
++    m_NumColorKeys: 2
++    m_NumAlphaKeys: 2
++  _tweenDuration: 1
++  _tweenReverse: 0
++  _tweenLoop: 2
++  _tweenEasing: 0
++  _tweenDelay: 0
++  _tweenRepeatCount: -1
++  _tweenUseUnscaledTime: 0
++  _constant: 0
++  _constantColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
++  _constantFadeInTime: 0.1
++  _constantFadeOutTime: 0.25
++  _constantEasing: 0
++  _constantUseUnscaledTime: 0
++  _filterMode: 0
++  _filterList: []
+ --- !u!1 &260595605
+ GameObject:
+   m_ObjectHideFlags: 0
+@@ -9596,6 +9651,7 @@
+   - component: {fileID: 540547667}
+   - component: {fileID: 540547666}
+   - component: {fileID: 540547665}
++  - component: {fileID: 540547668}
+   m_Layer: 0
+   m_Name: JigsawPuzzle4
+   m_TagString: Untagged
+@@ -9680,6 +9736,68 @@
+   m_PrefabAsset: {fileID: 0}
+   m_GameObject: {fileID: 540547663}
+   m_CullTransparentMesh: 0
++--- !u!114 &540547668
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 540547663}
++  m_Enabled: 1
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: 67d4de287b46eb34e83a61e4f9115070, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  mode: 0
++  forceRender: 0
++  color: {r: 1, g: 1, b: 1, a: 1}
++  _overlay: 0
++  _occluder: 0
++  _tween: 0
++  _tweenGradient:
++    serializedVersion: 2
++    key0: {r: 0, g: 1, b: 1, a: 0}
++    key1: {r: 0, g: 1, b: 1, a: 1}
++    key2: {r: 0, g: 0, b: 0, a: 0}
++    key3: {r: 0, g: 0, b: 0, a: 0}
++    key4: {r: 0, g: 0, b: 0, a: 0}
++    key5: {r: 0, g: 0, b: 0, a: 0}
++    key6: {r: 0, g: 0, b: 0, a: 0}
++    key7: {r: 0, g: 0, b: 0, a: 0}
++    ctime0: 0
++    ctime1: 65535
++    ctime2: 0
++    ctime3: 0
++    ctime4: 0
++    ctime5: 0
++    ctime6: 0
++    ctime7: 0
++    atime0: 0
++    atime1: 65535
++    atime2: 0
++    atime3: 0
++    atime4: 0
++    atime5: 0
++    atime6: 0
++    atime7: 0
++    m_Mode: 0
++    m_NumColorKeys: 2
++    m_NumAlphaKeys: 2
++  _tweenDuration: 1
++  _tweenReverse: 0
++  _tweenLoop: 2
++  _tweenEasing: 0
++  _tweenDelay: 0
++  _tweenRepeatCount: -1
++  _tweenUseUnscaledTime: 0
++  _constant: 0
++  _constantColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
++  _constantFadeInTime: 0.1
++  _constantFadeOutTime: 0.25
++  _constantEasing: 0
++  _constantUseUnscaledTime: 0
++  _filterMode: 0
++  _filterList: []
+ --- !u!1 &540949806
+ GameObject:
+   m_ObjectHideFlags: 0
+@@ -10887,7 +11005,6 @@
+   - component: {fileID: 650622092}
+   - component: {fileID: 650622091}
+   - component: {fileID: 650622090}
+-  - component: {fileID: 650622093}
+   m_Layer: 5
+   m_Name: Button (7)
+   m_TagString: Untagged
+@@ -10995,68 +11112,6 @@
+   m_PrefabAsset: {fileID: 0}
+   m_GameObject: {fileID: 650622088}
+   m_CullTransparentMesh: 0
+---- !u!114 &650622093
+-MonoBehaviour:
+-  m_ObjectHideFlags: 0
+-  m_CorrespondingSourceObject: {fileID: 0}
+-  m_PrefabInstance: {fileID: 0}
+-  m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 650622088}
+-  m_Enabled: 1
+-  m_EditorHideFlags: 0
+-  m_Script: {fileID: 11500000, guid: 67d4de287b46eb34e83a61e4f9115070, type: 3}
+-  m_Name: 
+-  m_EditorClassIdentifier: 
+-  mode: 0
+-  forceRender: 0
+-  color: {r: 1, g: 1, b: 1, a: 1}
+-  _overlay: 0
+-  _occluder: 0
+-  _tween: 0
+-  _tweenGradient:
+-    serializedVersion: 2
+-    key0: {r: 0, g: 1, b: 1, a: 0}
+-    key1: {r: 0, g: 1, b: 1, a: 1}
+-    key2: {r: 0, g: 0, b: 0, a: 0}
+-    key3: {r: 0, g: 0, b: 0, a: 0}
+-    key4: {r: 0, g: 0, b: 0, a: 0}
+-    key5: {r: 0, g: 0, b: 0, a: 0}
+-    key6: {r: 0, g: 0, b: 0, a: 0}
+-    key7: {r: 0, g: 0, b: 0, a: 0}
+-    ctime0: 0
+-    ctime1: 65535
+-    ctime2: 0
+-    ctime3: 0
+-    ctime4: 0
+-    ctime5: 0
+-    ctime6: 0
+-    ctime7: 0
+-    atime0: 0
+-    atime1: 65535
+-    atime2: 0
+-    atime3: 0
+-    atime4: 0
+-    atime5: 0
+-    atime6: 0
+-    atime7: 0
+-    m_Mode: 0
+-    m_NumColorKeys: 2
+-    m_NumAlphaKeys: 2
+-  _tweenDuration: 1
+-  _tweenReverse: 0
+-  _tweenLoop: 2
+-  _tweenEasing: 0
+-  _tweenDelay: 0
+-  _tweenRepeatCount: -1
+-  _tweenUseUnscaledTime: 0
+-  _constant: 0
+-  _constantColor: {r: 1, g: 1, b: 1, a: 1}
+-  _constantFadeInTime: 0.1
+-  _constantFadeOutTime: 0.25
+-  _constantEasing: 0
+-  _constantUseUnscaledTime: 0
+-  _filterMode: 0
+-  _filterList: []
+ --- !u!1 &653546841
+ GameObject:
+   m_ObjectHideFlags: 0
+@@ -11954,6 +12009,7 @@
+   - component: {fileID: 712630798}
+   - component: {fileID: 712630797}
+   - component: {fileID: 712630796}
++  - component: {fileID: 712630799}
+   m_Layer: 0
+   m_Name: JigsawPuzzle3
+   m_TagString: Untagged
+@@ -12038,6 +12094,68 @@
+   m_PrefabAsset: {fileID: 0}
+   m_GameObject: {fileID: 712630794}
+   m_CullTransparentMesh: 0
++--- !u!114 &712630799
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 712630794}
++  m_Enabled: 1
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: 67d4de287b46eb34e83a61e4f9115070, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  mode: 0
++  forceRender: 0
++  color: {r: 1, g: 1, b: 1, a: 1}
++  _overlay: 0
++  _occluder: 0
++  _tween: 0
++  _tweenGradient:
++    serializedVersion: 2
++    key0: {r: 0, g: 1, b: 1, a: 0}
++    key1: {r: 0, g: 1, b: 1, a: 1}
++    key2: {r: 0, g: 0, b: 0, a: 0}
++    key3: {r: 0, g: 0, b: 0, a: 0}
++    key4: {r: 0, g: 0, b: 0, a: 0}
++    key5: {r: 0, g: 0, b: 0, a: 0}
++    key6: {r: 0, g: 0, b: 0, a: 0}
++    key7: {r: 0, g: 0, b: 0, a: 0}
++    ctime0: 0
++    ctime1: 65535
++    ctime2: 0
++    ctime3: 0
++    ctime4: 0
++    ctime5: 0
++    ctime6: 0
++    ctime7: 0
++    atime0: 0
++    atime1: 65535
++    atime2: 0
++    atime3: 0
++    atime4: 0
++    atime5: 0
++    atime6: 0
++    atime7: 0
++    m_Mode: 0
++    m_NumColorKeys: 2
++    m_NumAlphaKeys: 2
++  _tweenDuration: 1
++  _tweenReverse: 0
++  _tweenLoop: 2
++  _tweenEasing: 0
++  _tweenDelay: 0
++  _tweenRepeatCount: -1
++  _tweenUseUnscaledTime: 0
++  _constant: 0
++  _constantColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
++  _constantFadeInTime: 0.1
++  _constantFadeOutTime: 0.25
++  _constantEasing: 0
++  _constantUseUnscaledTime: 0
++  _filterMode: 0
++  _filterList: []
+ --- !u!1 &713126028
+ GameObject:
+   m_ObjectHideFlags: 0
+@@ -14298,6 +14416,7 @@
+   - component: {fileID: 818843250}
+   - component: {fileID: 818843249}
+   - component: {fileID: 818843248}
++  - component: {fileID: 818843251}
+   m_Layer: 0
+   m_Name: JigsawPuzzle2
+   m_TagString: Untagged
+@@ -14382,6 +14501,68 @@
+   m_PrefabAsset: {fileID: 0}
+   m_GameObject: {fileID: 818843246}
+   m_CullTransparentMesh: 0
++--- !u!114 &818843251
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 818843246}
++  m_Enabled: 1
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: 67d4de287b46eb34e83a61e4f9115070, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  mode: 0
++  forceRender: 0
++  color: {r: 1, g: 1, b: 1, a: 1}
++  _overlay: 0
++  _occluder: 0
++  _tween: 0
++  _tweenGradient:
++    serializedVersion: 2
++    key0: {r: 0, g: 1, b: 1, a: 0}
++    key1: {r: 0, g: 1, b: 1, a: 1}
++    key2: {r: 0, g: 0, b: 0, a: 0}
++    key3: {r: 0, g: 0, b: 0, a: 0}
++    key4: {r: 0, g: 0, b: 0, a: 0}
++    key5: {r: 0, g: 0, b: 0, a: 0}
++    key6: {r: 0, g: 0, b: 0, a: 0}
++    key7: {r: 0, g: 0, b: 0, a: 0}
++    ctime0: 0
++    ctime1: 65535
++    ctime2: 0
++    ctime3: 0
++    ctime4: 0
++    ctime5: 0
++    ctime6: 0
++    ctime7: 0
++    atime0: 0
++    atime1: 65535
++    atime2: 0
++    atime3: 0
++    atime4: 0
++    atime5: 0
++    atime6: 0
++    atime7: 0
++    m_Mode: 0
++    m_NumColorKeys: 2
++    m_NumAlphaKeys: 2
++  _tweenDuration: 1
++  _tweenReverse: 0
++  _tweenLoop: 2
++  _tweenEasing: 0
++  _tweenDelay: 0
++  _tweenRepeatCount: -1
++  _tweenUseUnscaledTime: 0
++  _constant: 0
++  _constantColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
++  _constantFadeInTime: 0.1
++  _constantFadeOutTime: 0.25
++  _constantEasing: 0
++  _constantUseUnscaledTime: 0
++  _filterMode: 0
++  _filterList: []
+ --- !u!1 &819338808
+ GameObject:
+   m_ObjectHideFlags: 0
+@@ -16350,6 +16531,7 @@
+   - component: {fileID: 946937525}
+   - component: {fileID: 946937524}
+   - component: {fileID: 946937523}
++  - component: {fileID: 946937526}
+   m_Layer: 0
+   m_Name: JigsawPuzzle5
+   m_TagString: Untagged
+@@ -16433,6 +16615,68 @@
+   m_PrefabAsset: {fileID: 0}
+   m_GameObject: {fileID: 946937521}
+   m_CullTransparentMesh: 0
++--- !u!114 &946937526
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 946937521}
++  m_Enabled: 1
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: 67d4de287b46eb34e83a61e4f9115070, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  mode: 0
++  forceRender: 0
++  color: {r: 1, g: 1, b: 1, a: 1}
++  _overlay: 0
++  _occluder: 0
++  _tween: 0
++  _tweenGradient:
++    serializedVersion: 2
++    key0: {r: 0, g: 1, b: 1, a: 0}
++    key1: {r: 0, g: 1, b: 1, a: 1}
++    key2: {r: 0, g: 0, b: 0, a: 0}
++    key3: {r: 0, g: 0, b: 0, a: 0}
++    key4: {r: 0, g: 0, b: 0, a: 0}
++    key5: {r: 0, g: 0, b: 0, a: 0}
++    key6: {r: 0, g: 0, b: 0, a: 0}
++    key7: {r: 0, g: 0, b: 0, a: 0}
++    ctime0: 0
++    ctime1: 65535
++    ctime2: 0
++    ctime3: 0
++    ctime4: 0
++    ctime5: 0
++    ctime6: 0
++    ctime7: 0
++    atime0: 0
++    atime1: 65535
++    atime2: 0
++    atime3: 0
++    atime4: 0
++    atime5: 0
++    atime6: 0
++    atime7: 0
++    m_Mode: 0
++    m_NumColorKeys: 2
++    m_NumAlphaKeys: 2
++  _tweenDuration: 1
++  _tweenReverse: 0
++  _tweenLoop: 2
++  _tweenEasing: 0
++  _tweenDelay: 0
++  _tweenRepeatCount: -1
++  _tweenUseUnscaledTime: 0
++  _constant: 0
++  _constantColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
++  _constantFadeInTime: 0.1
++  _constantFadeOutTime: 0.25
++  _constantEasing: 0
++  _constantUseUnscaledTime: 0
++  _filterMode: 0
++  _filterList: []
+ --- !u!1 &949883874
+ GameObject:
+   m_ObjectHideFlags: 0
+@@ -17050,6 +17294,7 @@
+   - component: {fileID: 997639075}
+   - component: {fileID: 997639074}
+   - component: {fileID: 997639073}
++  - component: {fileID: 997639076}
+   m_Layer: 0
+   m_Name: JigsawPuzzle1
+   m_TagString: Untagged
+@@ -17134,6 +17379,68 @@
+   m_PrefabAsset: {fileID: 0}
+   m_GameObject: {fileID: 997639071}
+   m_CullTransparentMesh: 0
++--- !u!114 &997639076
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 997639071}
++  m_Enabled: 1
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: 67d4de287b46eb34e83a61e4f9115070, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  mode: 0
++  forceRender: 0
++  color: {r: 1, g: 1, b: 1, a: 1}
++  _overlay: 0
++  _occluder: 0
++  _tween: 0
++  _tweenGradient:
++    serializedVersion: 2
++    key0: {r: 0, g: 1, b: 1, a: 0}
++    key1: {r: 0, g: 1, b: 1, a: 1}
++    key2: {r: 0, g: 0, b: 0, a: 0}
++    key3: {r: 0, g: 0, b: 0, a: 0}
++    key4: {r: 0, g: 0, b: 0, a: 0}
++    key5: {r: 0, g: 0, b: 0, a: 0}
++    key6: {r: 0, g: 0, b: 0, a: 0}
++    key7: {r: 0, g: 0, b: 0, a: 0}
++    ctime0: 0
++    ctime1: 65535
++    ctime2: 0
++    ctime3: 0
++    ctime4: 0
++    ctime5: 0
++    ctime6: 0
++    ctime7: 0
++    atime0: 0
++    atime1: 65535
++    atime2: 0
++    atime3: 0
++    atime4: 0
++    atime5: 0
++    atime6: 0
++    atime7: 0
++    m_Mode: 0
++    m_NumColorKeys: 2
++    m_NumAlphaKeys: 2
++  _tweenDuration: 1
++  _tweenReverse: 0
++  _tweenLoop: 2
++  _tweenEasing: 0
++  _tweenDelay: 0
++  _tweenRepeatCount: -1
++  _tweenUseUnscaledTime: 0
++  _constant: 0
++  _constantColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
++  _constantFadeInTime: 0.1
++  _constantFadeOutTime: 0.25
++  _constantEasing: 0
++  _constantUseUnscaledTime: 0
++  _filterMode: 0
++  _filterList: []
+ --- !u!1 &1000258234
+ GameObject:
+   m_ObjectHideFlags: 0
+@@ -19142,7 +19449,6 @@
+   - component: {fileID: 1172547651}
+   - component: {fileID: 1172547650}
+   - component: {fileID: 1172547649}
+-  - component: {fileID: 1172547652}
+   m_Layer: 5
+   m_Name: Button (3)
+   m_TagString: Untagged
+@@ -19250,68 +19556,6 @@
+   m_PrefabAsset: {fileID: 0}
+   m_GameObject: {fileID: 1172547647}
+   m_CullTransparentMesh: 0
+---- !u!114 &1172547652
+-MonoBehaviour:
+-  m_ObjectHideFlags: 0
+-  m_CorrespondingSourceObject: {fileID: 0}
+-  m_PrefabInstance: {fileID: 0}
+-  m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 1172547647}
+-  m_Enabled: 1
+-  m_EditorHideFlags: 0
+-  m_Script: {fileID: 11500000, guid: 67d4de287b46eb34e83a61e4f9115070, type: 3}
+-  m_Name: 
+-  m_EditorClassIdentifier: 
+-  mode: 0
+-  forceRender: 0
+-  color: {r: 1, g: 1, b: 1, a: 1}
+-  _overlay: 0
+-  _occluder: 0
+-  _tween: 0
+-  _tweenGradient:
+-    serializedVersion: 2
+-    key0: {r: 0, g: 1, b: 1, a: 0}
+-    key1: {r: 0, g: 1, b: 1, a: 1}
+-    key2: {r: 0, g: 0, b: 0, a: 0}
+-    key3: {r: 0, g: 0, b: 0, a: 0}
+-    key4: {r: 0, g: 0, b: 0, a: 0}
+-    key5: {r: 0, g: 0, b: 0, a: 0}
+-    key6: {r: 0, g: 0, b: 0, a: 0}
+-    key7: {r: 0, g: 0, b: 0, a: 0}
+-    ctime0: 0
+-    ctime1: 65535
+-    ctime2: 0
+-    ctime3: 0
+-    ctime4: 0
+-    ctime5: 0
+-    ctime6: 0
+-    ctime7: 0
+-    atime0: 0
+-    atime1: 65535
+-    atime2: 0
+-    atime3: 0
+-    atime4: 0
+-    atime5: 0
+-    atime6: 0
+-    atime7: 0
+-    m_Mode: 0
+-    m_NumColorKeys: 2
+-    m_NumAlphaKeys: 2
+-  _tweenDuration: 1
+-  _tweenReverse: 0
+-  _tweenLoop: 2
+-  _tweenEasing: 0
+-  _tweenDelay: 0
+-  _tweenRepeatCount: -1
+-  _tweenUseUnscaledTime: 0
+-  _constant: 0
+-  _constantColor: {r: 1, g: 1, b: 1, a: 1}
+-  _constantFadeInTime: 0.1
+-  _constantFadeOutTime: 0.25
+-  _constantEasing: 0
+-  _constantUseUnscaledTime: 0
+-  _filterMode: 0
+-  _filterList: []
+ --- !u!1 &1179519897
+ GameObject:
+   m_ObjectHideFlags: 0
+@@ -19547,7 +19791,6 @@
+   - component: {fileID: 1184277950}
+   - component: {fileID: 1184277949}
+   - component: {fileID: 1184277948}
+-  - component: {fileID: 1184277951}
+   m_Layer: 5
+   m_Name: Button (2)
+   m_TagString: Untagged
+@@ -19655,68 +19898,6 @@
+   m_PrefabAsset: {fileID: 0}
+   m_GameObject: {fileID: 1184277946}
+   m_CullTransparentMesh: 0
+---- !u!114 &1184277951
+-MonoBehaviour:
+-  m_ObjectHideFlags: 0
+-  m_CorrespondingSourceObject: {fileID: 0}
+-  m_PrefabInstance: {fileID: 0}
+-  m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 1184277946}
+-  m_Enabled: 1
+-  m_EditorHideFlags: 0
+-  m_Script: {fileID: 11500000, guid: 67d4de287b46eb34e83a61e4f9115070, type: 3}
+-  m_Name: 
+-  m_EditorClassIdentifier: 
+-  mode: 0
+-  forceRender: 0
+-  color: {r: 1, g: 1, b: 1, a: 1}
+-  _overlay: 0
+-  _occluder: 0
+-  _tween: 0
+-  _tweenGradient:
+-    serializedVersion: 2
+-    key0: {r: 0, g: 1, b: 1, a: 0}
+-    key1: {r: 0, g: 1, b: 1, a: 1}
+-    key2: {r: 0, g: 0, b: 0, a: 0}
+-    key3: {r: 0, g: 0, b: 0, a: 0}
+-    key4: {r: 0, g: 0, b: 0, a: 0}
+-    key5: {r: 0, g: 0, b: 0, a: 0}
+-    key6: {r: 0, g: 0, b: 0, a: 0}
+-    key7: {r: 0, g: 0, b: 0, a: 0}
+-    ctime0: 0
+-    ctime1: 65535
+-    ctime2: 0
+-    ctime3: 0
+-    ctime4: 0
+-    ctime5: 0
+-    ctime6: 0
+-    ctime7: 0
+-    atime0: 0
+-    atime1: 65535
+-    atime2: 0
+-    atime3: 0
+-    atime4: 0
+-    atime5: 0
+-    atime6: 0
+-    atime7: 0
+-    m_Mode: 0
+-    m_NumColorKeys: 2
+-    m_NumAlphaKeys: 2
+-  _tweenDuration: 1
+-  _tweenReverse: 0
+-  _tweenLoop: 2
+-  _tweenEasing: 0
+-  _tweenDelay: 0
+-  _tweenRepeatCount: -1
+-  _tweenUseUnscaledTime: 0
+-  _constant: 0
+-  _constantColor: {r: 1, g: 1, b: 1, a: 1}
+-  _constantFadeInTime: 0.1
+-  _constantFadeOutTime: 0.25
+-  _constantEasing: 0
+-  _constantUseUnscaledTime: 0
+-  _filterMode: 0
+-  _filterList: []
+ --- !u!1 &1189947065
+ GameObject:
+   m_ObjectHideFlags: 0
+@@ -24883,7 +25064,6 @@
+   - component: {fileID: 1570646017}
+   - component: {fileID: 1570646016}
+   - component: {fileID: 1570646015}
+-  - component: {fileID: 1570646018}
+   m_Layer: 5
+   m_Name: Button (9)
+   m_TagString: Untagged
+@@ -24991,68 +25171,6 @@
+   m_PrefabAsset: {fileID: 0}
+   m_GameObject: {fileID: 1570646013}
+   m_CullTransparentMesh: 0
+---- !u!114 &1570646018
+-MonoBehaviour:
+-  m_ObjectHideFlags: 0
+-  m_CorrespondingSourceObject: {fileID: 0}
+-  m_PrefabInstance: {fileID: 0}
+-  m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 1570646013}
+-  m_Enabled: 1
+-  m_EditorHideFlags: 0
+-  m_Script: {fileID: 11500000, guid: 67d4de287b46eb34e83a61e4f9115070, type: 3}
+-  m_Name: 
+-  m_EditorClassIdentifier: 
+-  mode: 0
+-  forceRender: 0
+-  color: {r: 1, g: 1, b: 1, a: 1}
+-  _overlay: 0
+-  _occluder: 0
+-  _tween: 0
+-  _tweenGradient:
+-    serializedVersion: 2
+-    key0: {r: 0, g: 1, b: 1, a: 0}
+-    key1: {r: 0, g: 1, b: 1, a: 1}
+-    key2: {r: 0, g: 0, b: 0, a: 0}
+-    key3: {r: 0, g: 0, b: 0, a: 0}
+-    key4: {r: 0, g: 0, b: 0, a: 0}
+-    key5: {r: 0, g: 0, b: 0, a: 0}
+-    key6: {r: 0, g: 0, b: 0, a: 0}
+-    key7: {r: 0, g: 0, b: 0, a: 0}
+-    ctime0: 0
+-    ctime1: 65535
+-    ctime2: 0
+-    ctime3: 0
+-    ctime4: 0
+-    ctime5: 0
+-    ctime6: 0
+-    ctime7: 0
+-    atime0: 0
+-    atime1: 65535
+-    atime2: 0
+-    atime3: 0
+-    atime4: 0
+-    atime5: 0
+-    atime6: 0
+-    atime7: 0
+-    m_Mode: 0
+-    m_NumColorKeys: 2
+-    m_NumAlphaKeys: 2
+-  _tweenDuration: 1
+-  _tweenReverse: 0
+-  _tweenLoop: 2
+-  _tweenEasing: 0
+-  _tweenDelay: 0
+-  _tweenRepeatCount: -1
+-  _tweenUseUnscaledTime: 0
+-  _constant: 0
+-  _constantColor: {r: 1, g: 1, b: 1, a: 1}
+-  _constantFadeInTime: 0.1
+-  _constantFadeOutTime: 0.25
+-  _constantEasing: 0
+-  _constantUseUnscaledTime: 0
+-  _filterMode: 0
+-  _filterList: []
+ --- !u!1 &1571117937
+ GameObject:
+   m_ObjectHideFlags: 0
+@@ -26311,40 +26429,7 @@
+   m_TargetGraphic: {fileID: 1629600237}
+   m_OnClick:
+     m_PersistentCalls:
+-      m_Calls:
+-      - m_Target: {fileID: 1629600234}
+-        m_MethodName: SetActive
+-        m_Mode: 6
+-        m_Arguments:
+-          m_ObjectArgument: {fileID: 0}
+-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+-          m_IntArgument: 0
+-          m_FloatArgument: 0
+-          m_StringArgument: 
+-          m_BoolArgument: 0
+-        m_CallState: 2
+-      - m_Target: {fileID: 2095975057}
+-        m_MethodName: SetActive
+-        m_Mode: 6
+-        m_Arguments:
+-          m_ObjectArgument: {fileID: 0}
+-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+-          m_IntArgument: 0
+-          m_FloatArgument: 0
+-          m_StringArgument: 
+-          m_BoolArgument: 0
+-        m_CallState: 2
+-      - m_Target: {fileID: 434785655}
+-        m_MethodName: SetActive
+-        m_Mode: 6
+-        m_Arguments:
+-          m_ObjectArgument: {fileID: 0}
+-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+-          m_IntArgument: 0
+-          m_FloatArgument: 0
+-          m_StringArgument: 
+-          m_BoolArgument: 0
+-        m_CallState: 2
++      m_Calls: []
+ --- !u!114 &1629600237
+ MonoBehaviour:
+   m_ObjectHideFlags: 0
+@@ -28909,7 +28994,6 @@
+   - component: {fileID: 1799400356}
+   - component: {fileID: 1799400355}
+   - component: {fileID: 1799400354}
+-  - component: {fileID: 1799400357}
+   m_Layer: 5
+   m_Name: Button (6)
+   m_TagString: Untagged
+@@ -29017,68 +29101,6 @@
+   m_PrefabAsset: {fileID: 0}
+   m_GameObject: {fileID: 1799400352}
+   m_CullTransparentMesh: 0
+---- !u!114 &1799400357
+-MonoBehaviour:
+-  m_ObjectHideFlags: 0
+-  m_CorrespondingSourceObject: {fileID: 0}
+-  m_PrefabInstance: {fileID: 0}
+-  m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 1799400352}
+-  m_Enabled: 1
+-  m_EditorHideFlags: 0
+-  m_Script: {fileID: 11500000, guid: 67d4de287b46eb34e83a61e4f9115070, type: 3}
+-  m_Name: 
+-  m_EditorClassIdentifier: 
+-  mode: 0
+-  forceRender: 0
+-  color: {r: 1, g: 1, b: 1, a: 1}
+-  _overlay: 0
+-  _occluder: 0
+-  _tween: 0
+-  _tweenGradient:
+-    serializedVersion: 2
+-    key0: {r: 0, g: 1, b: 1, a: 0}
+-    key1: {r: 0, g: 1, b: 1, a: 1}
+-    key2: {r: 0, g: 0, b: 0, a: 0}
+-    key3: {r: 0, g: 0, b: 0, a: 0}
+-    key4: {r: 0, g: 0, b: 0, a: 0}
+-    key5: {r: 0, g: 0, b: 0, a: 0}
+-    key6: {r: 0, g: 0, b: 0, a: 0}
+-    key7: {r: 0, g: 0, b: 0, a: 0}
+-    ctime0: 0
+-    ctime1: 65535
+-    ctime2: 0
+-    ctime3: 0
+-    ctime4: 0
+-    ctime5: 0
+-    ctime6: 0
+-    ctime7: 0
+-    atime0: 0
+-    atime1: 65535
+-    atime2: 0
+-    atime3: 0
+-    atime4: 0
+-    atime5: 0
+-    atime6: 0
+-    atime7: 0
+-    m_Mode: 0
+-    m_NumColorKeys: 2
+-    m_NumAlphaKeys: 2
+-  _tweenDuration: 1
+-  _tweenReverse: 0
+-  _tweenLoop: 2
+-  _tweenEasing: 0
+-  _tweenDelay: 0
+-  _tweenRepeatCount: -1
+-  _tweenUseUnscaledTime: 0
+-  _constant: 0
+-  _constantColor: {r: 1, g: 1, b: 1, a: 1}
+-  _constantFadeInTime: 0.1
+-  _constantFadeOutTime: 0.25
+-  _constantEasing: 0
+-  _constantUseUnscaledTime: 0
+-  _filterMode: 0
+-  _filterList: []
+ --- !u!1 &1805811568
+ GameObject:
+   m_ObjectHideFlags: 0
+@@ -31577,7 +31599,6 @@
+   - component: {fileID: 2006092854}
+   - component: {fileID: 2006092853}
+   - component: {fileID: 2006092852}
+-  - component: {fileID: 2006092855}
+   m_Layer: 5
+   m_Name: Button (8)
+   m_TagString: Untagged
+@@ -31685,68 +31706,6 @@
+   m_PrefabAsset: {fileID: 0}
+   m_GameObject: {fileID: 2006092850}
+   m_CullTransparentMesh: 0
+---- !u!114 &2006092855
+-MonoBehaviour:
+-  m_ObjectHideFlags: 0
+-  m_CorrespondingSourceObject: {fileID: 0}
+-  m_PrefabInstance: {fileID: 0}
+-  m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 2006092850}
+-  m_Enabled: 1
+-  m_EditorHideFlags: 0
+-  m_Script: {fileID: 11500000, guid: 67d4de287b46eb34e83a61e4f9115070, type: 3}
+-  m_Name: 
+-  m_EditorClassIdentifier: 
+-  mode: 0
+-  forceRender: 0
+-  color: {r: 1, g: 1, b: 1, a: 1}
+-  _overlay: 0
+-  _occluder: 0
+-  _tween: 0
+-  _tweenGradient:
+-    serializedVersion: 2
+-    key0: {r: 0, g: 1, b: 1, a: 0}
+-    key1: {r: 0, g: 1, b: 1, a: 1}
+-    key2: {r: 0, g: 0, b: 0, a: 0}
+-    key3: {r: 0, g: 0, b: 0, a: 0}
+-    key4: {r: 0, g: 0, b: 0, a: 0}
+-    key5: {r: 0, g: 0, b: 0, a: 0}
+-    key6: {r: 0, g: 0, b: 0, a: 0}
+-    key7: {r: 0, g: 0, b: 0, a: 0}
+-    ctime0: 0
+-    ctime1: 65535
+-    ctime2: 0
+-    ctime3: 0
+-    ctime4: 0
+-    ctime5: 0
+-    ctime6: 0
+-    ctime7: 0
+-    atime0: 0
+-    atime1: 65535
+-    atime2: 0
+-    atime3: 0
+-    atime4: 0
+-    atime5: 0
+-    atime6: 0
+-    atime7: 0
+-    m_Mode: 0
+-    m_NumColorKeys: 2
+-    m_NumAlphaKeys: 2
+-  _tweenDuration: 1
+-  _tweenReverse: 0
+-  _tweenLoop: 2
+-  _tweenEasing: 0
+-  _tweenDelay: 0
+-  _tweenRepeatCount: -1
+-  _tweenUseUnscaledTime: 0
+-  _constant: 0
+-  _constantColor: {r: 1, g: 1, b: 1, a: 1}
+-  _constantFadeInTime: 0.1
+-  _constantFadeOutTime: 0.25
+-  _constantEasing: 0
+-  _constantUseUnscaledTime: 0
+-  _filterMode: 0
+-  _filterList: []
+ --- !u!1 &2006374504
+ GameObject:
+   m_ObjectHideFlags: 0
+@@ -32094,7 +32053,8 @@
+   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+   m_LocalPosition: {x: 0, y: 0, z: 0}
+   m_LocalScale: {x: 1, y: 1, z: 1}
+-  m_Children: []
++  m_Children:
++  - {fileID: 56147171}
+   m_Father: {fileID: 1629600235}
+   m_RootOrder: 0
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+@@ -32340,6 +32300,7 @@
+   - component: {fileID: 2044912159}
+   - component: {fileID: 2044912158}
+   - component: {fileID: 2044912157}
++  - component: {fileID: 2044912160}
+   m_Layer: 0
+   m_Name: JigsawPuzzle7
+   m_TagString: Untagged
+@@ -32423,6 +32384,68 @@
+   m_PrefabAsset: {fileID: 0}
+   m_GameObject: {fileID: 2044912155}
+   m_CullTransparentMesh: 0
++--- !u!114 &2044912160
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 2044912155}
++  m_Enabled: 1
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: 67d4de287b46eb34e83a61e4f9115070, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  mode: 0
++  forceRender: 0
++  color: {r: 1, g: 1, b: 1, a: 1}
++  _overlay: 0
++  _occluder: 0
++  _tween: 0
++  _tweenGradient:
++    serializedVersion: 2
++    key0: {r: 0, g: 1, b: 1, a: 0}
++    key1: {r: 0, g: 1, b: 1, a: 1}
++    key2: {r: 0, g: 0, b: 0, a: 0}
++    key3: {r: 0, g: 0, b: 0, a: 0}
++    key4: {r: 0, g: 0, b: 0, a: 0}
++    key5: {r: 0, g: 0, b: 0, a: 0}
++    key6: {r: 0, g: 0, b: 0, a: 0}
++    key7: {r: 0, g: 0, b: 0, a: 0}
++    ctime0: 0
++    ctime1: 65535
++    ctime2: 0
++    ctime3: 0
++    ctime4: 0
++    ctime5: 0
++    ctime6: 0
++    ctime7: 0
++    atime0: 0
++    atime1: 65535
++    atime2: 0
++    atime3: 0
++    atime4: 0
++    atime5: 0
++    atime6: 0
++    atime7: 0
++    m_Mode: 0
++    m_NumColorKeys: 2
++    m_NumAlphaKeys: 2
++  _tweenDuration: 1
++  _tweenReverse: 0
++  _tweenLoop: 2
++  _tweenEasing: 0
++  _tweenDelay: 0
++  _tweenRepeatCount: -1
++  _tweenUseUnscaledTime: 0
++  _constant: 0
++  _constantColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
++  _constantFadeInTime: 0.1
++  _constantFadeOutTime: 0.25
++  _constantEasing: 0
++  _constantUseUnscaledTime: 0
++  _filterMode: 0
++  _filterList: []
+ --- !u!1 &2048082143
+ GameObject:
+   m_ObjectHideFlags: 0
+@@ -33753,7 +33776,6 @@
+   - component: {fileID: 2120678440}
+   - component: {fileID: 2120678439}
+   - component: {fileID: 2120678438}
+-  - component: {fileID: 2120678441}
+   m_Layer: 5
+   m_Name: Button (4)
+   m_TagString: Untagged
+@@ -33861,68 +33883,6 @@
+   m_PrefabAsset: {fileID: 0}
+   m_GameObject: {fileID: 2120678436}
+   m_CullTransparentMesh: 0
+---- !u!114 &2120678441
+-MonoBehaviour:
+-  m_ObjectHideFlags: 0
+-  m_CorrespondingSourceObject: {fileID: 0}
+-  m_PrefabInstance: {fileID: 0}
+-  m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 2120678436}
+-  m_Enabled: 1
+-  m_EditorHideFlags: 0
+-  m_Script: {fileID: 11500000, guid: 67d4de287b46eb34e83a61e4f9115070, type: 3}
+-  m_Name: 
+-  m_EditorClassIdentifier: 
+-  mode: 0
+-  forceRender: 0
+-  color: {r: 1, g: 1, b: 1, a: 1}
+-  _overlay: 0
+-  _occluder: 0
+-  _tween: 0
+-  _tweenGradient:
+-    serializedVersion: 2
+-    key0: {r: 0, g: 1, b: 1, a: 0}
+-    key1: {r: 0, g: 1, b: 1, a: 1}
+-    key2: {r: 0, g: 0, b: 0, a: 0}
+-    key3: {r: 0, g: 0, b: 0, a: 0}
+-    key4: {r: 0, g: 0, b: 0, a: 0}
+-    key5: {r: 0, g: 0, b: 0, a: 0}
+-    key6: {r: 0, g: 0, b: 0, a: 0}
+-    key7: {r: 0, g: 0, b: 0, a: 0}
+-    ctime0: 0
+-    ctime1: 65535
+-    ctime2: 0
+-    ctime3: 0
+-    ctime4: 0
+-    ctime5: 0
+-    ctime6: 0
+-    ctime7: 0
+-    atime0: 0
+-    atime1: 65535
+-    atime2: 0
+-    atime3: 0
+-    atime4: 0
+-    atime5: 0
+-    atime6: 0
+-    atime7: 0
+-    m_Mode: 0
+-    m_NumColorKeys: 2
+-    m_NumAlphaKeys: 2
+-  _tweenDuration: 1
+-  _tweenReverse: 0
+-  _tweenLoop: 2
+-  _tweenEasing: 0
+-  _tweenDelay: 0
+-  _tweenRepeatCount: -1
+-  _tweenUseUnscaledTime: 0
+-  _constant: 0
+-  _constantColor: {r: 1, g: 1, b: 1, a: 1}
+-  _constantFadeInTime: 0.1
+-  _constantFadeOutTime: 0.25
+-  _constantEasing: 0
+-  _constantUseUnscaledTime: 0
+-  _filterMode: 0
+-  _filterList: []
+ --- !u!1 &2120759379
+ GameObject:
+   m_ObjectHideFlags: 0
+Index: .idea/.idea.Race/.idea/contentModel.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ContentModelStore\">\r\n    <e p=\"C:\\Users\\888\\AppData\\Local\\JetBrains\\Rider2020.3\\extResources\" t=\"IncludeRecursive\" />\r\n    <e p=\"C:\\Users\\888\\AppData\\Local\\JetBrains\\Rider2020.3\\resharper-host\\Local\\Transient\\Rider\\v203\\SolutionCaches\\_Race.1531795562.00\" t=\"ExcludeRecursive\" />\r\n    <e p=\"D:\\learn\\Unity\\Race\\Race\" t=\"IncludeRecursive\">\r\n      <e p=\"Assembly-CSharp-firstpass.csproj\" t=\"IncludeRecursive\" />\r\n      <e p=\"Assembly-CSharp.csproj\" t=\"IncludeRecursive\" />\r\n      <e p=\"Assets\" t=\"Include\">\r\n        <e p=\"Package\" t=\"Include\">\r\n          <e p=\"素材\" t=\"Include\">\r\n            <e p=\"_Heathen Engineering\" t=\"Include\">\r\n              <e p=\"Documentation\" t=\"Include\">\r\n                <e p=\"UX\" t=\"Include\">\r\n                  <e p=\"Flat Icons [Free]\" t=\"Include\">\r\n                    <e p=\"Read Me.txt\" t=\"Include\" />\r\n                  </e>\r\n                </e>\r\n              </e>\r\n              <e p=\"Samples\" t=\"Include\">\r\n                <e p=\"UX Examples\" t=\"Include\">\r\n                  <e p=\"Flat Icons [Free]\" t=\"Include\">\r\n                    <e p=\"ToggleSetAnimatorBoolean.cs\" t=\"Include\" />\r\n                  </e>\r\n                </e>\r\n              </e>\r\n            </e>\r\n            <e p=\"Sci-Fi UI\" t=\"Include\">\r\n              <e p=\"Demo_Assets\" t=\"Include\">\r\n                <e p=\"Scripts\" t=\"Include\">\r\n                  <e p=\"GUI_Demo.cs\" t=\"Include\" />\r\n                </e>\r\n              </e>\r\n            </e>\r\n          </e>\r\n        </e>\r\n        <e p=\"Plugins\" t=\"Include\">\r\n          <e p=\"Demigiant\" t=\"Include\">\r\n            <e p=\"DOTween\" t=\"Include\">\r\n              <e p=\"Modules\" t=\"Include\">\r\n                <e p=\"DOTweenModuleAudio.cs\" t=\"Include\" />\r\n                <e p=\"DOTweenModuleEPOOutline.cs\" t=\"Include\" />\r\n                <e p=\"DOTweenModulePhysics.cs\" t=\"Include\" />\r\n                <e p=\"DOTweenModulePhysics2D.cs\" t=\"Include\" />\r\n                <e p=\"DOTweenModuleSprite.cs\" t=\"Include\" />\r\n                <e p=\"DOTweenModuleUI.cs\" t=\"Include\" />\r\n                <e p=\"DOTweenModuleUnityVersion.cs\" t=\"Include\" />\r\n                <e p=\"DOTweenModuleUtils.cs\" t=\"Include\" />\r\n              </e>\r\n              <e p=\"Readme.txt\" t=\"Include\" />\r\n            </e>\r\n          </e>\r\n        </e>\r\n        <e p=\"Scripts\" t=\"Include\">\r\n          <e p=\"ControllerFile\" t=\"Include\">\r\n            <e p=\"CameraController.cs\" t=\"Include\" />\r\n            <e p=\"ViewController.cs\" t=\"Include\" />\r\n          </e>\r\n          <e p=\"Inventory\" t=\"Include\">\r\n            <e p=\"Scripts\" t=\"Include\">\r\n              <e p=\"Inventory.cs\" t=\"Include\" />\r\n              <e p=\"inventoryManger.cs\" t=\"Include\" />\r\n              <e p=\"isont.cs\" t=\"Include\" />\r\n              <e p=\"Item.cs\" t=\"Include\" />\r\n              <e p=\"itemOnword.cs\" t=\"Include\" />\r\n              <e p=\"Slot.cs\" t=\"Include\" />\r\n            </e>\r\n          </e>\r\n          <e p=\"ManagerFile\" t=\"Include\">\r\n            <e p=\"FaceConcrete\" t=\"Include\">\r\n              <e p=\"FourFace\" t=\"Include\">\r\n                <e p=\"ButtenMana.cs\" t=\"Include\" />\r\n                <e p=\"ChangeButton.cs\" t=\"Include\" />\r\n                <e p=\"SliderConter.cs\" t=\"Include\" />\r\n              </e>\r\n              <e p=\"OneFace\" t=\"Include\">\r\n                <e p=\"OneFaceManager.cs\" t=\"Include\" />\r\n                <e p=\"Puzzle.cs\" t=\"Include\" />\r\n              </e>\r\n              <e p=\"ThreeFace\" t=\"Include\">\r\n                <e p=\"Flow.cs\" t=\"Include\" />\r\n                <e p=\"LandChange.cs\" t=\"Include\" />\r\n                <e p=\"rotateConter.cs\" t=\"Include\" />\r\n                <e p=\"SeedContel.cs\" t=\"Include\" />\r\n                <e p=\"ThreeFaceManager\" t=\"Include\">\r\n                  <e p=\"ThreeFaceMange.cs\" t=\"Include\" />\r\n                </e>\r\n                <e p=\"UIConter.cs\" t=\"Include\" />\r\n                <e p=\"VoidConter.cs\" t=\"Include\" />\r\n              </e>\r\n              <e p=\"TwoFace\" t=\"Include\">\r\n                <e p=\"Tools\" t=\"Include\">\r\n                  <e p=\"AnswerManager.cs\" t=\"Include\" />\r\n                  <e p=\"InFaceRotation.cs\" t=\"Include\" />\r\n                  <e p=\"TowFaceViscera.cs\" t=\"Include\" />\r\n                </e>\r\n                <e p=\"TwoFaceManager\" t=\"Include\">\r\n                  <e p=\"Base\" t=\"Include\">\r\n                    <e p=\"Viscera.cs\" t=\"Include\" />\r\n                  </e>\r\n                  <e p=\"TwoFaceManager.cs\" t=\"Include\" />\r\n                </e>\r\n              </e>\r\n            </e>\r\n            <e p=\"SceneStateManager\" t=\"Include\">\r\n              <e p=\"Base\" t=\"Include\">\r\n                <e p=\"SceneState.cs\" t=\"Include\" />\r\n              </e>\r\n              <e p=\"Concrete\" t=\"Include\">\r\n                <e p=\"LoadScene.cs\" t=\"Include\" />\r\n                <e p=\"MainScene.cs\" t=\"Include\" />\r\n                <e p=\"StartScene.cs\" t=\"Include\" />\r\n              </e>\r\n              <e p=\"SceneStateController.cs\" t=\"Include\" />\r\n            </e>\r\n            <e p=\"StartUIManager.cs\" t=\"Include\" />\r\n            <e p=\"UIDragManager\" t=\"Include\">\r\n              <e p=\"UIDrag.cs\" t=\"Include\" />\r\n              <e p=\"UIFace.cs\" t=\"Include\" />\r\n              <e p=\"UIFaceManager.cs\" t=\"Include\" />\r\n            </e>\r\n          </e>\r\n          <e p=\"TestScript\" t=\"Include\">\r\n            <e p=\"musetool\" t=\"Include\">\r\n              <e p=\"ClickHandler.cs\" t=\"Include\" />\r\n            </e>\r\n            <e p=\"objectContorl\" t=\"Include\">\r\n              <e p=\"Cameracontor.cs\" t=\"Include\" />\r\n              <e p=\"ObjectbeBigOrSmall.cs\" t=\"Include\" />\r\n            </e>\r\n            <e p=\"StartPhotoBIGandsamll\" t=\"Include\">\r\n              <e p=\"UICoom.cs\" t=\"Include\" />\r\n              <e p=\"UISamll.cs\" t=\"Include\" />\r\n            </e>\r\n            <e p=\"StratUITIpPlanel\" t=\"Include\">\r\n              <e p=\"TextContorl.cs\" t=\"Include\" />\r\n            </e>\r\n            <e p=\"UI\" t=\"Include\">\r\n              <e p=\"TIPConterl.cs\" t=\"Include\" />\r\n              <e p=\"UIGradient.cs\" t=\"Include\" />\r\n            </e>\r\n          </e>\r\n          <e p=\"Tools\" t=\"Include\">\r\n            <e p=\"GameLoop.cs\" t=\"Include\" />\r\n          </e>\r\n        </e>\r\n        <e p=\"Tween\" t=\"Include\">\r\n          <e p=\"Demo\" t=\"Include\">\r\n            <e p=\"TweenDemo.cs\" t=\"Include\" />\r\n          </e>\r\n          <e p=\"Readme.txt\" t=\"Include\" />\r\n          <e p=\"Tween.cs\" t=\"Include\" />\r\n        </e>\r\n      </e>\r\n      <e p=\"obj\" t=\"ExcludeRecursive\" />\r\n      <e p=\"Packages\" t=\"ExcludeRecursive\" />\r\n      <e p=\"Race.sln\" t=\"IncludeFlat\" />\r\n      <e p=\"Temp\\bin\" t=\"ExcludeRecursive\" />\r\n    </e>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.idea.Race/.idea/contentModel.xml b/.idea/.idea.Race/.idea/contentModel.xml
+--- a/.idea/.idea.Race/.idea/contentModel.xml	(revision 8e7415e4e778a502788349f50c54a240a4855f69)
++++ b/.idea/.idea.Race/.idea/contentModel.xml	(date 1681656104902)
+@@ -4,9 +4,62 @@
+     <e p="C:\Users\888\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+     <e p="C:\Users\888\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Race.1531795562.00" t="ExcludeRecursive" />
+     <e p="D:\learn\Unity\Race\Race" t="IncludeRecursive">
++      <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
+       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
+       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+       <e p="Assets" t="Include">
++        <e p="HighlightingSystemDemo" t="Include">
++          <e p="Assets" t="Include">
++            <e p="Shaders" t="Include">
++              <e p="Dither.shader" t="Include" />
++              <e p="InstancedSurface.shader" t="Include" />
++              <e p="InstancedTransparent.shader" t="Include" />
++            </e>
++          </e>
++          <e p="Scripts" t="Include">
++            <e p="Advanced" t="Include">
++              <e p="Deprecated" t="Include">
++                <e p="HighlighterBase.cs" t="Include" />
++                <e p="HighlighterConstant.cs" t="Include" />
++                <e p="HighlighterFlashing.cs" t="Include" />
++                <e p="HighlighterInteractive.cs" t="Include" />
++                <e p="HighlighterOccluder.cs" t="Include" />
++                <e p="HighlighterSpectrum.cs" t="Include" />
++                <e p="HighlightingUpgrade.cs" t="Include" />
++              </e>
++              <e p="HighlighterFilterAdvanced.cs" t="Include" />
++              <e p="HighlighterInteractionDemo.cs" t="Include" />
++              <e p="HighlighterRevealer.cs" t="Include" />
++              <e p="HighlighterRevealerManager.cs" t="Include" />
++              <e p="HighlighterToggle.cs" t="Include" />
++              <e p="HighlightingPresetLoop.cs" t="Include" />
++            </e>
++            <e p="Basic" t="Include">
++              <e p="HighlighterBasic.cs" t="Include" />
++              <e p="HighlighterFilterBasic.cs" t="Include" />
++              <e p="HighlighterHover.cs" t="Include" />
++            </e>
++            <e p="Helpers" t="Include">
++              <e p="BehaviourToggle.cs" t="Include" />
++              <e p="CompoundObjectController.cs" t="Include" />
++              <e p="GameObjectToggle.cs" t="Include" />
++              <e p="MovementController.cs" t="Include" />
++              <e p="RotationController.cs" t="Include" />
++            </e>
++            <e p="Service" t="Include">
++              <e p="CameraFlyController.cs" t="Include" />
++              <e p="RaycastController.cs" t="Include" />
++            </e>
++            <e p="UI" t="Include">
++              <e p="ControlsUI.cs" t="Include" />
++              <e p="FPSCounter.cs" t="Include" />
++              <e p="PresetSelector.cs" t="Include" />
++              <e p="SceneLoader.cs" t="Include" />
++              <e p="UI.cs" t="Include" />
++              <e p="UIManager.cs" t="Include" />
++            </e>
++          </e>
++        </e>
+         <e p="Package" t="Include">
+           <e p="素材" t="Include">
+             <e p="_Heathen Engineering" t="Include">
+@@ -48,6 +101,36 @@
+                 <e p="DOTweenModuleUtils.cs" t="Include" />
+               </e>
+               <e p="Readme.txt" t="Include" />
++            </e>
++          </e>
++          <e p="HighlightingSystem" t="Include">
++            <e p="Editor" t="Include">
++              <e p="HighlighterEditor.cs" t="Include" />
++              <e p="HighlightingBlitterEditor.cs" t="Include" />
++              <e p="HighlightingPresetEditor.cs" t="Include" />
++              <e p="HighlightingRendererEditor.cs" t="Include" />
++            </e>
++            <e p="Resources" t="Include">
++              <e p="HighlightingBlur.shader" t="Include" />
++              <e p="HighlightingComposite.shader" t="Include" />
++              <e p="HighlightingCut.shader" t="Include" />
++              <e p="HighlightingOpaque.shader" t="Include" />
++              <e p="HighlightingTransparent.shader" t="Include" />
++            </e>
++            <e p="Scripts" t="Include">
++              <e p="Highlighter.cs" t="Include" />
++              <e p="HighlighterBlocker.cs" t="Include" />
++              <e p="HighlightingBlitter.cs" t="Include" />
++              <e p="HighlightingRenderer.cs" t="Include" />
++              <e p="Internal" t="Include">
++                <e p="EndOfFrame.cs" t="Include" />
++                <e p="HighlighterCore.cs" t="Include" />
++                <e p="HighlighterRenderer.cs" t="Include" />
++                <e p="HighlightingBase.cs" t="Include" />
++                <e p="HighlightingPreset.cs" t="Include" />
++                <e p="MaterialExtensions.cs" t="Include" />
++                <e p="ShaderPropertyID.cs" t="Include" />
++              </e>
+             </e>
+           </e>
+         </e>
