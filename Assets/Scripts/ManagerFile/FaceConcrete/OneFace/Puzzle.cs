@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEditor;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public enum PuzzleType
 {
@@ -20,6 +21,8 @@ public enum PuzzleState
 public class Puzzle : MonoBehaviour, IPointerClickHandler
 {
     private RectTransform m_rectTransform;
+
+    private CanvasGroup maskCanGro;
     
     // 判断是否可以进行大拼图切换
     public bool exchangePuzzle;
@@ -31,14 +34,16 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
     public PuzzleType PuzzleType;
     // 当前位置编号
     public int jpCurIndex;
+    //遮罩列表
+    public List<Image> Maskes;
     // 判断是否拼图成功
     private bool isSucceed;
     // 上一次点击时间
     private float lastClickTime;
     // 两次点击之间的最大时间间隔
     private float clickInterval;
-    //高亮组件
-    private Highlighter m_highlighter;
+    
+    [HideInInspector] public bool flashing;
     //记录原来信息，方便回退
     [HideInInspector] public Vector3 originalPos;
     [HideInInspector] public Vector2 originalSize;
@@ -52,7 +57,6 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
     private void Awake()
     {
         m_rectTransform = transform.GetComponent<RectTransform>();
-        //m_highlighter = GetComponent<Highlighter>();
     }
 
     private void Start()
@@ -70,7 +74,29 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
         // 初始化时间间隔
         clickInterval = 0.3f;
     }
-    
+
+    private bool isDisPlay;
+    private void Update()
+    {
+        if(flashing)
+        {
+            if (!isDisPlay)
+            {
+                maskCanGro.alpha = Mathf.Lerp(maskCanGro.alpha, 1, 0.02f);
+                if(maskCanGro.alpha >= 0.9f)
+                    isDisPlay = !isDisPlay;
+            }
+                
+            if (isDisPlay)
+            {
+                maskCanGro.alpha = Mathf.Lerp(maskCanGro.alpha, 0, 0.02f);
+                if(maskCanGro.alpha <= 0.1f)
+                    isDisPlay = !isDisPlay;
+            }
+                
+        }
+    }
+
 
     /// <summary>
     /// 大拼图切换
@@ -84,8 +110,10 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
         {
             // 如果未进行第一次点击，就记录第一次点击的物体
             oneFaceManager.InitialObj = eventData.pointerCurrentRaycast.gameObject;
+            
             //TODO:同时使第一个点击的物体触发点击特效
-            //m_highlighter.ConstantOn();
+            maskCanGro = Maskes[jpCurIndex - 1].GetComponent<CanvasGroup>();
+            flashing = true;
         }
         else
         {
@@ -102,6 +130,9 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
             eventData.pointerCurrentRaycast.gameObject.transform.position = secondPos;
             // 对Puzzle的属性进行交换
             oneFaceManager.ExchangePuzzleCharacteristic(eventData.pointerCurrentRaycast.gameObject.GetComponent<Puzzle>());
+            //停止闪烁
+            oneFaceManager.InitialObj.GetComponent<Puzzle>().flashing = false;
+            Maskes[jpCurIndex - 1].GetComponent<CanvasGroup>().alpha = 0;
             // 切换完成，释放第一次点击后存储的对象
             oneFaceManager.InitialObj = null;
         }
