@@ -43,7 +43,7 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
     // 两次点击之间的最大时间间隔
     private float clickInterval;
     
-    [HideInInspector] public bool flashing;
+    public bool flashing;
     //记录原来信息，方便回退
     [HideInInspector] public Vector3 originalPos;
     [HideInInspector] public Vector2 originalSize;
@@ -110,15 +110,22 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
         {
             // 如果未进行第一次点击，就记录第一次点击的物体
             oneFaceManager.InitialObj = eventData.pointerCurrentRaycast.gameObject;
-            
-            //TODO:同时使第一个点击的物体触发点击特效
+            // 同时使第一个点击的物体触发点击特效
             maskCanGro = Maskes[jpCurIndex - 1].GetComponent<CanvasGroup>();
             flashing = true;
         }
         else
         {
-            // 如果是双击则不触发交换位置方法
-            if (Time.time - lastClickTime < clickInterval) return;
+            // 如果是双击则不触发交换位置方法和闪烁方法
+            Puzzle puzzle = oneFaceManager.InitialObj.GetComponent<Puzzle>();
+            if (Time.time - lastClickTime < clickInterval)
+            {
+                //停止闪烁
+                puzzle.flashing = false;
+                flashing = false;
+                Maskes[puzzle.jpCurIndex - 1].GetComponent<CanvasGroup>().alpha = 0;
+                return;
+            }
             
             // 存放第一次点击的物体位置
             Vector3 firstPos = oneFaceManager.InitialObj.transform.position;
@@ -128,11 +135,11 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
             oneFaceManager.InitialObj.transform.position = secondPos;
             secondPos = firstPos;
             eventData.pointerCurrentRaycast.gameObject.transform.position = secondPos;
+            //停止闪烁
+            puzzle.flashing = false;
+            Maskes[puzzle.jpCurIndex - 1].GetComponent<CanvasGroup>().alpha = 0;
             // 对Puzzle的属性进行交换
             oneFaceManager.ExchangePuzzleCharacteristic(eventData.pointerCurrentRaycast.gameObject.GetComponent<Puzzle>());
-            //停止闪烁
-            oneFaceManager.InitialObj.GetComponent<Puzzle>().flashing = false;
-            Maskes[jpCurIndex - 1].GetComponent<CanvasGroup>().alpha = 0;
             // 切换完成，释放第一次点击后存储的对象
             oneFaceManager.InitialObj = null;
         }
@@ -231,10 +238,10 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
     // 点击事件
     public void OnPointerClick(PointerEventData eventData)
     {
-        // 拼图大小切换
-        ExchangeSmallPuzzle();
         // 拼图位置切换
         ExchangeBigPuzzle(eventData);
+        // 拼图大小切换
+        ExchangeSmallPuzzle();
     }
 
     
