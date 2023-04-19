@@ -79,12 +79,6 @@ public class TowFaceViscera : UIDrag
         });
 
         #endregion
-        
     }
 
-    
-   
-    
-    
-    
 }

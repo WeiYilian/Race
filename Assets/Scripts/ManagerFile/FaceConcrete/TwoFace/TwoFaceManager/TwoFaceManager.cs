@@ -134,4 +134,21 @@ public class TwoFaceManager
             Matching = false;
         }
     }
+    
+    
+    /// <summary>
+    /// 判断第二面答题是否完成
+    /// </summary>
+    public void FInishTwoFace()
+    {
+        CurAnsViscera.AnswerOver = true;
+        foreach (var viscera in VisceraList)
+        {
+            if (!viscera.AnswerOver)
+                return;
+        }
+
+        Accomplish = true;
+        UIFaceManager.Instance.GameOver();
+    }
 }

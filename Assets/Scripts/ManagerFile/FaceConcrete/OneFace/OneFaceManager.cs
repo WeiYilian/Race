@@ -53,6 +53,7 @@ public class OneFaceManager
             if (puzzleFinish[PuzzleType.OneJigsawPuzzle] && puzzleFinish[PuzzleType.TwoJigsawPuzzle])
             {
                 Accomplish = true;
+                UIFaceManager.Instance.GameOver();
             }
         }
             

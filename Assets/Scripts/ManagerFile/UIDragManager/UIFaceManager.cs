@@ -109,8 +109,16 @@ public class UIFaceManager : MonoBehaviour
         return threeFaceMange;
     }
     #endregion
-   
-   
-  
+
+    /// <summary>
+    /// 判断四个面是否全部完成
+    /// </summary>
+    public void GameOver()
+    {
+        // if (oneFaceManager.Accomplish && twoFaceManager.Accomplish && )
+        // {
+        //     
+        // }
+    }
    
 }
