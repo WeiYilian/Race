@@ -20,8 +20,8 @@ public class TwoFaceManager
     public bool Matching;
     //正在进行答题的元素
     public Viscera CurAnsViscera;
-    //答题积分
-    public int Integral;
+    //判断是否完成所有任务
+    public bool Accomplish;
 
     public TwoFaceManager()
     {

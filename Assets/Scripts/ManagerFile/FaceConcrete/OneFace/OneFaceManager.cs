@@ -5,12 +5,22 @@ using UnityEngine;
 
 public class OneFaceManager
 {
+    //判断两种拼图是否都完成
+    private Dictionary<PuzzleType, bool> puzzleFinish = new Dictionary<PuzzleType, bool>();
     // 承接四个拼图的字典
     public Dictionary<int, Puzzle> PuzzleDic = new Dictionary<int, Puzzle>();
     // 拼图任务成功的数量
     private const int SucceedSum = 4;
     // 存放第一次双击的游戏物体
     public GameObject InitialObj;
+    //判断是否完成所有任务
+    public bool Accomplish;
+
+    public OneFaceManager()
+    {
+        puzzleFinish.Add(PuzzleType.OneJigsawPuzzle,false);
+        puzzleFinish.Add(PuzzleType.TwoJigsawPuzzle,false);
+    }
 
     /// <summary>
     /// 检验拼图是否正确
@@ -33,8 +43,17 @@ public class OneFaceManager
 
         if (matchingSum >= SucceedSum)
         {
-            Debug.Log("拼图完成");
-            UIFaceManager.Instance.MessageonCtrol("拼图完成");
+            //Debug.Log("拼图完成");
+            if (!puzzleFinish[puzzleType])
+            {
+                UIFaceManager.Instance.MessageonCtrol("拼图完成");
+                puzzleFinish[puzzleType] = true;
+            }
+
+            if (puzzleFinish[PuzzleType.OneJigsawPuzzle] && puzzleFinish[PuzzleType.TwoJigsawPuzzle])
+            {
+                Accomplish = true;
+            }
         }
             
         //else

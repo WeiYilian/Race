@@ -225,10 +225,8 @@ public class AnswerManager : MonoBehaviour
                         //回答正确
                         UIFaceManager.Instance.MessageonCtrol("回答正确");
                         OptionAnswer.DOColor(Color.green, 0.5f);
-
-                        UIFaceManager.Instance.GetTwoFaceManager().CurAnsViscera.AnswerOver = true;
                         SelectAnswerList.RemoveAt(rod);
-                        UIFaceManager.Instance.GetTwoFaceManager().Integral += 2;
+                        AnswerCorrect();
                     }
                     else
                     {
@@ -330,10 +328,8 @@ public class AnswerManager : MonoBehaviour
                         }
 
                         BtnStateSwitch(SelAnswerArea_Btn);
-                        
-                        UIFaceManager.Instance.GetTwoFaceManager().CurAnsViscera.AnswerOver = true;
                         FillVacancyAnswerList.RemoveAt(rod);
-                        UIFaceManager.Instance.GetTwoFaceManager().Integral += 3;
+                        AnswerCorrect();
                     }
                     else
                     {
@@ -435,5 +431,17 @@ public class AnswerManager : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
         
+    }
+
+    private void AnswerCorrect()
+    {
+        UIFaceManager.Instance.GetTwoFaceManager().CurAnsViscera.AnswerOver = true;
+        foreach (var viscera in UIFaceManager.Instance.GetTwoFaceManager().VisceraList)
+        {
+            if (!viscera.AnswerOver)
+                return;
+        }
+
+        UIFaceManager.Instance.GetTwoFaceManager().Accomplish = true;
     }
 }
