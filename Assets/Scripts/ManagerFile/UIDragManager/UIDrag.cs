@@ -85,12 +85,15 @@ public class UIDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHan
     public void OnDrag(PointerEventData eventData)
     {
         if (eventData.pointerCurrentRaycast.gameObject == null || !IsPrecision) return;
+        
         Vector2 newVec = new Vector2();
         Camera camera = eventData.pressEventCamera;
         // 将屏幕空间鼠标位置eventData.position转换为鼠标在画布空间的鼠标位置
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRec, eventData.position, camera, out newVec);
         // 鼠标移动在画布空间的位置增量
         Vector3 offset = new Vector3(newVec.x - mousePos.x, newVec.y - mousePos.y, 0);
+
+        if ((pos + offset).y >= mFaceLimit || (pos + offset).y <= -mFaceLimit) return;
         // 原始位置增加位置增量即为现在位置
         mRt.anchoredPosition = pos + offset;
         RangeJudge(mRt.localPosition);
@@ -99,7 +102,7 @@ public class UIDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHan
     //结束拖拽触发
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (!IsPrecision) return;
+        if (!IsPrecision || eventData.pointerCurrentRaycast.gameObject == null) return;
         //Debug.Log("结束时在"+eventData.pointerCurrentRaycast.gameObject.name);
         Adsorption(eventData);
         //开启BlocksRaycasts功能
@@ -118,7 +121,7 @@ public class UIDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHan
     {
         #region 判断图片是否旋转到其他面
         
-        if (imagePos.y> mFaceLimit && !isOtherFace)
+        if (imagePos.y > mFaceLimit && !isOtherFace)
             //Debug.Log("向上转");
             ImageRotOtherFace(DragDirection.UP);
 
@@ -180,7 +183,7 @@ public class UIDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHan
     #endregion
 
     /// <summary>
-    /// 针对第二个面的初始化方法
+    /// 初始化方法
     /// </summary>
     public virtual void TwoFaceButInit(){ }
 }

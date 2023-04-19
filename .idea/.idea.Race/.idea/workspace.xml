@@ -21,9 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="保存信息">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/OneFaceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/OneFaceManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/AnswerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/AnswerManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager/TwoFaceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager/TwoFaceManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIDrag.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIDrag.cs" afterDir="false" />
     </list>
     <list id="1f10c6f0-5c40-4f98-9d82-81194a17b6bb" name="在进行更新之前于 2023-03-14 15:16 取消提交了变更 [默认的]" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +63,6 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/ControllerFile/ViewController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIFaceManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager/Base/Viscera.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIDrag.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/TowFaceViscera.cs" />
       <option value="$PROJECT_DIR$/Assets/HighlightingSystemDemo/Scripts/Advanced/Deprecated/HighlightingUpgrade.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Shader/properties.shader" />
@@ -74,6 +71,7 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager/TwoFaceManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/AnswerManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/OneFaceManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIDrag.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="2MtwgT4VxzpKxCEnieV90nTAnOq" />
@@ -152,7 +150,7 @@
       <workItem from="1681137163178" duration="133000" />
       <workItem from="1681191790592" duration="15697000" />
       <workItem from="1681737759039" duration="2484000" />
-      <workItem from="1681894271676" duration="10997000" />
+      <workItem from="1681894271676" duration="12113000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交">
       <created>1678600451169</created>
@@ -420,7 +418,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681907279579</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="第一第二面完成条件写完">
+      <created>1681909442026</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1681909442026</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -460,7 +465,8 @@
     <MESSAGE value="第二面优化" />
     <MESSAGE value="第一面优化完成" />
     <MESSAGE value="保存信息" />
-    <option name="LAST_COMMIT_MESSAGE" value="保存信息" />
+    <MESSAGE value="第一第二面完成条件写完" />
+    <option name="LAST_COMMIT_MESSAGE" value="第一第二面完成条件写完" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
