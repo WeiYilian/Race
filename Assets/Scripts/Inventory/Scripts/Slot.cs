@@ -14,9 +14,11 @@ public class Slot : MonoBehaviour
     public string slotInfo;
 
     public GameObject iteminsolt;
-   
+   //点击ui物品
     public void ItemOnClicked()
     {
+        if (UIFaceManager.Instance.isGameOver)
+        return;
         inventoryManger.UpdateItemInfo(slotInfo);
         bagimage.sprite = SlotImage.sprite;
     }

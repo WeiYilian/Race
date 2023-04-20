@@ -254,6 +254,21 @@ public class SeedContel : MonoBehaviour
             
         }
     }
+    //判断当前面是否全部完成全部种子种植
+    public void isgameover()
+    {
+        if (ThreeFaceMange.seedend1&&ThreeFaceMange.seedend2&&ThreeFaceMange.seedend3)
+        {
+           
+            ThreeFaceMange.Face3compement = true;
+            Debug.Log("第三面通关"+ThreeFaceMange.Face3compement);
+            UIFaceManager.Instance.MessageonCtrol("第三面通关");
+        }
+        else
+        {
+            Debug.Log("一个成功");
+        }
+    }
 //选择种植种子条件
     private void seedButtonclik(Button sender)
     {
@@ -346,10 +361,10 @@ public class SeedContel : MonoBehaviour
                                         seedmanger.gameObject.SetActive(false);
                                         SeedendPanel.gameObject.SetActive(false);
                                         video_img.SetActive(true);
-                         
 
+                                       
                                         ThreeFaceMange.seedend1 = true;
-
+                                        isgameover();
                                     }
                                     else
                                     {
@@ -363,6 +378,7 @@ public class SeedContel : MonoBehaviour
                                             video_img.SetActive(true);
                                             seedmanger.gameObject.SetActive(false);
                                             ThreeFaceMange.seedend3 = true;
+                                            isgameover();
                                         }
                                         else
                                         {
@@ -375,6 +391,7 @@ public class SeedContel : MonoBehaviour
                                                 video_img.SetActive(true);
                                                 seedmanger.gameObject.SetActive(false); 
                                                 ThreeFaceMange.seedend2 = true;
+                                                isgameover();
                                             }
                                             else
                                             {

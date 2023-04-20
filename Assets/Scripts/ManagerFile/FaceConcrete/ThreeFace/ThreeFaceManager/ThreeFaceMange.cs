@@ -14,9 +14,15 @@ public class ThreeFaceMange
     public static bool seedend1;//完成一
     public static bool seedend2;//完成2
     public static bool seedend3;//完成3
+    //判断当前面是否全部完成
+    public static bool Face3compement;
+  
     public void Completeprocess()
     {
      
         //完成一个爆出一个信息或者物品
     }
+    //判断当前面是否所有面都已经完成
+    
+   
 }

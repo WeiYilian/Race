@@ -52,6 +52,7 @@ public class inventoryManger : MonoBehaviour
     }
     public static void UpdateItemInfo(string itemDescrition)
     {
+        
        instance.bagmange.gameObject.SetActive(true);
        
         //更新文字信息并且在下面提示栏显示

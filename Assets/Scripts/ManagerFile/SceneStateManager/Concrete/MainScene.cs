@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// Main场景
@@ -10,6 +11,7 @@ public class MainScene : SceneState
 {
     public MainScene() : base("Game1") { }
 
+    
     // ReSharper disable Unity.PerformanceAnalysis
     public override void StateStart()
     {
@@ -22,6 +24,7 @@ public class MainScene : SceneState
 
     public override void StateEnd()
     {
+       
         
     }
 
@@ -29,4 +32,6 @@ public class MainScene : SceneState
     {
         
     }
+
+  
 }

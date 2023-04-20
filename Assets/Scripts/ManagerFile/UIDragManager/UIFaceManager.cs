@@ -14,11 +14,10 @@ public class UIFaceManager : MonoBehaviour
    
    private OneFaceManager oneFaceManager;
    private ThreeFaceMange threeFaceMange;
-   
-   
+   private FourFaceMange fourFaceMange;
    public CanvasGroup m_canvasGroup;
    private GameObject message;
-   
+   public bool isGameOver;
    private void Awake()
    {
       if (Instance == null)
@@ -108,6 +107,17 @@ public class UIFaceManager : MonoBehaviour
             threeFaceMange = new ThreeFaceMange();
         return threeFaceMange;
     }
+    
+    /// <summary>
+    /// 获得ThreeFaceMange的实例
+    /// </summary>
+    /// <returns></returns>
+    public FourFaceMange GetFourFaceMange()
+    {
+        if(fourFaceMange == null)
+           fourFaceMange = new FourFaceMange();
+        return fourFaceMange;
+    }
     #endregion
 
     /// <summary>
@@ -115,10 +125,14 @@ public class UIFaceManager : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
-        // if (oneFaceManager.Accomplish && twoFaceManager.Accomplish && )
-        // {
-        //     
-        // }
+        if (oneFaceManager.Accomplish && twoFaceManager.Accomplish && ThreeFaceMange.Face3compement &&
+            FourFaceMange.Face4compement)
+        {
+            //全部完成触发事件
+            GameObject.Find("Canvas").transform.Find("EndPanel").gameObject.SetActive(true);
+            isGameOver = true;
+        }
+        
     }
    
 }

@@ -55,7 +55,7 @@ public class ViewController : MonoBehaviour
     private void initObjDistance()
     { 
         //最大与最小范围随物体改变
-        minZoom = box.transform.localScale.magnitude / 2;
+        minZoom = box.transform.localScale.magnitude / 1.55f;
         maxZoom = box.transform.localScale.magnitude * 2;
         zoomSpeed = (maxZoom + minZoom) / 2;
     }
@@ -64,6 +64,8 @@ public class ViewController : MonoBehaviour
 
     private void Update()
     {
+        if (UIFaceManager.Instance.isGameOver)
+        return;
         //摄像机围绕物体旋转
         CameraRotate();
         
