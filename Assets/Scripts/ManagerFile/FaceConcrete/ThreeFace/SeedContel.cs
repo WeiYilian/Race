@@ -38,8 +38,12 @@ public class SeedContel : MonoBehaviour
      static  bool isGame;
      static  bool isGame1;
      static  bool isGame2;
+
+     private ThreeFaceMange ThreeFaceMange;
     void Start()
     {
+        ThreeFaceMange = UIFaceManager.Instance.GetThreeFaceMange();
+        
         video_img=GameObject.Find("Box/3/Panel").transform.Find("vidoiamge1").gameObject;
         bg3 = GameObject.Find("Box/3/Panel").transform.Find("bg").gameObject;
         

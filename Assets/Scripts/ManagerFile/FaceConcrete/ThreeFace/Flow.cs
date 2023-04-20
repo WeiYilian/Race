@@ -39,7 +39,7 @@ public class Flow : MonoBehaviour
                 animator.SetBool("Bloom", true);
                 bloom = true;
                 UIFaceManager.Instance.MessageonCtrol("种子模拟已激活");
-                ThreeFaceMange.SeedisGame = true;//传入已经激活
+                UIFaceManager.Instance.GetThreeFaceMange().SeedisGame = true;//传入已经激活
                 SeedMange.gameObject.SetActive(true);
                 Destroy(gameObject,10f);
             }

@@ -7,7 +7,7 @@ public class FourFaceMange
     
     
     //是否全部完成
-    public static bool Face4compement;
+    public bool Face4compement;
     // Start is called before the first frame update
     void Start()
     {

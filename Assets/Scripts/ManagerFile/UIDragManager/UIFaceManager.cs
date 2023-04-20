@@ -9,10 +9,9 @@ public class UIFaceManager : MonoBehaviour
    public static UIFaceManager Instance;
    
    public List<GameObject> UIFaceList;
-
-   private TwoFaceManager twoFaceManager;
    
    private OneFaceManager oneFaceManager;
+   private TwoFaceManager twoFaceManager;
    private ThreeFaceMange threeFaceMange;
    private FourFaceMange fourFaceMange;
    public CanvasGroup m_canvasGroup;
@@ -38,7 +37,22 @@ public class UIFaceManager : MonoBehaviour
        m_canvasGroup.DOFade(0, 3);
    }
 
-
+   private void Start()
+   {
+       //测试用
+       GameObject.Find("Canvas").transform.Find("GameOverBtnTest").GetComponent<Button>().onClick.AddListener(() =>
+       {
+           oneFaceManager = new OneFaceManager();
+           twoFaceManager = new TwoFaceManager();
+           threeFaceMange = new ThreeFaceMange();
+           fourFaceMange = new FourFaceMange();
+           oneFaceManager.Accomplish = true;
+           twoFaceManager.Accomplish = true;
+           threeFaceMange.Face3compement = true;
+           fourFaceMange.Face4compement = true;
+           GameOver();
+       });
+   }
 
    /// <summary>
    /// 获得当前面的对象以及相邻面的对象
@@ -109,7 +123,7 @@ public class UIFaceManager : MonoBehaviour
     }
     
     /// <summary>
-    /// 获得ThreeFaceMange的实例
+    /// 获得FourFaceMange的实例
     /// </summary>
     /// <returns></returns>
     public FourFaceMange GetFourFaceMange()
@@ -118,6 +132,8 @@ public class UIFaceManager : MonoBehaviour
            fourFaceMange = new FourFaceMange();
         return fourFaceMange;
     }
+    
+    
     #endregion
 
     /// <summary>
@@ -125,8 +141,7 @@ public class UIFaceManager : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
-        if (oneFaceManager.Accomplish && twoFaceManager.Accomplish && ThreeFaceMange.Face3compement &&
-            FourFaceMange.Face4compement)
+        if (oneFaceManager.Accomplish && twoFaceManager.Accomplish && threeFaceMange.Face3compement && fourFaceMange.Face4compement)
         {
             //全部完成触发事件
             GameObject.Find("Canvas").transform.Find("EndPanel").gameObject.SetActive(true);
