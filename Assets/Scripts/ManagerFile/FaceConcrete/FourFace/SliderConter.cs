@@ -13,6 +13,7 @@ public class SliderConter : MonoBehaviour
    
 //一个判断是否滑动方法
     private float value;
+    public static bool isopen;
     private void Start()
     {
       
@@ -38,6 +39,7 @@ public class SliderConter : MonoBehaviour
         if(value >= 40f && value <= 50f)
         {
             ButtenMana.isgame = true;
+            
         }
         else
         {
