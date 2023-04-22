@@ -425,6 +425,11 @@ public class AnswerManager : MonoBehaviour
                     {
                         text.text = "";
                     }
+
+                    foreach (var text in ShowAnswerArea_Text)
+                    {
+                        text.text = "";
+                    }
                 }
                 break;
             default:
