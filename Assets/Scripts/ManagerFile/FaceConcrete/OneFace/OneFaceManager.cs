@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OneFaceManager
 {
@@ -15,11 +16,18 @@ public class OneFaceManager
     public GameObject InitialObj;
     //判断是否完成所有任务
     public bool Accomplish;
-
+    //遮罩列表
+    public List<Image> Maskes = new List<Image>();
     public OneFaceManager()
     {
         puzzleFinish.Add(PuzzleType.OneJigsawPuzzle,false);
         puzzleFinish.Add(PuzzleType.TwoJigsawPuzzle,false);
+
+        Transform Mask = UIFaceManager.Instance.UIFaceList[1].transform.Find("Panel/bg/Masks");
+        foreach (Transform mask in Mask)
+        {
+            Maskes.Add(mask.GetComponent<Image>());
+        }
     }
 
     /// <summary>
