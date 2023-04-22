@@ -58,6 +58,8 @@ public class StartUIManager : MonoBehaviour
             m_FrontPanel.gameObject.SetActive(false);
             m_LoginPanel.gameObject.SetActive(true);
         });
+        
+        /*
         //登录
         m_LoginPanel.Find("LoginBtn").GetComponent<Button>().onClick.AddListener(() =>
         {
@@ -122,8 +124,6 @@ public class StartUIManager : MonoBehaviour
             //登录界面的返回按钮
             m_RegisterPanel.gameObject.SetActive(false);
             m_LoginPanel.gameObject.SetActive(true);
-        });
-
-
+        });*/
     }
 }

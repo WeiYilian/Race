@@ -34,8 +34,6 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
     public PuzzleType PuzzleType;
     // 当前位置编号
     public int jpCurIndex;
-    //遮罩列表
-    public List<Image> Maskes;
     // 判断是否拼图成功
     private bool isSucceed;
     // 上一次点击时间
@@ -111,7 +109,7 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
             // 如果未进行第一次点击，就记录第一次点击的物体
             oneFaceManager.InitialObj = eventData.pointerCurrentRaycast.gameObject;
             // 同时使第一个点击的物体触发点击特效
-            maskCanGro = Maskes[jpCurIndex - 1].GetComponent<CanvasGroup>();
+            maskCanGro = oneFaceManager.Maskes[jpCurIndex - 1].GetComponent<CanvasGroup>();
             flashing = true;
         }
         else
@@ -123,7 +121,7 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
                 //停止闪烁
                 puzzle.flashing = false;
                 flashing = false;
-                Maskes[puzzle.jpCurIndex - 1].GetComponent<CanvasGroup>().alpha = 0;
+                oneFaceManager.Maskes[puzzle.jpCurIndex - 1].GetComponent<CanvasGroup>().alpha = 0;
                 return;
             }
             
@@ -137,7 +135,7 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
             eventData.pointerCurrentRaycast.gameObject.transform.position = secondPos;
             //停止闪烁
             puzzle.flashing = false;
-            Maskes[puzzle.jpCurIndex - 1].GetComponent<CanvasGroup>().alpha = 0;
+            oneFaceManager.Maskes[puzzle.jpCurIndex - 1].GetComponent<CanvasGroup>().alpha = 0;
             // 对Puzzle的属性进行交换
             oneFaceManager.ExchangePuzzleCharacteristic(eventData.pointerCurrentRaycast.gameObject.GetComponent<Puzzle>());
             // 切换完成，释放第一次点击后存储的对象
