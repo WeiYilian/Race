@@ -43,6 +43,11 @@ public class GameLoop : MonoBehaviour
             //状态更新的方法
             SceneStateController.Instance.StateUpdate();
         }
+        
+        
+        //TODO:测试用，后续要删，每次点击都有按钮声音
+        if(Input.GetMouseButtonDown(0))
+            AudioManager.Instance.PlayButtonAudio();
     }
 
 }

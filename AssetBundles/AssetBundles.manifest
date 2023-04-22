@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 3640174404
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: button.ab
+      Dependencies: {}
