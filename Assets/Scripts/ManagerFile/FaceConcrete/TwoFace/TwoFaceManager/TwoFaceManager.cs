@@ -30,11 +30,11 @@ public class TwoFaceManager
         #region VisceraList初始化
 
         // 初始化
-        VisceraList.Add(new Viscera() {Name = "心", ProblemType = ProblemType.ShortAnswer});
-        VisceraList.Add(new Viscera() {Name = "肝",ProblemType = ProblemType.FillVacancy});
-        VisceraList.Add(new Viscera() {Name = "脾",ProblemType = ProblemType.ShortAnswer});
-        VisceraList.Add(new Viscera() {Name = "肺",ProblemType = ProblemType.FillVacancy});
-        VisceraList.Add(new Viscera(){Name = "肾",ProblemType = ProblemType.ShortAnswer});
+        VisceraList.Add(new Viscera() {Name = "心"});
+        VisceraList.Add(new Viscera() {Name = "肝"});
+        VisceraList.Add(new Viscera() {Name = "脾"});
+        VisceraList.Add(new Viscera() {Name = "肺"});
+        VisceraList.Add(new Viscera(){Name = "肾"});
 
         #endregion
 

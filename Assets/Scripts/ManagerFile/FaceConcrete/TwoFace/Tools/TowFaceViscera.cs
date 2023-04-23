@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using DG.Tweening;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+
 
 public class TowFaceViscera : UIDrag
 {
@@ -45,7 +42,11 @@ public class TowFaceViscera : UIDrag
         // 获取答题面板
         Answerbg = GameObject.Find("Canvas").transform.Find("Answerbg").gameObject;
         //  判断问题类型
-        ProblemType problemType = currentViscera.ProblemType;
+        int i = Random.Range(1, 3);
+        if (i == 1)
+            currentViscera.ProblemType = ProblemType.ShortAnswer;
+        else if(i ==2)
+            currentViscera.ProblemType = ProblemType.FillVacancy;
         
 
 
@@ -63,7 +64,7 @@ public class TowFaceViscera : UIDrag
             GameObject shortAnswerObj = Answerbg.transform.Find("ShortAnswer").gameObject;
             GameObject fillVacancyObj = Answerbg.transform.Find("FillVacancy").gameObject;
             //Debug.Log(transform.name+"类型是："+problemType+"进入答题环节");
-            switch (problemType)
+            switch (currentViscera.ProblemType)
             { 
                 // 触发简答题模式
                 case ProblemType.ShortAnswer:
@@ -76,7 +77,7 @@ public class TowFaceViscera : UIDrag
                     fillVacancyObj.SetActive(true);
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    break;
             }
         });
 
