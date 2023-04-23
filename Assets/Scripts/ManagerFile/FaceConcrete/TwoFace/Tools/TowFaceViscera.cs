@@ -54,6 +54,7 @@ public class TowFaceViscera : UIDrag
         // 点击后触发答题环节
         GetComponent<Button>().onClick.AddListener(() =>
         {
+            AudioManager.Instance.PlayButtonAudio();
             if (!twoFaceManager.Matching || currentViscera.AnswerOver) return;
 
             twoFaceManager.CurAnsViscera = currentViscera;

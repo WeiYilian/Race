@@ -236,6 +236,7 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
     // 点击事件
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioManager.Instance.PlayButtonAudio();
         // 拼图位置切换
         ExchangeBigPuzzle(eventData);
         // 拼图大小切换
