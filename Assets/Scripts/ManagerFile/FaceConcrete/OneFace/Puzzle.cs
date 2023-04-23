@@ -153,6 +153,10 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
         // 判断两次点击时间是否超过clickInterval
         if (Time.time - lastClickTime < clickInterval)
         {
+            flashing = false;
+            oneFaceManager.Maskes[jpCurIndex - 1].GetComponent<CanvasGroup>().alpha = 0;
+            // 将第一次点击时存储的游戏物体释放掉
+            oneFaceManager.InitialObj = null;
             switch (PuzzleState)
             {
                 case PuzzleState.Small:
@@ -236,7 +240,7 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
     // 点击事件
     public void OnPointerClick(PointerEventData eventData)
     {
-        AudioManager.Instance.PlayButtonAudio();
+       // AudioManager.Instance.PlayButtonAudio();
         // 拼图位置切换
         ExchangeBigPuzzle(eventData);
         // 拼图大小切换

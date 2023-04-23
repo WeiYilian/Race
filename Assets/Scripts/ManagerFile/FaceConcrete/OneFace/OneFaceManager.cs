@@ -132,9 +132,6 @@ public class OneFaceManager
             default:
                 throw new ArgumentOutOfRangeException();
         }
-        
-        // 将第一次点击时存储的游戏物体释放掉
-        InitialObj = null;
 
         // 判断是否完成拼图
         PuzzleComplete();

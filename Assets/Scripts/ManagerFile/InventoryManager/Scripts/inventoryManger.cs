@@ -6,7 +6,8 @@ using UnityEngine;
 using UnityEngine.UI;
 //背包系统的主体设为一个单例可以供道具和背包格显示
 public class inventoryManger : MonoBehaviour
-{public  Inventory playerInventory;
+{
+    public  Inventory playerInventory;
     public GameObject bagmange;//背包信息面板
     public Image bagmangimage;//信息面板图片
     private static inventoryManger instance;

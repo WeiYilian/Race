@@ -20,8 +20,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="保存信息">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_23_15_11____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_23_15_11____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_23_17_01____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_23_17_01____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/药铺房子.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/药铺房子/yaopu_001.blend" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/药铺房子/yaopu_001.blend.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/药铺房子/yaopu_001.blend1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/药铺房子/yaopu_001.blend1.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/药铺房子/yaopu_001.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/药铺房子/yaopu_001.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/药铺房子/yaopu_001.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/药铺房子/yaopu_001.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/药铺房子/预览图.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Package/药铺房子/预览图.png.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/test.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/test.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/OneFaceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/OneFaceManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/Puzzle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/Puzzle.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/InventoryManager/Scripts/inventoryManger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/InventoryManager/Scripts/inventoryManger.cs" afterDir="false" />
     </list>
     <list id="1f10c6f0-5c40-4f98-9d82-81194a17b6bb" name="在进行更新之前于 2023-03-14 15:16 取消提交了变更 [默认的]" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,11 +80,13 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIDrag.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/Tools/StartUIManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/Tools/GameOverManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/Puzzle.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/AnswerManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/TowFaceViscera.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/InFaceRotation.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager/TwoFaceManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/OneFaceManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/Puzzle.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/InventoryManager/Scripts/inventoryManger.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="2MtwgT4VxzpKxCEnieV90nTAnOq" />
@@ -101,7 +119,7 @@
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <method v="2" />
     </configuration>
@@ -110,7 +128,7 @@
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <method v="2" />
     </configuration>
@@ -146,7 +164,7 @@
       <workItem from="1681116257008" duration="4004000" />
       <workItem from="1681137163178" duration="133000" />
       <workItem from="1681191790592" duration="15697000" />
-      <workItem from="1682215881181" duration="3449000" />
+      <workItem from="1682215881181" duration="7638000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交">
       <created>1678600451169</created>
@@ -400,7 +418,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682230632977</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="保存信息">
+      <created>1682231161848</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1682231161848</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
