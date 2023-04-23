@@ -14,6 +14,8 @@ public class ButtenMana : MonoBehaviour
     [SerializeField] Sprite sprite1;
 
     [SerializeField] Sprite sprite3;
+    [SerializeField] Sprite sprite4;
+    
     public float duration = 1f; // 平移时间
     //游戏是否开始 
     public static bool isgame;
@@ -32,12 +34,12 @@ public class ButtenMana : MonoBehaviour
     //按钮
     public List<Button> sequence;
 
-
+//携程控制更改图片
     private IEnumerator LightUpButton()
     {
         foreach (var btn in sequence)
         {
-            btn.GetComponent<Image>().sprite = sprite3;
+            btn.GetComponent<Image>().sprite = sprite4;
             yield return new WaitForSeconds(0.5f);
             btn.GetComponent<Image>().sprite = sprite1;
             yield return new WaitForSeconds(0.5f);

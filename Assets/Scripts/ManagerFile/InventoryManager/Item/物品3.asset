@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f22884910eddb34ea7b378386eb8498, type: 3}
+  m_Name: "\u7269\u54C13"
+  m_EditorClassIdentifier: 
+  itemName: "\u300A\u672C\u8349\u7EB2\u76EE\u300B"
+  itemImage: {fileID: 21300000, guid: 67bc0c45fedc1904e8e1976f29a27774, type: 3}
+  itemHeld: 0
+  iteminfo: "\u88AB\u8A89\u4E3A\"\u4E1C\u65B9\u533B\u5B66\u5DE8\u5178\",\u662F\u6211\u56FD\u533B\u836F\u5B9D\u5E93,\u4EE5\u8BBA\u836F\u6750\u4E3A\u4E3B,\u300A\u672C\u8349\u7EB2\u76EE\u300B\u4E5F\u7EA0\u6B63\u4E86\u524D\u4EBA\u7684\u8BB8\u591A\u9519\u8BEF\u4E4B\u5904.\u672C\u4E66\u4E0D\u4EC5\u662F\u4E00\u90E8\u836F\u7269\u5B66\u8457\u4F5C\uFF0C\u8FD8\u662F\u4E00\u90E8\u5177\u6709\u4E16\u754C\u6027\u5F71\u54CD\u7684\u535A\u7269\u5B66\u8457\u4F5C."
+  equip: 0

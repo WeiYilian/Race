@@ -56,7 +56,7 @@ public class ViewController : MonoBehaviour
     { 
         //最大与最小范围随物体改变
         minZoom = box.transform.localScale.magnitude / 1.55f;
-        maxZoom = box.transform.localScale.magnitude * 2;
+        maxZoom = box.transform.localScale.magnitude * 1.2f;
         zoomSpeed = (maxZoom + minZoom) / 2;
     }
 

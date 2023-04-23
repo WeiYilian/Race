@@ -100,6 +100,7 @@ public class SeedContel : MonoBehaviour
                 UIFaceManager.Instance.MessageonCtrol("凤仙花已激活");
                 SeedContel.isGame1 = true;
                 ThreeFaceMange.Seed3 = true;
+                
             }
 
             Destroy(collision.gameObject);//找到后销毁
@@ -265,6 +266,7 @@ public class SeedContel : MonoBehaviour
         {
            
             ThreeFaceMange.Face3compement = true;
+            GameObject.Find("3/Panel/bg").transform.Find("线索3").gameObject.SetActive(true);
             Debug.Log("第三面通关"+ThreeFaceMange.Face3compement);
             UIFaceManager.Instance.MessageonCtrol("第三面通关");
         }

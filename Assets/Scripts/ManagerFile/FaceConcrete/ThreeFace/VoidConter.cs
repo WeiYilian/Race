@@ -93,6 +93,7 @@ public class VoidConter : MonoBehaviour
                 
                 UIFaceManager.Instance.MessageonCtrol("甘菊已完成种植");
                 backguand.sprite = BG;
+                GameObject.Find("3/Panel/bg").transform.Find("肝").gameObject.SetActive(true);
                 currentTime = 0;
                 close();
             }
