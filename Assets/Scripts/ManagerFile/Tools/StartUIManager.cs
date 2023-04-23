@@ -55,8 +55,8 @@ public class StartUIManager : MonoBehaviour
         //首页面进入游戏按钮
         m_FrontPanel.Find("EnterBtn").GetComponent<Button>().onClick.AddListener(() =>
         {
-            m_FrontPanel.gameObject.SetActive(false);
-            m_LoginPanel.gameObject.SetActive(true);
+            AudioManager.Instance.PlayButtonAudio();
+            SceneStateController.Instance.SetState(new MainScene());
         });
         
         /*

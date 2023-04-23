@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using UnityEngine;
 using System.Linq;
+using DG.Tweening;
+using UnityEngine.UI;
 
 public class TwoFaceManager
 {
@@ -127,6 +129,7 @@ public class TwoFaceManager
         if (matchesNumber >= visceraDesDic.Count)
         {
             Matching = true;
+            UIFaceManager.Instance.UIFaceList[2].transform.Find("Panel/bg/甘菊").GetComponent<Image>().DOFade(1,1);
             UIFaceManager.Instance.MessageonCtrol("匹配成功");
         }
         else

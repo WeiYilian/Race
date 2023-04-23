@@ -272,6 +272,7 @@ public class AnswerManager : MonoBehaviour
 
     private void BtnDelegate(Button button,bool isShortAnswer = true)
     {
+        AudioManager.Instance.PlayButtonAudio();
         if (isShortAnswer)
         {
             button.onClick.AddListener(() =>

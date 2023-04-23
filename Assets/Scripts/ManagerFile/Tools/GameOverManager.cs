@@ -16,11 +16,13 @@ public class GameOverManager : MonoBehaviour
         ReturnManu.onClick.AddListener(() =>
         {
             //返回主菜单
+            AudioManager.Instance.PlayButtonAudio();
             SceneStateController.Instance.SetState(new StartScene());
         }); 
         
         ExitGame.onClick.AddListener(() =>
         {
+            AudioManager.Instance.PlayButtonAudio();
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;//在编辑器中退出
 #else
