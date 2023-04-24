@@ -123,6 +123,7 @@
               <e p="StartUIManager.cs" t="Include" />
             </e>
             <e p="UIDragManager" t="Include">
+              <e p="SettingControl.cs" t="Include" />
               <e p="UIDrag.cs" t="Include" />
               <e p="UIFace.cs" t="Include" />
               <e p="UIFaceManager.cs" t="Include" />
