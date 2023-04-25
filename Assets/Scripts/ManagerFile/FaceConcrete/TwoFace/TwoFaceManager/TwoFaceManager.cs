@@ -25,6 +25,8 @@ public class TwoFaceManager
     //判断是否完成所有任务
     public bool Accomplish;
 
+    private GameObject com;
+
     public TwoFaceManager()
     {
         #region VisceraList初始化
@@ -61,6 +63,8 @@ public class TwoFaceManager
         visceraCode.Add("土","脾");
 
         #endregion
+
+        com = UIFaceManager.Instance.UIFaceList[2].transform.Find("Panel/bg/甘菊").gameObject;
     }
 
     /// <summary>
@@ -129,7 +133,7 @@ public class TwoFaceManager
         if (matchesNumber >= visceraDesDic.Count)
         {
             Matching = true;
-            UIFaceManager.Instance.UIFaceList[2].transform.Find("Panel/bg/甘菊").GetComponent<Image>().DOFade(1,1);
+            com.GetComponent<Image>().DOFade(1,1);
             UIFaceManager.Instance.MessageonCtrol("匹配成功");
         }
         else

@@ -41,23 +41,23 @@ public class TowFaceViscera : UIDrag
         currentViscera = twoFaceManager.GetViscera(transform.name);
         // 获取答题面板
         Answerbg = GameObject.Find("Canvas").transform.Find("Answerbg").gameObject;
-        //  判断问题类型
-        int i = Random.Range(1, 3);
-        if (i == 1)
-            currentViscera.ProblemType = ProblemType.ShortAnswer;
-        else if(i ==2)
-            currentViscera.ProblemType = ProblemType.FillVacancy;
-        
-
 
         #region 问题按钮初始化
 
         // 点击后触发答题环节
         GetComponent<Button>().onClick.AddListener(() =>
         {
-            AudioManager.Instance.PlayButtonAudio();
+            // TODO:AudioManager.Instance.PlayButtonAudio();
             if (!twoFaceManager.Matching || currentViscera.AnswerOver) return;
 
+            //  判断问题类型
+            int i = Random.Range(1, 3);
+            if (i == 1)
+                currentViscera.ProblemType = ProblemType.ShortAnswer;
+            else if(i ==2)
+                currentViscera.ProblemType = ProblemType.FillVacancy;
+            
+            
             twoFaceManager.CurAnsViscera = currentViscera;
             
             Answerbg.gameObject.SetActive(true);

@@ -82,7 +82,6 @@ public class SeedContel : MonoBehaviour
         //检测是否将各个种子找到
         if (collision.name == Seedname)
         {
-            Debug.Log("ss");
             gameObject.GetComponent<Image>().sprite =Updateimage;
             if (Seedname=="甘菊")
             {UIFaceManager.Instance.MessageonCtrol("甘菊已激活");

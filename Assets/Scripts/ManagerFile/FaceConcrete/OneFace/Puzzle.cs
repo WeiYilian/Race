@@ -114,16 +114,8 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
         }
         else
         {
-            // 如果是双击则不触发交换位置方法和闪烁方法
-            Puzzle puzzle = oneFaceManager.InitialObj.GetComponent<Puzzle>();
-            if (Time.time - lastClickTime < clickInterval)
-            {
-                //停止闪烁
-                puzzle.flashing = false;
-                flashing = false;
-                oneFaceManager.Maskes[puzzle.jpCurIndex - 1].GetComponent<CanvasGroup>().alpha = 0;
+            if (!oneFaceManager.InitialObj)
                 return;
-            }
             
             // 存放第一次点击的物体位置
             Vector3 firstPos = oneFaceManager.InitialObj.transform.position;
@@ -134,8 +126,8 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
             secondPos = firstPos;
             eventData.pointerCurrentRaycast.gameObject.transform.position = secondPos;
             //停止闪烁
-            puzzle.flashing = false;
-            oneFaceManager.Maskes[puzzle.jpCurIndex - 1].GetComponent<CanvasGroup>().alpha = 0;
+            oneFaceManager.InitialObj.GetComponent<Puzzle>().flashing = false;
+            oneFaceManager.Maskes[oneFaceManager.InitialObj.GetComponent<Puzzle>().jpCurIndex - 1].GetComponent<CanvasGroup>().alpha = 0;
             // 对Puzzle的属性进行交换
             oneFaceManager.ExchangePuzzleCharacteristic(eventData.pointerCurrentRaycast.gameObject.GetComponent<Puzzle>());
             // 切换完成，释放第一次点击后存储的对象
@@ -153,7 +145,12 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
         // 判断两次点击时间是否超过clickInterval
         if (Time.time - lastClickTime < clickInterval)
         {
-            flashing = false;
+            if (oneFaceManager.InitialObj)
+            {
+                oneFaceManager.InitialObj.GetComponent<Puzzle>().flashing = false;
+                oneFaceManager.InitialObj = null;
+            }
+                
             oneFaceManager.Maskes[jpCurIndex - 1].GetComponent<CanvasGroup>().alpha = 0;
             // 将第一次点击时存储的游戏物体释放掉
             oneFaceManager.InitialObj = null;
@@ -194,15 +191,10 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
         m_rectTransform.sizeDelta = ParentObj.GetComponent<RectTransform>().rect.size;
         // 隐藏父物体
         ParentObj.SetActive(false);
-        if (TraList.Count > 0)
+        // 遍历子物体，将子物体显示
+        foreach (Transform child in transform)
         {
-            // 遍历子物体，将子物体显示
-            foreach (Transform child in TraList)
-            {
-                child.gameObject.SetActive(true);
-            }
-            // 清空TraList
-            TraList.Clear();
+            child.gameObject.SetActive(true);
         }
         // 改变父物体
         transform.SetParent(ParentObj.transform.parent);
@@ -224,7 +216,6 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
         // 遍历子物体，并将子物体隐藏
         foreach (Transform child in transform)
         {
-            TraList.Add(child);
             child.gameObject.SetActive(false);
         }
         // 设置回原来的参数
@@ -240,7 +231,7 @@ public class Puzzle : MonoBehaviour, IPointerClickHandler
     // 点击事件
     public void OnPointerClick(PointerEventData eventData)
     {
-       // AudioManager.Instance.PlayButtonAudio();
+        // TODO:AudioManager.Instance.PlayButtonAudio();
         // 拼图位置切换
         ExchangeBigPuzzle(eventData);
         // 拼图大小切换

@@ -97,7 +97,7 @@ public class InFaceRotation : MonoBehaviour, IBeginDragHandler, IDragHandler,IEn
                 //对五个小元素进行反方向定位，以保证小元素不旋转
                 WuXing[i].transform.localEulerAngles = new Vector3(0,0,-GetAngles(transformRotation));
             }
-            AudioManager.Instance.PlayButtonAudio();
+            // TODO:AudioManager.Instance.PlayButtonAudio();
             UpdataQuene(GetAngles(transformRotation));
         }
         

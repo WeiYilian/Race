@@ -28,9 +28,8 @@ public class Flow : MonoBehaviour
     {
         if (collision.name == "Flow") //花洒
         {
-            Debug.Log("ss");
             if (!bloom)
-            { Debug.Log("s");
+            { 
                 Destroy(Flow2);
                 // animator.Play("Bloom");
                 flow.gameObject.SetActive(true);
