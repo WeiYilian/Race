@@ -47,7 +47,7 @@ public class TowFaceViscera : UIDrag
         // 点击后触发答题环节
         GetComponent<Button>().onClick.AddListener(() =>
         {
-            // TODO:AudioManager.Instance.PlayButtonAudio();
+            AudioManager.Instance.PlayButtonAudio();
             if (!twoFaceManager.Matching || currentViscera.AnswerOver) return;
 
             //  判断问题类型

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\沅\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\沅\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Race.-1376956924.00" t="ExcludeRecursive" />
-    <e p="F:\GIt\Race" t="IncludeRecursive">
+    <e p="C:\Users\888\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\888\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_Race.1531795562.00" t="ExcludeRecursive" />
+    <e p="D:\learn\Unity\Race\Race" t="IncludeRecursive">
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
@@ -53,7 +53,6 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="ControllerFile" t="Include">
-            <e p="CameraController.cs" t="Include" />
             <e p="ViewController.cs" t="Include" />
           </e>
           <e p="ManagerFile" t="Include">
@@ -118,18 +117,12 @@
               </e>
               <e p="SceneStateController.cs" t="Include" />
             </e>
-            <e p="Tools" t="Include">
-              <e p="GameOverManager.cs" t="Include" />
-              <e p="StartUIManager.cs" t="Include" />
-            </e>
             <e p="UIDragManager" t="Include">
+              <e p="SettingControl.cs" t="Include" />
               <e p="UIDrag.cs" t="Include" />
               <e p="UIFace.cs" t="Include" />
               <e p="UIFaceManager.cs" t="Include" />
             </e>
-          </e>
-          <e p="Shader" t="Include">
-            <e p="properties.shader" t="Include" />
           </e>
           <e p="TestScript" t="Include">
             <e p="musetool" t="Include">
@@ -153,6 +146,9 @@
           </e>
           <e p="Tools" t="Include">
             <e p="GameLoop.cs" t="Include" />
+            <e p="GameOverManager.cs" t="Include" />
+            <e p="StartUIManager.cs" t="Include" />
+            <e p="TextEffect.cs" t="Include" />
           </e>
         </e>
         <e p="Tween" t="Include">
