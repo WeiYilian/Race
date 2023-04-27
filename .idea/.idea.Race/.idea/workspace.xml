@@ -21,16 +21,15 @@
   <component name="ChangeListManager">
     <list default="true" id="3f681314-839d-4fc6-9491-50771a848bcb" name="默认的" comment="保存信息">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_12_17_51____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_12_17_51____.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_12_8_48____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_12_8_48____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_19_9_18____.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_22_15_45____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_22_15_45____.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_23_15_11____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_23_15_11____.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_23_17_01____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_23_17_01____.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_24_16_02____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_24_16_02____.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_24_18_35____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_24_18_35____.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_25_15_18____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_25_15_18____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_26_15_40____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/Update_2023_4_26_15_40____.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-14_15_16____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-14_15_16____.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-16_21_20____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-16_21_20____.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-17_20_46____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023-03-17_20_46____.xml" afterDir="false" />
@@ -48,17 +47,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_23_19_48____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_23_19_48____.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_25_20_28____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_25_20_28____.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_8_16_31____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/_2023_4_8_16_31____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/shelf/在进行Update之前于_2023_4_19_9_18_取消提交了变更_[默认的]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Race/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AssetBundles/AssetBundles" beforeDir="false" afterPath="$PROJECT_DIR$/AssetBundles/AssetBundles" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AssetBundles/AssetBundles.manifest" beforeDir="false" afterPath="$PROJECT_DIR$/AssetBundles/AssetBundles.manifest" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AssetBundles/button.ab.manifest" beforeDir="false" afterPath="$PROJECT_DIR$/AssetBundles/button.ab.manifest" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Start.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Start.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/AudioManager/AudioManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/AudioManager/AudioManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/SceneStateManager/Concrete/MainScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/SceneStateManager/Concrete/MainScene.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/SceneStateManager/Concrete/StartScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/SceneStateManager/Concrete/StartScene.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/SettingControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/SettingControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/SettingControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tools/SettingControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/SettingControl.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tools/SettingControl.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIFaceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIFaceManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tools/GameOverManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tools/GameOverManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tools/TextEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tools/TextEffect.cs" afterDir="false" />
     </list>
     <list id="1f10c6f0-5c40-4f98-9d82-81194a17b6bb" name="在进行更新之前于 2023-03-14 15:16 取消提交了变更 [默认的]" comment="" />
@@ -72,38 +65,52 @@
     <option name="RESET_MODE" value="KEEP" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestScript/UI/TIPConterl.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/ThreeFace/SeedContel.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestScript/StartPhotoBIGandsamll/UISamll.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/InFaceRotation.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Image.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/AnswerManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/Puzzle.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/TowFaceViscera.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Scrollbar.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/OneFaceManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventData/PointerEventData.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.rider@1.2.1/Rider/Editor/RiderScriptEditor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Button.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/ExecuteEvents.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIFace.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestScript/StartPhotoBIGandsamll/UICoom.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/AnswerManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventData/PointerEventData.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestScript/UI/TIPConterl.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/Puzzle.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIFace.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/Canvas/CanvasGroupInheritedAlpha.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Image.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tools/TextEffect.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/InFaceRotation.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/TowFaceViscera.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/E81851A0-DC73-4A79-AFA9-F5B7273162BE/b5/ff21947e/Random.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Scrollbar.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestScript/StartPhotoBIGandsamll/UISamll.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/OneFaceManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/ExecuteEvents.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Button.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.rider@1.2.1/Rider/Editor/RiderScriptEditor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/ThreeFace/SeedContel.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/AudioManager/AudioManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/SceneStateManager/Concrete/StartScene.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/SceneStateManager/Concrete/MainScene.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ControllerFile/ViewController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Tools/TextEffect.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/SettingControl.cs" />
-      </list>
-    </option>
+    <changedPaths>
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/ThreeFace/Flow.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ControllerFile/ViewController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager/Base/Viscera.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIDrag.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/Tools/GameOverManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/TwoFaceManager/TwoFaceManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/OneFaceManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/InventoryManager/Scripts/inventoryManger.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tools/GameLoop.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/Tools/StartUIManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tools/StartEffect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/FourFace/ButtenMana.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/OneFace/Puzzle.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/AnswerManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/TowFaceViscera.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/FaceConcrete/TwoFace/Tools/InFaceRotation.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tools/TextEffect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ManagerFile/UIDragManager/UIFaceManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Tools/GameOverManager.cs" />
+    </changedPaths>
   </component>
   <component name="ProjectId" id="2MtwgT4VxzpKxCEnieV90nTAnOq" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="2" id="新增" />
   </component>
   <component name="ProjectViewState">
@@ -131,7 +138,7 @@
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <method v="2" />
     </configuration>
@@ -140,7 +147,7 @@
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <method v="2" />
     </configuration>
@@ -177,7 +184,7 @@
       <workItem from="1681137163178" duration="133000" />
       <workItem from="1681191790592" duration="15697000" />
       <workItem from="1682215881181" duration="8010000" />
-      <workItem from="1682556650989" duration="52000" />
+      <workItem from="1682426496523" duration="2754000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交">
       <created>1678600451169</created>
@@ -445,7 +452,21 @@
       <option name="project" value="LOCAL" />
       <updated>1682257809855</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="保存信息">
+      <created>1682425743156</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1682425743156</updated>
+    </task>
+    <task id="LOCAL-00040" summary="完结">
+      <created>1682429259831</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1682429259831</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -484,14 +505,9 @@
     <MESSAGE value="换了个盒子" />
     <MESSAGE value="第二面优化" />
     <MESSAGE value="保存信息" />
+    <MESSAGE value="背景设置" />
     <MESSAGE value="完结" />
     <option name="LAST_COMMIT_MESSAGE" value="完结" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="582" y="321" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1682556666384">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state x="582" y="321" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.816@0.0.1536.816" timestamp="1682556666384" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

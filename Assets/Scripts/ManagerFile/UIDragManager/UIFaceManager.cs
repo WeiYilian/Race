@@ -9,14 +9,19 @@ public class UIFaceManager : MonoBehaviour
    public static UIFaceManager Instance;
    
    public List<GameObject> UIFaceList;
-   
+   //各面的管理器
    private OneFaceManager oneFaceManager;
    private TwoFaceManager twoFaceManager;
    private ThreeFaceMange threeFaceMange;
    private FourFaceMange fourFaceMange;
+   //消息提示
    public CanvasGroup m_canvasGroup;
    private GameObject message;
+   //开关
    public bool isGameOver;
+   public bool isGameStart;
+   //计时器
+   public float Timer;
    private void Awake()
    {
       if (Instance == null)
@@ -37,21 +42,12 @@ public class UIFaceManager : MonoBehaviour
        m_canvasGroup.DOFade(0, 3);
    }
 
-   private void Start()
+   private void Update()
    {
-       //测试用
-       GameObject.Find("Canvas").transform.Find("GameOverBtnTest").GetComponent<Button>().onClick.AddListener(() =>
+       if (isGameStart)
        {
-           oneFaceManager = new OneFaceManager();
-           twoFaceManager = new TwoFaceManager();
-           threeFaceMange = new ThreeFaceMange();
-           fourFaceMange = new FourFaceMange();
-           oneFaceManager.Accomplish = true;
-           twoFaceManager.Accomplish = true;
-           threeFaceMange.Face3compement = true;
-           fourFaceMange.Face4compement = true;
-           GameOver();
-       });
+           Timer += Time.deltaTime;
+       }
    }
 
    /// <summary>
@@ -145,6 +141,7 @@ public class UIFaceManager : MonoBehaviour
         {
             //全部完成触发事件
             GameObject.Find("Canvas").transform.Find("EndPanel").gameObject.SetActive(true);
+            isGameStart = false;
             isGameOver = true;
         }
         

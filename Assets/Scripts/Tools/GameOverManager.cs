@@ -8,10 +8,15 @@ public class GameOverManager : MonoBehaviour
 {
     private Button ReturnManu;
     private Button ExitGame;
+    private Text TimeText;
     private void Start()
     {
         ReturnManu = transform.Find("ReturnMainMenu").GetComponent<Button>();
         ExitGame = transform.Find("ExitGame").GetComponent<Button>();
+        TimeText = transform.Find("Time").GetComponent<Text>();
+        int m = Mathf.FloorToInt(UIFaceManager.Instance.Timer / 60);
+        int s = Mathf.FloorToInt(UIFaceManager.Instance.Timer % 60);
+        TimeText.text = m + "分" + s + "秒";
         
         ReturnManu.onClick.AddListener(() =>
         {

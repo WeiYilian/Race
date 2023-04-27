@@ -96,7 +96,8 @@ public class TextEffect : MonoBehaviour
     }
 
     private void Disappear()
-    { 
+    {
+        UIFaceManager.Instance.isGameStart = true;
         gameObject.SetActive(false);
     }
 }
