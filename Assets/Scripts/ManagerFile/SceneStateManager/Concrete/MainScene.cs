@@ -18,20 +18,15 @@ public class MainScene : SceneState
         if (SceneManager.GetActiveScene().name != "Game1"/*如果当前的场景名不为sceneName*/)
         {
             SceneManager.LoadScene("Game1");//加载名为sceneName的场景
+            
         }
-        Init();
+        AudioManager.Instance.PlayBGMAudio("2");
     }
 
     public override void StateEnd()
     {
-       
+        AudioManager.Instance.StopAudio(0);
         
     }
 
-    public void Init()
-    {
-        
-    }
-
-  
 }

@@ -84,6 +84,7 @@ public class TextEffect : MonoBehaviour
         if (index >= TextList.Count)
         {
             GetComponent<Image>().DOFade(0, 1);
+            Camera.main.GetComponent<ViewController>().autoRotSpeed = 0;
             Invoke(nameof(Disappear),1);
             return;
         }

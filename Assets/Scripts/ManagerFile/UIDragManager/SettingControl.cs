@@ -6,35 +6,52 @@ using UnityEngine.UI;
 public class SettingControl : MonoBehaviour
 {
     //得到速度控制器和声音控制器
-    private Slider seedsilder;
-    private Slider Adiosilder;
+    private Transform systemSettingPanal;
+    private Slider speedSlider;
+    private Slider audioSlider;
+    private Button closeMusic;
+    private Button openMusic;
 
     public AudioSource Adiol;
-    // Start is called before the first frame update
+
    private void Start()
-    {
-        seedsilder = gameObject.transform.Find("seedset").Find("Slider").gameObject.GetComponent<Slider>();
-        Adiosilder = gameObject.transform.Find("Adiost").Find("Silder").gameObject.GetComponent<Slider>();
-        seedsilder.value = GameObject.Find("Main Camera").GetComponent<ViewController>().rotSpeed;
-        Adiosilder.value = Adiol.GetComponent<AudioSource>().volume;
-    }
+   {
+        systemSettingPanal = GameObject.Find("Canvas").transform.Find("SystemSettingPanel");
+        speedSlider = systemSettingPanal.transform.Find("AdjustRotateSpeed").Find("Slider").gameObject.GetComponent<Slider>();
+        audioSlider = systemSettingPanal.transform.Find("AdjustVolume").Find("Slider").gameObject.GetComponent<Slider>();
+        closeMusic = systemSettingPanal.transform.Find("CloseMusic").GetChild(0).GetComponent<Button>();
+        openMusic = systemSettingPanal.transform.Find("CloseMusic").GetChild(1).GetComponent<Button>();
 
-    public void OnvalueChanged()
-    {Debug.Log("旋转速度："+GameObject.Find("Main Camera").GetComponent<ViewController>().rotSpeed);
-    Debug.Log("速度："+seedsilder.value);
-        GameObject.Find("Main Camera").GetComponent<ViewController>().rotSpeed = seedsilder.value;
+        transform.Find("SystemSetting").GetComponent<Button>().onClick.AddListener(() =>
+        {
+            systemSettingPanal.gameObject.SetActive(true);
+        });
         
-    }
-
-    public void Onchangvadio()
-    {
-        Adiol.GetComponent<AudioSource>().volume = Adiosilder.value;
+        systemSettingPanal.Find("ApplyBtn").GetComponent<Button>().onClick.AddListener(() =>
+        {
+            systemSettingPanal.gameObject.SetActive(false);
+        });
         
+        closeMusic.onClick.AddListener(() =>
+        {
+            AudioManager.Instance.PauseAudio(0);
+            openMusic.gameObject.SetActive(true);
+            closeMusic.gameObject.SetActive(false);
+        });
+        
+        openMusic.onClick.AddListener(() =>
+        {
+            AudioManager.Instance.StopAudio(0);
+            openMusic.gameObject.SetActive(false);
+            closeMusic.gameObject.SetActive(true);
+        });
     }
+   
     
     // Update is called once per frame
     void Update()
     {
-        
+        AudioManager.Instance.transform.GetChild(0).GetComponent<AudioSource>().volume = audioSlider.value;
+        Camera.main.GetComponent<ViewController>().rotSpeed = speedSlider.value*100/2;
     }
 }

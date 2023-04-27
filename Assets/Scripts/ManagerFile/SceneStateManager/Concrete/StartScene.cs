@@ -16,13 +16,11 @@ public class StartScene : SceneState
         {
             SceneManager.LoadScene("Start");//加载名为sceneName的场景
         }
-
-
-
+        AudioManager.Instance.PlayBGMAudio("1");
     }
 
     public override void StateEnd()
     {
-        
+        AudioManager.Instance.StopAudio(0);
     }
 }

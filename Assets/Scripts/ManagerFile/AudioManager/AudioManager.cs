@@ -20,6 +20,23 @@ public class AudioManager : MonoBehaviour
         }
         else
             Destroy(gameObject);
+        
+        GameObject audioPrefab = new GameObject("AudioObjectPool");
+        audioPrefab.AddComponent<AudioSource>();
+        audioPrefab.GetComponent<AudioSource>().playOnAwake = false;
+        m_ObjectPool = new ObjectPool(audioPrefab, initAudioPrefabcount);
+        audioPrefab.hideFlags = HideFlags.HideInHierarchy;
+        audioPrefab.transform.SetParent(transform);
+
+        ABInit();
+        AudioInit();
+        
+        foreach (AudioClip ac in audioList)
+        {
+            audioDic.Add(ac.name, ac);
+        }
+        
+        bgAudioSource = transform.GetChild(0).GetComponent<AudioSource>();
     }
 
     //audioClipl列表
@@ -73,32 +90,14 @@ public class AudioManager : MonoBehaviour
  
     //声音对象池
     private ObjectPool m_ObjectPool;
- 
-    private void Start()
-    {
-        GameObject audioPrefab = new GameObject("AudioObjectPool");
-        audioPrefab.AddComponent<AudioSource>();
-        audioPrefab.GetComponent<AudioSource>().playOnAwake = false;
-        m_ObjectPool = new ObjectPool(audioPrefab, initAudioPrefabcount);
-        audioPrefab.hideFlags = HideFlags.HideInHierarchy;
-        audioPrefab.transform.SetParent(transform);
-
-        ABInit();
-        AudioInit();
-        
-        foreach (AudioClip ac in audioList)
-        {
-            audioDic.Add(ac.name, ac);
-        }
-        
-        bgAudioSource = transform.GetChild(0).GetComponent<AudioSource>();
- 
-    }
 
     //初始化ab包
     private void ABInit()
     {
         m_ObjectPool.LoadResources("button","button.ab",ResType.Music);
+        m_ObjectPool.LoadResources("1","start.ab",ResType.Music);
+        m_ObjectPool.LoadResources("2","music.ab",ResType.Music);
+        
     }
     
     private void AudioInit()
@@ -106,7 +105,9 @@ public class AudioManager : MonoBehaviour
         audioList = new List<AudioClip>()
         {
             //TODO:添加音乐
-            m_ObjectPool.GetABMusic("button")
+            m_ObjectPool.GetABMusic("button"),
+            m_ObjectPool.GetABMusic("1"),
+            m_ObjectPool.GetABMusic("2")
         };
     }
 
@@ -119,17 +120,7 @@ public class AudioManager : MonoBehaviour
         AudioSource audioSource = transform.GetChild(index).GetComponent<AudioSource>();
         audioSource.Pause();
     }
- 
-    /// <summary>
-    /// 继续播放
-    /// </summary>
-    /// <param name="index">播放器序号</param>
-    public void ResumeAudio(int index)
-    {
-        AudioSource audioSource = transform.GetChild(index).GetComponent<AudioSource>();
-        audioSource.UnPause();
-    }
- 
+
     /// <summary>
     /// 停止播放声音
     /// </summary>
@@ -167,38 +158,6 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 直接播放声音
-    /// </summary>
-    /// <param name="index">播放器序号</param>
-    /// <param name="audioName">音频文件名称</param>
-    /// <param name="volume">音量大小</param>
-    /// <param name="isLoop">是否循环</param>
-    public void PlayAudio(int index, string audioName, float volume = 1, bool isLoop = false)
-    {
-        //Debug.Log("------------执行播放声音----------------");
-        AudioSource audioSource = this.transform.GetChild(index).GetComponent<AudioSource>();
- 
-        if (IsMute || audioSource == null)
-        {
-            return;
-        }
-        StopAllCoroutines();
-        AudioClip audioClip;
-        if (audioDic.TryGetValue(audioName, out audioClip))
-        {
-            audioSource.gameObject.SetActive(true);
-            audioSource.loop = isLoop;
-            audioSource.clip = audioClip;
-            audioSource.volume = volume;
-            if (audioSource.isPlaying)
-            {
-                audioSource.Stop();
-            }
-            audioSource.Play();
-        }
-    }
- 
-    /// <summary>
     /// 重载播放，只有播放器和音频
     /// </summary>
     /// <param name="index">播放器序号</param>
@@ -224,106 +183,6 @@ public class AudioManager : MonoBehaviour
             }
             audioSource.Play();
         }
-    }
- 
-    /// <summary>
-    /// 声音淡入
-    /// </summary>
-    /// <param name="index">播放器序号</param>
-    /// <param name="audioName">音频名称</param>
-    /// <param name="isLoop">是否循环</param>
-    /// <returns></returns>
-    public IEnumerator AudioFadeIn(int index, string audioName, bool isLoop)
-    {
-        float initVolume = 0;
-        float preTime = 1.0f / 5;                            //渐变率
-        AudioClip audioClip;
-        if (audioDic.TryGetValue(audioName, out audioClip))
-        {
-            AudioSource audioSource = transform.GetChild(index).GetComponent<AudioSource>();
-            if (audioSource == null) yield break;
-            audioSource.gameObject.SetActive(true);//声音播放对象默认为false，播放时把对应的对象设为true
-            audioSource.clip = audioClip;
-            audioSource.volume = 0;
-            audioSource.loop = isLoop;
-            print("zhi 0");
-            if (audioSource.isPlaying)
-            {
-                audioSource.Stop();
-            }
-            audioSource.Play();
-            audioSource.volume = 0;
- 
-            while (true)
-            {
-                initVolume += 1 * Time.deltaTime * preTime;                        //声音渐高
-                audioSource.volume = initVolume;                                   //将渐高变量赋值给播放器音量
-                if (initVolume >= 1 - 0.02f)      //如果很接近配置文件中的值，那么将其固定在配置文件中的值（最大值）
-                {
-                    audioSource.volume = 1;
-                    break;
-                }
-                yield return 1;
-            }
-        }
-    }
- 
-    /// <summary>
-    /// 声音淡出
-    /// </summary>
-    /// <param name="index">淡出的播放器序号</param>
-    /// <returns></returns>
-    public IEnumerator AudioFadedOut(int index)
-    {
-        AudioSource audioSource = this.transform.GetChild(index).GetComponent<AudioSource>();
- 
-        if (audioSource == null || audioSource.volume == 0 || audioSource == null)
-        {
-            yield break;
-        }
-        float initVolume = audioSource.volume;
-        float preTime = 1.0f / 5;
-        while (true)
-        {
-            initVolume += -1 * Time.deltaTime * preTime;
-            audioSource.volume = initVolume;
-            if (initVolume <= 0)
-            {
-                audioSource.volume = 0;
-                audioSource.Stop();
-                break;
-            }
-            yield return 1;
-        }
-    }
- 
-    /// <summary>
-    /// 初始化音频
-    /// </summary>
-    /// <param name="audioSource"></param>
-    private void InitAudioSource(AudioSource audioSource)
-    {
-        if (audioSource == null)
-        {
-            return;
-        }
-        if (audioSource.isPlaying)
-        {
-            audioSource.Stop();
-        }
-        audioSource.playOnAwake = false;
-        audioSource.loop = false;
-        audioSource.volume = 1;
-        audioSource.clip = null;
-        audioSource.name = "AudioObjectPool";
-    }
- 
-    /// <summary>
-    /// 停止所有播放
-    /// </summary>
-    private void Destroy()
-    {
-        StopAllCoroutines();
     }
 }
 
