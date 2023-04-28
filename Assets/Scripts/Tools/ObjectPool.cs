@@ -20,8 +20,6 @@ public class ObjectPool
     private Dictionary<string, AssetBundle> ABDic = new Dictionary<string, AssetBundle>();
 
     private Dictionary<string, AudioClip> MusicDic = new Dictionary<string, AudioClip>();
-
-    private Dictionary<string, GameObject> ObjDic = new Dictionary<string, GameObject>();
     //构造函数
     public ObjectPool(GameObject prefab, int initialSize)
     {
@@ -90,10 +88,6 @@ public class ObjectPool
                 AudioClip sound = ABDic[filePath].LoadAsset<AudioClip>(resName);
                 MusicDic.Add(resName, sound);
                 break;
-            case ResType.GameObject:
-                GameObject obj = ABDic[filePath].LoadAsset<GameObject>(resName);
-                ObjDic.Add(resName, obj);
-                break;
             default:
                 break;
         }
@@ -104,13 +98,16 @@ public class ObjectPool
     {
         return MusicDic[resName];
     }
-    
-    //获得游戏对象
-    public GameObject GetABObj(string resName)
-    {
-        return ObjDic[resName];
-    }
 
+    //卸载所有ab包
+    public void UnLoadAll()
+    {
+        AssetBundle.UnloadAllAssetBundles(false);
+        //注意清空缓存
+        ABDic.Clear();
+        MusicDic.Clear();
+    }
+    
     #endregion
    
 }

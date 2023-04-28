@@ -26,7 +26,7 @@ public class MainScene : SceneState
     public override void StateEnd()
     {
         AudioManager.Instance.StopAudio(0);
-        
+        AudioManager.Instance.UnLoadAll();
     }
 
 }

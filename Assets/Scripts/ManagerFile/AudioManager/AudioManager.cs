@@ -200,5 +200,11 @@ public class AudioManager : MonoBehaviour
             audioSource.Play();
         }
     }
+
+    //清除所有ab包
+    public void UnLoadAll()
+    {
+        m_ObjectPool.UnLoadAll();
+    }
 }
 

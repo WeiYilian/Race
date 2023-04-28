@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.UI;
@@ -147,9 +148,6 @@ public class SeedContel : MonoBehaviour
 
     public void OnCilk()
     {
-       
-       
-        
         if (isGame==false||isGame1==false||isGame2==false)
         {
             Debug.Log("2");
@@ -265,7 +263,6 @@ public class SeedContel : MonoBehaviour
         {
            
             ThreeFaceMange.Face3compement = true;
-            GameObject.Find("3/Panel/bg").transform.Find("线索3").gameObject.SetActive(true);
             Debug.Log("第三面通关"+ThreeFaceMange.Face3compement);
             UIFaceManager.Instance.MessageonCtrol("第三面通关");
         }
