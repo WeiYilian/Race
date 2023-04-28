@@ -13,7 +13,7 @@ public class GameOverManager : MonoBehaviour
     {
         ReturnManu = transform.Find("ReturnMainMenu").GetComponent<Button>();
         ExitGame = transform.Find("ExitGame").GetComponent<Button>();
-        TimeText = transform.Find("Time").GetComponent<Text>();
+        TimeText = transform.Find("Time/Text").GetComponent<Text>();
         int m = Mathf.FloorToInt(UIFaceManager.Instance.Timer / 60);
         int s = Mathf.FloorToInt(UIFaceManager.Instance.Timer % 60);
         TimeText.text = m + "分" + s + "秒";
