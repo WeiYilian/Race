@@ -1,13 +1,16 @@
 ManifestFileVersion: 0
-CRC: 1214018521
+CRC: 3727363771
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
       Name: button.ab
       Dependencies: {}
     Info_1:
-      Name: start.ab
+      Name: music.ab
       Dependencies: {}
     Info_2:
-      Name: music.ab
+      Name: start.ab
+      Dependencies: {}
+    Info_3:
+      Name: typing.ab
       Dependencies: {}

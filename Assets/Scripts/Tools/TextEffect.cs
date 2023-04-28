@@ -27,12 +27,17 @@ public class TextEffect : MonoBehaviour
     {
         //初始化
         m_Text = transform.GetChild(0).GetComponent<Text>();
-        TextList.Add("中国中医学博大精深，其中诞生了许多伟人与文化瑰宝");
-        TextList.Add("了解他们，传承它们是我们应尽的职责");
-        TextList.Add("那么，运用你的智慧去破解那些谜题吧");
+        
+        TextList.Add("一株小草改变世界\n一枚银针联通中西\n一缕药香穿越古今");
+        TextList.Add("中华文化博大精深，五千年来孕育了无数瑰宝");
+        TextList.Add("而中医便是其中的重要标志之一");
+        TextList.Add("中医学的哲学体系、思维模式、价值观念与中华优秀传统文化一脉相承，是中华民族智慧的结晶");
+        TextList.Add("现在，就让我们带着对中医学的好奇心，破解密匣，探索其中的秘密吧！");
 
         //要打印的第一句话为列表的首位
         words = TextList[index];
+        
+        AudioManager.Instance.PlayAudio(2,"typing",1f,true);
     }
 
     void Update () 
@@ -69,6 +74,7 @@ public class TextEffect : MonoBehaviour
     /// </summary>
     private void OnFinish()
     {
+        AudioManager.Instance.PauseAudio(2);
         isActive = false;
         timer = 0;
         currentPos = 0;
@@ -90,6 +96,7 @@ public class TextEffect : MonoBehaviour
         }
         
         //初始化
+        AudioManager.Instance.ResumeAudio(2);
         words = TextList[index];
         m_Text.text = "";
         isActive = true;

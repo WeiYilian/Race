@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -85,6 +86,7 @@ public class VoidConter : MonoBehaviour
                 
                 UIFaceManager.Instance.MessageonCtrol("车前子已完成种植");
                 backguand.sprite = BG2;
+                UIFaceManager.Instance.UIFaceList[3].transform.Find("Panel/bg/肝").GetComponent<Image>().DOFade(1, 1);
                 currentTime = 0;
                 close();
             }
@@ -93,7 +95,6 @@ public class VoidConter : MonoBehaviour
                 
                 UIFaceManager.Instance.MessageonCtrol("甘菊已完成种植");
                 backguand.sprite = BG;
-                GameObject.Find("3/Panel/bg").transform.Find("肝").gameObject.SetActive(true);
                 currentTime = 0;
                 close();
             }

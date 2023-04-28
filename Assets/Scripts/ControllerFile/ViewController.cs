@@ -23,8 +23,6 @@ public class ViewController : MonoBehaviour
     private float limitDown;
     [Header("摄像机当前缩放距离")] public float objDistance;
 
-    
-
     [Header("缩放速度")] private float zoomSpeed;
 
     //插值方法实现相机平滑放大缩小
@@ -41,6 +39,8 @@ public class ViewController : MonoBehaviour
     private float targetZoom;
     //平滑速度值
     private Vector3 smoothVelocity = Vector3.zero;
+    //检测是否开始缩放
+    private bool isZoom;
 
     private void Start()
     {
@@ -58,20 +58,19 @@ public class ViewController : MonoBehaviour
         minZoom = box.transform.localScale.magnitude / 1.55f;
         maxZoom = box.transform.localScale.magnitude * 1.2f;
         zoomSpeed = (maxZoom + minZoom) / 2;
+        targetZoom = (maxZoom + minZoom) / 2;
     }
 
     
 
     private void Update()
     {
-        if (UIFaceManager.Instance.isGameOver)
-        return;
+        if (UIFaceManager.Instance.isGameOver) return;
+        // if ( ) return;
         //摄像机围绕物体旋转
         CameraRotate();
-        
         //鼠标滚轮缩放
         UpdateObjDistanceState();
-        //鼠标控制旋转
     }
 
     /// <summary>
@@ -80,12 +79,19 @@ public class ViewController : MonoBehaviour
     private void CameraRotate()
     {
         transform.RotateAround(box.transform.position, Vector3.up, autoRotSpeed * Time.deltaTime); //摄像机自动围绕目标旋转
+        
+        if (!UIFaceManager.Instance.isGameStart) return;
+        
+        transform.GetChild(0).LookAt(box.transform);
+        
         var mHROt = -Input.GetAxis(Horizontal);//获取键盘X轴移动
         var mVROt = Input.GetAxis(Vertical);//获取键盘Y轴移动
         var mouseX = Input.GetAxis(InputMouseX);//获取鼠标X轴移动
         var mouseY = -Input.GetAxis(InputMouseY);//获取鼠标Y轴移动
         limitUp = Mathf.Sin(rotUpLimit * Mathf.Deg2Rad) * objDistance;
         limitDown = -Mathf.Sin(rotDownLimit * Mathf.Deg2Rad) * objDistance;
+        
+        
         //按鼠标右键移动摄像机位置
         if (Input.GetMouseButton(1))
         {
@@ -113,12 +119,13 @@ public class ViewController : MonoBehaviour
     /// </summary>
     private void UpdateObjDistanceState()
     {
+        if (!UIFaceManager.Instance.isGameStart) return;
+        
         float scroll = Input.GetAxis(InputMouseScrollwheel);
         targetZoom -= scroll * zoomSpeed;
         // 限制缩放范围
         targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
-        // 使用差值函数平滑缩放
-        transform.position = Vector3.SmoothDamp(transform.position, transform.position.normalized * targetZoom, ref smoothVelocity, smoothTime);
+        transform.position = Vector3.SmoothDamp(transform.position, transform.position.normalized * targetZoom, ref smoothVelocity, smoothTime);// 使用差值函数平滑缩放
         // 获取当前缩放距离
         objDistance = Vector3.Distance(transform.position, box.transform.position) - 100f;
     }

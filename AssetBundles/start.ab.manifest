@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1257691636
+CRC: 3807832113
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 1ff53ff6a52ddf6c240fa10f823db525
+    Hash: 2410cf6c445fbfa106155a7087f7dc29
   TypeTreeHash:
     serializedVersion: 2
     Hash: 3f7d0c5e0986ec71841622bcb2f9be1c
@@ -13,5 +13,5 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- "Assets/Package/\u7D20\u6750/Music/1.mp3"
+- Assets/Package/Music/1.mp3
 Dependencies: []

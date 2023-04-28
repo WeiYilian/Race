@@ -42,7 +42,7 @@ public class AudioManager : MonoBehaviour
     //audioClipl列表
     private List<AudioClip> audioList;
     //初始声音预设数量
-    private int initAudioPrefabcount = 7;
+    private int initAudioPrefabcount = 4;
     //记录静音前的音量大小
     [HideInInspector]
     public float tempVolume = 0;
@@ -97,6 +97,7 @@ public class AudioManager : MonoBehaviour
         m_ObjectPool.LoadResources("button","button.ab",ResType.Music);
         m_ObjectPool.LoadResources("1","start.ab",ResType.Music);
         m_ObjectPool.LoadResources("2","music.ab",ResType.Music);
+        m_ObjectPool.LoadResources("typing","typing.ab",ResType.Music);
         
     }
     
@@ -107,18 +108,29 @@ public class AudioManager : MonoBehaviour
             //TODO:添加音乐
             m_ObjectPool.GetABMusic("button"),
             m_ObjectPool.GetABMusic("1"),
-            m_ObjectPool.GetABMusic("2")
+            m_ObjectPool.GetABMusic("2"),
+            m_ObjectPool.GetABMusic("typing")
         };
     }
 
     /// <summary>
-    /// 音频播放
+    /// 暂停音频播放
     /// </summary>
     /// <param name="index">播放器序号（用第几个AudioSource播放）</param>
     public void PauseAudio(int index)
     {
         AudioSource audioSource = transform.GetChild(index).GetComponent<AudioSource>();
         audioSource.Pause();
+    }
+ 
+    /// <summary>
+    /// 继续播放
+    /// </summary>
+    /// <param name="index">播放器序号</param>
+    public void ResumeAudio(int index)
+    {
+        AudioSource audioSource = transform.GetChild(index).GetComponent<AudioSource>();
+        audioSource.UnPause();
     }
 
     /// <summary>
@@ -158,12 +170,15 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 重载播放，只有播放器和音频
+    /// 直接播放声音
     /// </summary>
     /// <param name="index">播放器序号</param>
-    /// <param name="audioName">音频的名称</param>
-    public void PlayAudio(int index, string audioName)
+    /// <param name="audioName">音频文件名称</param>
+    /// <param name="volume">音量大小</param>
+    /// <param name="isLoop">是否循环</param>
+    public void PlayAudio(int index, string audioName, float volume = 1, bool isLoop = false)
     {
+        //Debug.Log("------------执行播放声音----------------");
         AudioSource audioSource = this.transform.GetChild(index).GetComponent<AudioSource>();
  
         if (IsMute || audioSource == null)
@@ -174,9 +189,10 @@ public class AudioManager : MonoBehaviour
         AudioClip audioClip;
         if (audioDic.TryGetValue(audioName, out audioClip))
         {
-            //Debug.Log("按钮点击的clip名字是："+audioClip.name);
             audioSource.gameObject.SetActive(true);
+            audioSource.loop = isLoop;
             audioSource.clip = audioClip;
+            audioSource.volume = volume;
             if (audioSource.isPlaying)
             {
                 audioSource.Stop();

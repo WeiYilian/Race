@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 270001662
+CRC: 1221502479
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: e0fca8b71fb82192327f4d72d8aedb05
+    Hash: eca404e5a277ab01484dd7e3224953ee
   TypeTreeHash:
     serializedVersion: 2
     Hash: 3f7d0c5e0986ec71841622bcb2f9be1c
@@ -13,5 +13,5 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/Package/Music/2.mp3
+- Assets/Package/Music/typing.mp3
 Dependencies: []
