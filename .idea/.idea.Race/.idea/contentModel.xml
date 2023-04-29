@@ -123,9 +123,6 @@
             </e>
           </e>
           <e p="TestScript" t="Include">
-            <e p="musetool" t="Include">
-              <e p="ClickHandler.cs" t="Include" />
-            </e>
             <e p="objectContorl" t="Include">
               <e p="Cameracontor.cs" t="Include" />
               <e p="ObjectbeBigOrSmall.cs" t="Include" />

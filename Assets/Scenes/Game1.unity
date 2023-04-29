@@ -17794,7 +17794,6 @@ GameObject:
   - component: {fileID: 1252802284}
   - component: {fileID: 1252802287}
   - component: {fileID: 1252802286}
-  - component: {fileID: 1252802285}
   m_Layer: 0
   m_Name: rightdoor
   m_TagString: Untagged
@@ -17827,18 +17826,6 @@ RectTransform:
   m_AnchoredPosition: {x: 22.5, y: -2.8}
   m_SizeDelta: {x: 44.89598, y: 84.70863}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1252802285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1252802283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a98bbd1e57595640a00958fe55c1f86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1252802286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20058,7 +20045,6 @@ GameObject:
   - component: {fileID: 1433971074}
   - component: {fileID: 1433971077}
   - component: {fileID: 1433971076}
-  - component: {fileID: 1433971075}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -20085,50 +20071,6 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: -0}
   m_SizeDelta: {x: -10.0000305, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1433971075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1433971073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8892748c156efb5498475485cc933552, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _effectGradient:
-    serializedVersion: 2
-    key0: {r: 0.20784315, g: 0.18823531, b: 0.12941177, a: 1}
-    key1: {r: 0.20000002, g: 0.18039216, b: 0.121568635, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 1}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 24672
-    ctime1: 51850
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 32768
-    atime2: 48959
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 3
-  _gradientType: 0
-  _blendMode: 2
-  _offset: 0
 --- !u!114 &1433971076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20142,7 +20084,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.33962262, g: 0.30558026, b: 0.20345317, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -24514,7 +24456,6 @@ GameObject:
   - component: {fileID: 1717998178}
   - component: {fileID: 1717998180}
   - component: {fileID: 1717998179}
-  - component: {fileID: 1717998181}
   m_Layer: 0
   m_Name: leftdoor
   m_TagString: Untagged
@@ -24583,18 +24524,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1717998177}
   m_CullTransparentMesh: 0
---- !u!114 &1717998181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1717998177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a98bbd1e57595640a00958fe55c1f86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1719128089
 GameObject:
   m_ObjectHideFlags: 0
