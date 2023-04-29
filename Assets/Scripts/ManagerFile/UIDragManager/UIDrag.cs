@@ -170,7 +170,9 @@ public class UIDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHan
     /// </summary>
     public virtual void Adsorption(PointerEventData eventData)
     {
-        transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform);
+        GameObject go = eventData.pointerCurrentRaycast.gameObject;
+        if (go.name != "内圆盘")
+            transform.SetParent(go.transform);
         if (!AdsorptionFunction) return;
         if (Mathf.Sqrt((transform.position - AdsorptionTarget.transform.position).magnitude) < adsorptionRange)
         {

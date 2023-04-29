@@ -280,33 +280,25 @@ public class AnswerManager : MonoBehaviour
                 if(OptionAnswer != null)
                     OptionAnswer.GetComponent<Text>().color = Color.black;
                 OptionAnswer = button.transform.GetChild(0).GetComponent<Text>();
-                OptionAnswer.GetComponent<Text>().color = Color.blue;
+                OptionAnswer.GetComponent<Text>().color = Color.cyan;
             });
         }
         else
         {
             button.onClick.AddListener(() =>
             {
-                foreach (var item in ShowAnswerArea_Text)
-                {
-                    if (item.GetComponent<Text>().color.a <= 100f)
-                    {
-                        item.text = "";
-                        item.GetComponent<Text>().color = new Color(0,0,0,255);
-                    }
-                        
-                }
-                
                 if (selectSum < ShowAnswerArea_Text.Count - 1)
                 {
                     AnswerArea.Add(button.GetComponent<Button>());
                     ShowAnswerArea_Text[selectSum].text = button.transform.GetChild(0).GetComponent<Text>().text;
+                    ShowAnswerArea_Text[selectSum].DOFade(1, 0.5f);
                     selectSum++;
                 }
                 else
                 {
                     AnswerArea.Add(button.GetComponent<Button>());
-                    ShowAnswerArea_Text[selectSum].text = button.transform.GetChild(0).GetComponent<Text>().text;//最后一次点击也要存储
+                    ShowAnswerArea_Text[selectSum].text = button.transform.GetChild(0).GetComponent<Text>().text;
+                    ShowAnswerArea_Text[selectSum].DOFade(1, 0.5f);//最后一次点击也要存储
                     
                     //将字符串拼接起来
                     StringBuilder selectText = new StringBuilder();
@@ -343,7 +335,7 @@ public class AnswerManager : MonoBehaviour
                         foreach (Button item in AnswerArea)
                         {
                             item.transform.Find("Text").GetComponent<Text>().color = Color.red;
-                            item.transform.Find("Text").GetComponent<Text>().DOColor(Color.black, 1f);
+                            item.transform.Find("Text").GetComponent<Text>().DOColor(new Color32(255,236,182,255), 1f);
                         }
                         AnswerArea.Clear();
                     }
@@ -420,16 +412,13 @@ public class AnswerManager : MonoBehaviour
                     for (int i = 0; i < SelAnswerArea_Text.Count; i++)
                     {
                         SelAnswerArea_Text[i].text = questions[i + 2];
+                        SelAnswerArea_Text[i].color = new Color32(255, 236, 182,255);
                     }
                     
                     foreach (var text in ShowAnswerArea_Text)
                     {
                         text.text = "";
-                    }
-
-                    foreach (var text in ShowAnswerArea_Text)
-                    {
-                        text.text = "";
+                        text.GetComponent<Text>().color = new Color32(228,199,157,255);
                     }
                 }
                 break;

@@ -8974,7 +8974,7 @@ MonoBehaviour:
   videoPlayer: {fileID: 606228832}
   seefman: {fileID: 819338808}
   BG: {fileID: 21300000, guid: a1d9437d177f4064d8b3c34edeef92d5, type: 3}
-  BG1: {fileID: 1647150367314284649, guid: adccce73411c2c645a59469016712d93, type: 3}
+  BG1: {fileID: 21300000, guid: bdda518c9d775b04b9da140e703138ab, type: 3}
   BG2: {fileID: 21300000, guid: 3e193aa183f34e04b99ada4e0ea8f88f, type: 3}
 --- !u!328 &606228832
 VideoPlayer:

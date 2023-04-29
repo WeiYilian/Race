@@ -39,6 +39,8 @@ public class SeedContel : MonoBehaviour
      static  bool isGame;
      static  bool isGame1;
      static  bool isGame2;
+     //文本列表
+     private Dictionary<string, List<string>> Texts = new Dictionary<string, List<string>>();
 
      private ThreeFaceMange ThreeFaceMange;
     void Start()
@@ -72,7 +74,28 @@ public class SeedContel : MonoBehaviour
        back = SeedPanel.transform.Find("返回").GetComponent<Button>();
       
        MyOnEnable();
-
+       
+       Texts.Add("甘菊",new List<string>()
+       {
+           "【甘菊】\n \n<color=#FF0000>具体种植信息未激活，请找到对应种子拖入激活具体信息</color>\n  \n是否直接进入模拟种植点击确定",
+           "【甘菊】\n \n喜欢寒冷的环境,更适合<color=#A52A2A>秋播</color>。甘菊为二年生草花,秋季播种,<color=#A52A2A>发芽温度15-18度,开花到结种时需要充足的阳光,</color>" +
+           "良好的通风,排水良好的<color=#A52A2A>“沙壤土”</color>或土壤深厚的疏松壤土,抗寒性强\n是否进入模拟系统",
+           "《食疗本草》中写道：其叶，正月采，可作羹；茎，五月五日采；花，九月九日采。〔证〕甘菊古代中国叫作春黄菊，稚子书传白菊开，西成相滞未容回。月明阶下窗纱薄，多少清香透入来。\n菊不仅仅能入药更多依托的人们不畏艰难，顽强斗争，风霜高洁的品质，\n 已种植完成继续模拟"
+       });
+       Texts.Add("凤仙花",new List<string>()
+       {
+           "【凤仙花】\n \n<color=#FF0000>具体种植信息未激活，请找到对应种子拖入激活具体信息</color>\n \n是否直接进入模拟种植点击确定",
+           "【凤仙花】\n \n种植的季节以<color=#A52A2A>4月</color>播种最为适宜，凤仙花<color=#A52A2A>各期性喜阳光</color>，最适合生长的温度为<color=#A52A2A>20-26℃</color>,凤仙花适应能力强壤，可选用疏松肥沃、<color=#A52A2A>“富含腐殖质的黑土”</color>，" +
+           "不可长期的置于荫蔽处，以免枝叶徒长，花开稀少，花色暗淡\n是否进入模拟系统",
+           "《本草纲目》草部第十七卷有“凤仙……茎有红白二色，其大如指，中空而脆“，翩翩然“欲羽化而登仙”得名细看金凤小花丛，费尽司花染作工，雪色白边紫色袍，更饶深浅日般红。”说的就是凤仙花。\n 已种植完成继续模拟"
+       });
+       Texts.Add("车前子",new List<string>()
+       {
+           "【车前子】\n \n<color=#FF0000>具体种植信息未激活，请找到对应种子拖入激活具体信息</color>\n  \n是否直接进入模拟种植点击确定",
+           "【车前草】 \n  \n车前草原产于热带地区，<color=#A52A2A>20℃及以上的温度</color>更适合它的生长，喜欢生长在比较松软的<color=#A52A2A>“土壤”</color>中，它喜欢阳光充足的生长环境，除了<color=#A52A2A>夏季</color>都可以给它全天的日照。" +
+           "<color=#A52A2A>结子注意在周围喷水进行保湿遮阳</color>\n是否进入模拟系统。",
+           " \n《本草纲目》：王旻《山居录》，有种车前剪苗食法,则昔人常以为蔬矣。今野人犹采食之。故又名当道、牛遗、地衣、过路、胜马、车前突。\n古诗中有写车前草的诗篇有写采采芣苢，薄言采之。采采芣苢薄言有之\n 已种植完成继续模拟"
+       });
     }
 
     // Update is called once per frame
@@ -148,114 +171,56 @@ public class SeedContel : MonoBehaviour
 
     public void OnCilk()
     {
-        if (isGame==false||isGame1==false||isGame2==false)
+        switch (gameObject.name)
         {
-            Debug.Log("2");
-            TipPanel.SetActive(true);
-            SeedPanel.SetActive(true);
-            nametext.text = Seedname;
-            Tipeedimage.sprite = Seedimage.sprite;
-            switch (gameObject.name)
-            {
-                case "甘菊":
-                    
-                    seedmangetext.text = "【甘菊】\n \n<color=#FF0000>具体种植信息未激活，请找到对应种子拖入激活具体信息</color>\n  \n是否直接进入模拟种植点击确定";
-                    UIFaceManager.Instance.MessageonCtrol("种子未激活");
-                    break;
-                case"凤仙花":
-                    seedmangetext.text = "【凤仙花】\n \n<color=#FF0000>具体种植信息未激活，请找到对应种子拖入激活具体信息</color>\n \n是否直接进入模拟种植点击确定";
-                    UIFaceManager.Instance.MessageonCtrol("种子未激活");
-                    
-                    break;
-                case "车前子": 
-                    seedmangetext.text = "【车前子】\n \n<color=#FF0000>具体种植信息未激活，请找到对应种子拖入激活具体信息</color>\n  \n是否直接进入模拟种植点击确定";
-                    UIFaceManager.Instance.MessageonCtrol("种子未激活");
-                    break;   
-                    
-            }
-        }
-
-        if (isGame == true)
-        {
-           
-            TipPanel.SetActive(true);
-            SeedPanel.SetActive(true);
-            nametext.text = Seedname;
-            Tipeedimage.sprite = Seedimage.sprite;
-            switch (gameObject.name)
-            {
-                case "甘菊":
-                    if (ThreeFaceMange.seedend1 == false)
-                    {
-                        seedmangetext.text = "【甘菊】\n \n喜欢寒冷的环境,更适合<color=#A52A2A>秋播</color>。甘菊为二年生草花,秋季播种,<color=#A52A2A>发芽温度15-18度,开花到结种时需要充足的阳光,</color>" +
-                                             "良好的通风,排水良好的<color=#A52A2A>“沙壤土”</color>或土壤深厚的疏松壤土,抗寒性强\n是否进入模拟系统";
-                    }
-
-                    else
-                    {
-                        seedmangetext.text = "《食疗本草》中写道：其叶，正月采，可作羹；茎，五月五日采；花，九月九日采。〔证〕甘菊古代中国叫作春黄菊，稚子书传白菊开，西成相滞未容回。月明阶下窗纱薄，多少清香透入来。\n菊不仅仅能入药更多依托的人们不畏艰难，顽强斗争，风霜高洁的品质，\n 已种植完成继续模拟";
-                    }
-                    break;
-                
-                    
-            }
-        }
-        if (isGame1 == true)
-        {
-            Debug.Log("1");
-            TipPanel.SetActive(true);
-            SeedPanel.SetActive(true);
-            nametext.text = Seedname;
-            Tipeedimage.sprite = Seedimage.sprite;
-            switch (gameObject.name)
-            {
-                   
-                case"凤仙花":
-                    if (ThreeFaceMange.seedend3==false)
-                    {
-                        seedmangetext.text = "【凤仙花】\n \n种植的季节以<color=#A52A2A>4月</color>播种最为适宜，凤仙花<color=#A52A2A>各期性喜阳光</color>，最适合生长的温度为<color=#A52A2A>20-26℃</color>,凤仙花适应能力强壤，可选用疏松肥沃、<color=#A52A2A>“富含腐殖质的黑土”</color>，" +
-                                             "不可长期的置于荫蔽处，以免枝叶徒长，花开稀少，花色暗淡\n是否进入模拟系统";
-                    }
-                    else
-                    {
-                        seedmangetext.text ="《本草纲目》草部第十七卷有“凤仙……茎有红白二色，其大如指，中空而脆“，翩翩然“欲羽化而登仙”得名。" +
-                                            "“细看金凤小花丛，费尽司花染作工，雪色白边紫色袍，更饶深浅日般红。”说的就是凤仙花。\n 已种植完成继续模拟";
-                    }
-                   
-                    break;
-                
-                    
-            }
-        }
-        if (isGame2 == true)
-        {
-            Debug.Log("1");
-            TipPanel.SetActive(true);
-            SeedPanel.SetActive(true);
-            nametext.text = Seedname;
-            Tipeedimage.sprite = Seedimage.sprite;
-            switch (gameObject.name)
-            {
-                
-                   
-                case "车前子":
-                    if (ThreeFaceMange.seedend2 == false)
-                    {
-                        seedmangetext.text =
-                            "【车前草】 \n  \n车前草原产于热带地区，<color=#A52A2A>20℃及以上的温度</color>更适合它的生长，喜欢生长在比较松软的<color=#A52A2A>“土壤”</color>中，它喜欢阳光充足的生长环境，除了<color=#A52A2A>夏季</color>都可以给它全天的日照。" +
-                            "<color=#A52A2A>结子注意在周围喷水进行保湿遮阳</color>\n是否进入模拟系统。";
-                    }
-                    else
-                    {
-                        seedmangetext.text = " \n《本草纲目》：王旻《山居录》，有种车前剪苗食法,则昔人常以为蔬矣。今野人犹采食之。故又名当道、牛遗、地衣、过路、胜马、车前突。\n古诗中有写车前草的诗篇有写采采芣苢，薄言采之。采采芣苢薄言有之\n 已种植完成继续模拟";
-                    }
-
-                    break;
-                    
-            }
-            
+            case "甘菊":
+                if (!isGame)
+                    NotActivateSeed(Texts["甘菊"]);
+                else
+                    ActivateSeed("甘菊",Texts["甘菊"]);
+                break;
+            case "凤仙花":
+                if (!isGame1)
+                    NotActivateSeed(Texts["凤仙花"]);
+                else
+                    ActivateSeed("凤仙花",Texts["凤仙花"]);
+                break;
+            case "车前子": 
+                if (!isGame2)
+                    NotActivateSeed(Texts["车前子"]);
+                else
+                    ActivateSeed("车前子",Texts["车前子"]);
+                break;
         }
     }
+
+    private void ActivateSeed(string name,List<string> txt)
+    {
+        TipPanel.SetActive(true);
+        SeedPanel.SetActive(true);
+        nametext.text = Seedname;
+        Tipeedimage.sprite = Seedimage.sprite;
+        if (gameObject.name == name)
+        {
+            if (ThreeFaceMange.seedend1 == false)
+                seedmangetext.text = txt[1];
+            else
+                seedmangetext.text = txt[2];
+        }
+    }
+
+    private void NotActivateSeed(List<string> txt)
+    {
+        TipPanel.SetActive(true);
+        SeedPanel.SetActive(true);
+        nametext.text = Seedname;
+        Tipeedimage.sprite = Seedimage.sprite;
+                    
+        seedmangetext.text = txt[0];
+        UIFaceManager.Instance.MessageonCtrol("种子未激活");
+    }
+    
+    
     //判断当前面是否全部完成全部种子种植
     public void isgameover()
     {
@@ -264,22 +229,21 @@ public class SeedContel : MonoBehaviour
            
             ThreeFaceMange.Face3compement = true;
             Debug.Log("第三面通关"+ThreeFaceMange.Face3compement);
-            UIFaceManager.Instance.MessageonCtrol("第三面通关");
+            UIFaceManager.Instance.MessageonCtrol("全部种子模拟种植完成");
         }
         else
         {
             Debug.Log("一个成功");
         }
     }
-//选择种植种子条件
+    //选择种植种子条件
     private void seedButtonclik(Button sender)
     {
         switch (sender.name)
         {
             case "确定":
-
-            
-            {   SeedPlathPanel.SetActive(true);
+            {   
+                SeedPlathPanel.SetActive(true);
                 nametext1.text = nametext.text;
                 Tipeedimage1.sprite = Tipeedimage.sprite;
                 SeedPanel.SetActive(false);

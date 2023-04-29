@@ -18,8 +18,6 @@ public class TowFaceViscera : UIDrag
     {
         if (!AdsorptionFunction) return;
         GameObject go = eventData.pointerCurrentRaycast.gameObject;
-        if (go.name != "内圆盘")
-            transform.SetParent(go.transform);
         if (eventData.pointerCurrentRaycast.gameObject.CompareTag("VisceralPits"))
         {
             if (Mathf.Sqrt((transform.position - go.transform.position).magnitude) < adsorptionRange)
